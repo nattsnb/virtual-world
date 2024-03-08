@@ -26,8 +26,9 @@ export class Board {
       console.log(organism.initiative);
       const randomWidth = Math.floor(Math.random() * this.width);
       const randomHeight = Math.floor(Math.random() * this.height);
-      // const tileForNewOrganism = document.querySelector('.x-${randomWidth}', '.y-${randomHeight}');
-      const tileForNewOrganism = document.querySelector('.x-3', '.y-4');
+      console.log("x: " + randomWidth + " y: " + randomHeight)
+      let tileForNewOrganism = document.querySelector('.x-${randomWidth}.y-${randomHeight}');
+      tileForNewOrganism.innerText = "lalala"
     }
     const player = new Player();
     console.log("organism: " + player);
