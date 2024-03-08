@@ -24,6 +24,10 @@ export class Board {
       let organism = new organismsList[Math.floor(Math.random() * organismsList.length)]();
       console.log("organism: " + organism);
       console.log(organism.initiative);
+      const randomWidth = Math.floor(Math.random() * this.width);
+      const randomHeight = Math.floor(Math.random() * this.height);
+      // const tileForNewOrganism = document.querySelector('.x-${randomWidth}', '.y-${randomHeight}');
+      const tileForNewOrganism = document.querySelector('.x-3', '.y-4');
     }
     const player = new Player();
     console.log("organism: " + player);
