@@ -82,7 +82,7 @@ class Plant extends Organism {
         super();
     }
 
-    spread() {
+    spread(){
     }
 }
 
