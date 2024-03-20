@@ -7,23 +7,32 @@ export class Board {
     this.height = height;
     this.render();
   }
+
   render() {
-    const boardContainer = document.querySelector('#board-container');
+    // const boardContainer = document.querySelector('#board-container');
+    let boardContainer;
+    boardContainer = [];
     for (let i = 0; i < this.width; i++) {
-      const column = document.createElement('div');
-      column.classList.add(`column-${i}`);
-      boardContainer.append(column);
+      boardContainer[i] = [];
+    }
+    for (let i = 0; i < this.width; i++) {
+      // const column = document.createElement('div');
+      // column.classList.add(`column-${i}`);
+      // boardContainer.append(column);
       for (let j = 0; j < this.height; j++) {
-        const tile = document.createElement('div');
-        tile.classList.add(`x-${i}`, `y-${j}`);
-        column.append(tile);
+        boardContainer[i][j] = i + ', ' + j;
+        // const tile = document.createElement('div');
+        // tile.classList.add(`x-${i}`, `y-${j}`);
+        // column.append(tile);
       }
     }
+    console.log(boardContainer)
+  }
+  createInitialCharacters() {
     let numberOfCharacters = Math.round(this.width * this.height * 0.3);
-    for(numberOfCharacters; numberOfCharacters > 0; numberOfCharacters--){
+    for (numberOfCharacters; numberOfCharacters > 0; numberOfCharacters--) {
       let organism = new organismsList[Math.floor(Math.random() * organismsList.length)]();
       console.log("organism: " + organism.name);
-      console.log(organism.initiative);
       const randomWidth = Math.floor(Math.random() * this.width);
       const randomHeight = Math.floor(Math.random() * this.height);
       console.log("x: " + randomWidth + " y: " + randomHeight)
@@ -31,8 +40,6 @@ export class Board {
       tileForNewOrganism.innerText = "lalala"
     }
     const player = new Player();
-    console.log("organism: " + player);
-    console.log(player.initiative);
-
-  }
+    console.log("organism: " + player.name);
+    }
 }
