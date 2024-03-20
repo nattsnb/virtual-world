@@ -1,5 +1,5 @@
-import {Wolf, Sheep, Fox, Antelope, Turtle, Grass, Guarana, PoisonBerry, SowThistle, Player} from './organism.js';
-import {organismsList} from './organism.js';
+import {organismsList} from './organismsList.js';
+import {Player} from "./player";
 
 export class Board {
   constructor(width, height) {
@@ -22,7 +22,7 @@ export class Board {
     let numberOfCharacters = Math.round(this.width * this.height * 0.3);
     for(numberOfCharacters; numberOfCharacters > 0; numberOfCharacters--){
       let organism = new organismsList[Math.floor(Math.random() * organismsList.length)]();
-      console.log("organism: " + organism);
+      console.log("organism: " + organism.name);
       console.log(organism.initiative);
       const randomWidth = Math.floor(Math.random() * this.width);
       const randomHeight = Math.floor(Math.random() * this.height);

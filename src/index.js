@@ -1,6 +1,5 @@
 import './styles.css';
 import { Board } from './board.js';
-import { Wolf } from './organism.js';
 
 const paragraph = document.createElement('p');
 paragraph.innerText = 'Hello!';
