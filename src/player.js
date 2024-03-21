@@ -5,6 +5,5 @@ export class Player extends Animal {
         super();
         this.initiative = 5;
         this.strenght = 4;
-        this.name = "player";
     }
 }
