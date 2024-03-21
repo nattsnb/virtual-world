@@ -2,11 +2,10 @@ export class Tile {
     constructor (x,y) {
         this.x = x;
         this.y = y;
-        this.render()
+        this.render();
     }
     render(){
-        const tileContainer = document.createElement('div');
-        tileContainer.classList.add('tileContainer');
-
+        this.tileContainer = document.createElement('div');
+        this.tileContainer.classList.add('tileContainer');
     }
 }

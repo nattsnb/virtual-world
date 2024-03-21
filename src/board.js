@@ -20,11 +20,11 @@ export class Board {
       row.classList.add(`row`);
       boardContainer.append(row);
       for (let j = 0; j < this.height; j++) {
-        this.tiles[i][j] = i + ', ' + j;
-        const tile = new Tile(i,j);
-        row.append(tile);
+        this.tiles[i][j] = new Tile(i,j);
+        row.append(Tile.tileContainer)
       }
     }
+    console.log(this.tiles[1][3])
     console.log(this.tiles)
   }
   // createInitialCharacters() {
