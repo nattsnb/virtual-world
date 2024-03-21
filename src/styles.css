@@ -13,3 +13,8 @@
   display: flex;
   flex-direction: row;
 }
+
+.organism-image {
+  width: 25px;
+  height: 25px;
+}

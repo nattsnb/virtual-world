@@ -8,6 +8,7 @@ export class Board {
     this.height = height;
     this.tiles = [];
     this.render();
+    this.createInitialCharacters();
   }
 
   render() {
@@ -21,24 +22,26 @@ export class Board {
       boardContainer.append(row);
       for (let j = 0; j < this.height; j++) {
         this.tiles[i][j] = new Tile(i,j);
-        row.append(Tile.tileContainer)
+        row.append(this.tiles[i][j].tileContainer)
       }
     }
     console.log(this.tiles[1][3])
     console.log(this.tiles)
   }
-  // createInitialCharacters() {
-  //   let numberOfCharacters = Math.round(this.width * this.height * 0.3);
-  //   for (numberOfCharacters; numberOfCharacters > 0; numberOfCharacters--) {
-  //     let organism = new organismsList[Math.floor(Math.random() * organismsList.length)]();
-  //     console.log("organism: " + organism.name);
-  //     const randomWidth = Math.floor(Math.random() * this.width);
-  //     const randomHeight = Math.floor(Math.random() * this.height);
-  //     console.log("x: " + randomWidth + " y: " + randomHeight)
-  //     let tileForNewOrganism = document.querySelector('.x-${randomWidth}.y-${randomHeight}');
-  //     tileForNewOrganism.innerText = "lalala"
-  //   }
-  //   const player = new Player();
-  //   console.log("organism: " + player.name);
-  //   }
+  createInitialCharacters() {
+    const numberOfCharacters = Math.round(this.width * this.height * 0.3);
+    for (let i = 0; i < numberOfCharacters; i++) {
+      const RandomOrganismClass = organismsList[Math.floor(Math.random() * organismsList.length)];
+      const organism = new RandomOrganismClass();
+      console.log("organism: " + organism);
+      const randomX = Math.floor(Math.random() * this.width);
+      const randomY = Math.floor(Math.random() * this.height);
+      console.log("x: " + randomX + " y: " + randomY)
+      const tileForNewOrganism = this.tiles[randomX][randomY];
+      tileForNewOrganism.addOrganism(organism);
+      tileForNewOrganism.refresh();
+    }
+    const player = new Player();
+    console.log("organism: " + player.name);
+    }
 }

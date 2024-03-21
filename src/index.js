@@ -7,6 +7,8 @@ document.body.append(paragraph);
 
 const board = new Board(5, 5);
 
+
+
 console.log(board);
 
 
