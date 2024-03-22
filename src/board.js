@@ -1,5 +1,5 @@
 import {organismsList} from './organismsList.js';
-import {Player} from "./player";
+import {Player} from "./player/player";
 import {Tile} from "./tile.js"
 
 export class Board {
