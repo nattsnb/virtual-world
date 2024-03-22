@@ -1,6 +1,7 @@
 import {organismsList} from './organismsList.js';
 import {Player} from "./player/Player.js";
 import {Tile} from "./Tile.js"
+import {findRandomTile} from "./findRandomTile.js";
 
 export class Board {
   constructor(width, height) {
@@ -33,26 +34,15 @@ export class Board {
     for (let i = 0; i < numberOfCharacters; i++) {
       const RandomOrganismClass = organismsList[Math.floor(Math.random() * organismsList.length)];
       const organism = new RandomOrganismClass();
-      const tileForNewOrganism = this.findEmptyRandomTile()
+      const tileForNewOrganism = findRandomTile()
       tileForNewOrganism.addOrganism(organism);
       tileForNewOrganism.refresh();
     }
     const player = new Player();
-    const tileForPlayer = this.findEmptyRandomTile()
+    const tileForPlayer = findRandomTile()
     tileForPlayer.addOrganism(player);
     tileForPlayer.refresh();
     }
-
-  findEmptyRandomTile() {
-    const randomX = Math.floor(Math.random() * this.width);
-    const randomY = Math.floor(Math.random() * this.height);
-    const foundTile = this.tiles[randomX][randomY];
-    if (foundTile.currentOrganism !== null) {
-      return this.findEmptyRandomTile();
-    }
-    return foundTile
-
-  }
 }
 
 
