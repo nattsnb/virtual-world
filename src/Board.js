@@ -34,12 +34,12 @@ export class Board {
     for (let i = 0; i < numberOfCharacters; i++) {
       const RandomOrganismClass = organismsList[Math.floor(Math.random() * organismsList.length)];
       const organism = new RandomOrganismClass();
-      const tileForNewOrganism = findRandomTile()
+      const tileForNewOrganism = findRandomTile(this.width, this.height, this.tiles)
       tileForNewOrganism.addOrganism(organism);
       tileForNewOrganism.refresh();
     }
     const player = new Player();
-    const tileForPlayer = findRandomTile()
+    const tileForPlayer = findRandomTile(this.width, this.height, this.tiles)
     tileForPlayer.addOrganism(player);
     tileForPlayer.refresh();
     }
