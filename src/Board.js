@@ -33,17 +33,15 @@ export class Board {
     for (let i = 0; i < numberOfCharacters; i++) {
       const RandomOrganismClass = organismsList[Math.floor(Math.random() * organismsList.length)];
       const organism = new RandomOrganismClass();
-      const randomX = Math.floor(Math.random() * this.width);
-      const randomY = Math.floor(Math.random() * this.height);
-      const tileForNewOrganism = this.tiles[randomX][randomY];
+      const tileForNewOrganism = findRandomTile(this.width, this.height, this.tiles)
       tileForNewOrganism.addOrganism(organism);
       tileForNewOrganism.refresh();
     }
     const player = new Player();
-    const randomX = Math.floor(Math.random() * this.width);
-    const randomY = Math.floor(Math.random() * this.height);
-    const tileForPlayer = this.tiles[randomX][randomY];
+    const tileForPlayer = findRandomTile(this.width, this.height, this.tiles)
     tileForPlayer.addOrganism(player);
     tileForPlayer.refresh();
     }
 }
+
+
