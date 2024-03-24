@@ -1,6 +1,6 @@
-import {organismsList} from './organismsList.js';
-import {Player} from "./player";
-import {Tile} from "./tile.js"
+import { organismsList } from './organismsList.js';
+import { Player } from './player/Player.js';
+import { Tile } from './Tile.js';
 
 export class Board {
   constructor(width, height) {
@@ -33,15 +33,17 @@ export class Board {
     for (let i = 0; i < numberOfCharacters; i++) {
       const RandomOrganismClass = organismsList[Math.floor(Math.random() * organismsList.length)];
       const organism = new RandomOrganismClass();
-      console.log("organism: " + organism);
       const randomX = Math.floor(Math.random() * this.width);
       const randomY = Math.floor(Math.random() * this.height);
-      console.log("x: " + randomX + " y: " + randomY)
       const tileForNewOrganism = this.tiles[randomX][randomY];
       tileForNewOrganism.addOrganism(organism);
       tileForNewOrganism.refresh();
     }
     const player = new Player();
-    console.log("organism: " + player.name);
+    const randomX = Math.floor(Math.random() * this.width);
+    const randomY = Math.floor(Math.random() * this.height);
+    const tileForPlayer = this.tiles[randomX][randomY];
+    tileForPlayer.addOrganism(player);
+    tileForPlayer.refresh();
     }
 }

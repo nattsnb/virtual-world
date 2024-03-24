@@ -4,6 +4,6 @@ export class Player extends Animal {
     constructor() {
         super();
         this.initiative = 5;
-        this.strength = 4;
+        this.strenght = 4;
     }
 }
