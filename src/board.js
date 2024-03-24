@@ -1,6 +1,6 @@
-import {organismsList} from './organismsList.js';
-import {Player} from "./player/Player.js";
-import {Tile} from "./Tile.js"
+import { organismsList } from './organismsList.js';
+import { Player } from './player/Player.js';
+import { Tile } from './Tile.js';
 
 export class Board {
   constructor(width, height) {

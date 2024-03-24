@@ -1,5 +1,5 @@
-import {Animal} from '../animal.js';
-import antelopeImage from "../antelope/antelope.jpg";
+import { Animal } from '../animal.js';
+import antelopeImage from '../antelope/antelope.jpg';
 
 export class Antelope extends Animal {
     constructor() {

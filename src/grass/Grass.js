@@ -1,5 +1,5 @@
-import {Plant} from '../plant.js';
-import grassImage from "./grass.jpg";
+import { Plant } from '../plant.js';
+import grassImage from './grass.jpg';
 
 export class Grass extends Plant {
     constructor() {

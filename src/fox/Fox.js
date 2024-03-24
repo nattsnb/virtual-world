@@ -1,4 +1,4 @@
-import {Animal} from '../animal.js';
+import { Animal } from '../animal.js';
 import foxImage from './fox.jpg'
 
 export class Fox extends Animal {

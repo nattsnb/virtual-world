@@ -1,4 +1,4 @@
-import {Organism} from './organism.js';
+import { Organism } from './organism.js';
 
 export class Plant extends Organism {
     constructor() {

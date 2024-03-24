@@ -1,5 +1,3 @@
-import foxImage from "./fox/fox.jpg";
-
 export class Organism {
   constructor() {
     this.age = 0;
