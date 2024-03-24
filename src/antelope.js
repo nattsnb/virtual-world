@@ -4,6 +4,6 @@ export class Antelope extends Animal {
     constructor() {
         super();
         this.initiative = 4;
-        this.strenght = 4;
+        this.strength = 4;
     }
 }
