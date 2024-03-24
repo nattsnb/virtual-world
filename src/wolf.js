@@ -4,7 +4,7 @@ export class Wolf extends Animal {
     constructor() {
         super();
         this.initiative = 5;
-        this.strenght = 9;
-        this.name = "wolf";
+        this.strength = 9;
+
     }
 }

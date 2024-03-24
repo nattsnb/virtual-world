@@ -1,6 +1,6 @@
 import {Sheep} from "./sheep";
 import {Wolf} from "./wolf";
-import {Fox} from "./fox";
+import {Fox} from "./fox/Fox";
 import {Antelope} from "./antelope";
 import {Turtle} from "./turtle";
 import {Grass} from "./grass";
