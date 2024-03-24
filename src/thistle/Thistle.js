@@ -1,5 +1,5 @@
-import {Plant} from '../plant.js';
-import thistleImage from "./thistle.jpg";
+import { Plant } from '../plant.js';
+import thistleImage from './thistle.jpg';
 
 export class SowThistle extends Plant {
     constructor() {

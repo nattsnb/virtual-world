@@ -1,5 +1,5 @@
-import {Animal} from '../animal.js';
-import playerImage from "./player.jpg";
+import { Animal } from '../animal.js';
+import playerImage from './player.jpg';
 
 export class Player extends Animal {
     constructor() {

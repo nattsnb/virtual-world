@@ -1,5 +1,5 @@
-import {Plant} from '../plant.js';
-import guaranaImage from "./guarana.jpg";
+import { Plant } from '../plant.js';
+import guaranaImage from './guarana.jpg';
 
 export class Guarana extends Plant {
     constructor() {
