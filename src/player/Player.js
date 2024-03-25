@@ -7,10 +7,16 @@ export class Player extends Animal {
         this.initiative = 5;
         this.strenght = 4;
         this.createElement()
+        this.x = 0;
+        this.y = 0;
     }
 
     createElement() {
-        super.createElement()
+        super.createElement();
         this.element.src = playerImage;
+    }
+
+    move() {
+
     }
 }

@@ -12,9 +12,11 @@ export class Tile {
 
     addOrganism(organism) {
         this.currentOrganism = organism;
+        organism.x = this.x;
+        organism.y = this.y;
     }
 
     refresh() {
-        this.tileContainer.append(this.currentOrganism.element)
+        this.tileContainer.append(this.currentOrganism.element) // co jest z tym elementem?
     }
 }
