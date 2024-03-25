@@ -1,3 +1,3 @@
-function playerControl (tiles, player) {
+function playerControl (tiles, player, event) {
 
 }
