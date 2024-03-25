@@ -43,7 +43,7 @@ export class Board {
     const tileForPlayer = findRandomTile(this.width, this.height, this.tiles)
     tileForPlayer.addOrganism(player);
     tileForPlayer.refresh();
-    const nearestTiles = findNearestTiles(this.tiles, player)
+    const nearestTiles = findNearestTiles(this.tiles, player, this.width, this.height)
     console.log('array ' + nearestTiles.length)
     }
 }
