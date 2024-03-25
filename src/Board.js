@@ -14,20 +14,19 @@ export class Board {
 
   render() {
     const boardContainer = document.querySelector('#board-container');
-    for (let i = 0; i < this.width; i++) {
+    for (let i = 0; i < this.height; i++) {
       this.tiles[i] = [];
     }
-    for (let i = 0; i < this.width; i++) {
+    for (let i = 0; i < this.height; i++) {
       const row = document.createElement('div');
       row.classList.add(`row`);
       boardContainer.append(row);
-      for (let j = 0; j < this.height; j++) {
-        this.tiles[i][j] = new Tile(i,j);
-        row.append(this.tiles[i][j].tileContainer)
+      for (let j = 0; j < this.width; j++) {
+        this.tiles[j][i] = new Tile(j,i);
+        row.append(this.tiles[j][i].tileContainer)
       }
     }
-    console.log(this.tiles[1][3])
-    console.log(this.tiles)
+
   }
   createInitialCharacters() {
     const numberOfCharacters = Math.round(this.width * this.height * 0.3);
@@ -37,11 +36,15 @@ export class Board {
       const tileForNewOrganism = findRandomTile(this.width, this.height, this.tiles)
       tileForNewOrganism.addOrganism(organism);
       tileForNewOrganism.refresh();
+      console.log("cic")
     }
     const player = new Player();
     const tileForPlayer = findRandomTile(this.width, this.height, this.tiles)
     tileForPlayer.addOrganism(player);
+
     tileForPlayer.refresh();
+    console.log('player ' + player.x + player.y);
+    console.log('tile ' + tileForPlayer.x + tileForPlayer.y);
     }
 }
 

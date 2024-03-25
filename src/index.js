@@ -11,4 +11,6 @@ const board = new Board(10, 10);
 
 console.log(board);
 
+console.log('index: ' + Board.player);
+
 

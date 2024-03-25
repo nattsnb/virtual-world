@@ -12,6 +12,8 @@ export class Tile {
 
     addOrganism(organism) {
         this.currentOrganism = organism;
+        organism.x = this.x;
+        organism.y = this.y;
     }
 
     refresh() {
