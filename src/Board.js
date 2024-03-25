@@ -2,8 +2,7 @@ import { organismsList } from './organismsList.js';
 import { Player } from './player/Player.js';
 import { Tile } from './Tile.js';
 import { findRandomTile } from './findRandomTile';
-import {findNearestTiles} from "./findNearestTiles";
-import {moveOrganism} from "./moveOrganism";
+import { moveOrganism } from './moveOrganism';
 
 export class Board {
   constructor(width, height) {
@@ -45,9 +44,25 @@ export class Board {
     tileForPlayer.addOrganism(player);
     tileForPlayer.refresh();
     }
+  moveAllOrganisms() {
+    console.log("all organisms to be moved")
+    for (let i=0; i <= this.width; i++) {
+      for (let j = 0; j <= this.width; j++) {
+        console.log(`x: ${i}, y: ${j}`)
+        if (this.tiles[i][j].currentOrganism === null) {
+          console.log('no organism')
+        } else {
+          moveOrganism(this.tiles, this.tiles[i][j].currentOrganism, this.width, this.height)
+          console.log('one organism moved')
+        }
+      }
+    }
+    console.log("all organisms moved")
+
+  }
 }
-  moveAllOrganisms (timeout) {
-    
-}
+
+
+
 
 
