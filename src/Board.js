@@ -3,6 +3,7 @@ import { Player } from './player/Player.js';
 import { Tile } from './Tile.js';
 import { findRandomTile } from './findRandomTile';
 import {findNearestTiles} from "./findNearestTiles";
+import {moveOrganism} from "./moveOrganism";
 
 export class Board {
   constructor(width, height) {
@@ -43,9 +44,10 @@ export class Board {
     const tileForPlayer = findRandomTile(this.width, this.height, this.tiles)
     tileForPlayer.addOrganism(player);
     tileForPlayer.refresh();
-    const nearestTiles = findNearestTiles(this.tiles, player, this.width, this.height)
-    console.log('array ' + nearestTiles.length)
     }
+}
+  moveAllOrganisms (timeout) {
+    
 }
 
 

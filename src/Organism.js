@@ -4,6 +4,7 @@ export class Organism {
     this.initiative = 0;
     this.element = document.createElement('span');
     this.element.innerText = "organism";
+    this.numberOfSteps = 0;
   }
 
   createElement() {

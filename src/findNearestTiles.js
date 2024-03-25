@@ -1,42 +1,33 @@
-export function findNearestTiles (tiles, organism, width, height) {
+export function findNearestTiles (tiles, organism, width, height, steps) {
+    const minimalStep = steps - 1;
     const x = organism.x;
     const y = organism.y;
-    const xMax = width-1;
-    const yMax = height-1;
+    const xMax = width-steps;
+    const yMax = height-steps;
     let arrayOfNearestTiles = [];
-    console.log(`x:${x}  y:${y}`)
-    if (x!==0 && y!==0) {
-        arrayOfNearestTiles.push(tiles[x-1][y-1]);
+    if (x>minimalStep && y>minimalStep) {
+        arrayOfNearestTiles.push(tiles[x-steps][y-steps]);
     }
-    if (y!==0) {
-        arrayOfNearestTiles.push(tiles[x][y-1]);
-        console.log(1)
+    if (y>minimalStep) {
+        arrayOfNearestTiles.push(tiles[x][y-steps]);
     }
-    if (x!==xMax && y!==0) {
-        arrayOfNearestTiles.push(tiles[x+1][y-1]);
+    if (x<xMax && y>minimalStep) {
+        arrayOfNearestTiles.push(tiles[x+steps][y-steps]);
     }
-    if (x!==xMax) {
-        arrayOfNearestTiles.push(tiles[x+1][y]);
-        console.log(2)
+    if (x<xMax) {
+        arrayOfNearestTiles.push(tiles[x+steps][y]);
     }
-    if (x!==xMax && y!==yMax) {
-        arrayOfNearestTiles.push(tiles[x+1][y+1]);
+    if (x<xMax && y<yMax) {
+        arrayOfNearestTiles.push(tiles[x+steps][y+steps]);
     }
-    if (y!==yMax) {
-        arrayOfNearestTiles.push(tiles[x][y+1]);
-        console.log(3)
+    if (y<yMax) {
+        arrayOfNearestTiles.push(tiles[x][y+steps]);
     }
-    if (x!==0 && y!==yMax) {
-        arrayOfNearestTiles.push(tiles[x-1][y+1]);
+    if (x>minimalStep && y<yMax) {
+        arrayOfNearestTiles.push(tiles[x-steps][y+steps]);
     }
-    if (x!==0) {
-        arrayOfNearestTiles.push(tiles[x-1][y]);
-        console.log(4)
+    if (x>minimalStep) {
+        arrayOfNearestTiles.push(tiles[x-steps][y]);
     }
     return arrayOfNearestTiles
-
-
-
-
-
 }
