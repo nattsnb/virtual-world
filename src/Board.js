@@ -42,7 +42,6 @@ export class Board {
     const tileForPlayer = findRandomTile(this.width, this.height, this.tiles)
     tileForPlayer.addOrganism(player);
     tileForPlayer.refresh();
-    moveOrganism(this.tiles,player,this.width,this.height)
     }
   }
 

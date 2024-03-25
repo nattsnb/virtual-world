@@ -1,5 +1,6 @@
 import { Animal } from '../animal.js';
 import playerImage from './player.jpg';
+import { checkKeyPressed } from '../checkKeyPressed';
 
 export class Player extends Animal {
     constructor() {
@@ -7,6 +8,7 @@ export class Player extends Animal {
         this.initiative = 5;
         this.strenght = 4;
         this.createElement()
+        this.addEventListeners()
         this.x = 0;
         this.y = 0;
     }
@@ -16,7 +18,7 @@ export class Player extends Animal {
         this.element.src = playerImage;
     }
 
-    move() {
-
+    addEventListeners() {
+        window.addEventListener("keydown", checkKeyPressed);
     }
 }

@@ -1,0 +1,3 @@
+function playerControl (tiles, player) {
+
+}
