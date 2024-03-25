@@ -37,30 +37,15 @@ export class Board {
       const tileForNewOrganism = findRandomTile(this.width, this.height, this.tiles)
       tileForNewOrganism.addOrganism(organism);
       tileForNewOrganism.refresh();
-      console.log("cic")
     }
     const player = new Player();
     const tileForPlayer = findRandomTile(this.width, this.height, this.tiles)
     tileForPlayer.addOrganism(player);
     tileForPlayer.refresh();
+    moveOrganism(this.tiles,player,this.width,this.height)
     }
-  moveAllOrganisms() {
-    console.log("all organisms to be moved")
-    for (let i=0; i <= this.width; i++) {
-      for (let j = 0; j <= this.width; j++) {
-        console.log(`x: ${i}, y: ${j}`)
-        if (this.tiles[i][j].currentOrganism === null) {
-          console.log('no organism')
-        } else {
-          moveOrganism(this.tiles, this.tiles[i][j].currentOrganism, this.width, this.height)
-          console.log('one organism moved')
-        }
-      }
-    }
-    console.log("all organisms moved")
-
   }
-}
+
 
 
 
