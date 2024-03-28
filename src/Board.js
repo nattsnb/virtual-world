@@ -9,6 +9,7 @@ export class Board {
     this.width = width;
     this.height = height;
     this.tiles = [];
+    this.organisms = [];
     this.render();
     this.createInitialCharacters();
   }
@@ -37,13 +38,25 @@ export class Board {
       const tileForNewOrganism = findRandomTile(this.width, this.height, this.tiles)
       tileForNewOrganism.addOrganism(organism);
       tileForNewOrganism.refresh();
+      this.organisms.push(organism);
     }
     const player = new Player();
     const tileForPlayer = findRandomTile(this.width, this.height, this.tiles)
     tileForPlayer.addOrganism(player);
     tileForPlayer.refresh();
-    }
+    this.organisms.push(player);
   }
+
+  round(){
+    this.organisms.forEach(async function(organism){
+      await organism.action()
+    })
+  }
+
+}
+
+
+
 
 
 

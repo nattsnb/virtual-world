@@ -10,6 +10,8 @@ export class Organism {
     this.element = document.createElement('img');
     this.element.classList.add('organism-image')
   }
-  action() {}
+  async action() {
+    console.log("action done")
+  }
 }
 

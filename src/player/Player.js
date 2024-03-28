@@ -1,6 +1,5 @@
 import { Animal } from '../animal.js';
 import playerImage from './player.jpg';
-import { checkKeyPressed } from '../checkKeyPressed';
 
 export class Player extends Animal {
     constructor() {
@@ -8,7 +7,6 @@ export class Player extends Animal {
         this.initiative = 5;
         this.strenght = 4;
         this.createElement()
-        this.addEventListeners()
         this.x = 0;
         this.y = 0;
     }
@@ -18,7 +16,33 @@ export class Player extends Animal {
         this.element.src = playerImage;
     }
 
-    addEventListeners() {
-        window.addEventListener("keydown", checkKeyPressed);
+
+    action(){
+        const waitForAction = (resolve, reject) => {
+            window.addEventListener("keydown", (event) => {
+                this.checkKeyPressed(event, resolve)
+            })
+
+        }
+        return new Promise(waitForAction)
+    }
+
+    checkKeyPressed(evt, resolve) {
+        if (evt.keyCode === 87) {
+            console.log("87")
+            resolve();
+        }
+        if (evt.keyCode === 65) {
+            console.log("65")
+            resolve();
+        }
+        if (evt.keyCode === 83) {
+            console.log("83")
+            resolve();
+        }
+        if (evt.keyCode === 68) {
+            console.log("68")
+            resolve();
+        }
     }
 }
