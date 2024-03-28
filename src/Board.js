@@ -2,7 +2,7 @@ import { organismsList } from './organismsList.js';
 import { Player } from './player/Player.js';
 import { Tile } from './Tile.js';
 import { findRandomTile } from './findRandomTile';
-
+console.log("test")
 export class Board {
   constructor(width, height) {
     this.width = width;
