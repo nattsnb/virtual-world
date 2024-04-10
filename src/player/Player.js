@@ -19,7 +19,7 @@ export class Player extends Animal {
 
     action(){
         const waitForAction = (resolve, reject) => {
-            window.addEventListener("keydown", (event) => {
+            window.addEventListener("keyup", (event) => {
                 this.checkKeyPressed(event, resolve)
             })
 
@@ -28,20 +28,20 @@ export class Player extends Animal {
     }
 
     checkKeyPressed(evt, resolve) {
-        if (evt.keyCode === 87) {
-            console.log("87")
+        if (evt.code === "KeyW") {
+            console.log("keyW")
             resolve();
         }
-        if (evt.keyCode === 65) {
-            console.log("65")
+        if (evt.code === "KeyA") {
+            console.log("KeyA")
             resolve();
         }
-        if (evt.keyCode === 83) {
-            console.log("83")
+        if (evt.code === "KeyS") {
+            console.log("KeyS")
             resolve();
         }
-        if (evt.keyCode === 68) {
-            console.log("68")
+        if (evt.code === "KeyD") {
+            console.log("KeyD")
             resolve();
         }
     }
