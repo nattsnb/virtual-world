@@ -5,7 +5,7 @@ export class Sheep extends Animal {
     constructor() {
         super();
         this.initiative = 4;
-        this.strenght = 3;
+        this.strength = 3;
         this.createElement()
     }
 

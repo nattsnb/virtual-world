@@ -9,4 +9,4 @@ import { Berry } from './berry/Berry.js';
 import { SowThistle } from './thistle/Thistle.js';
 
 
-export let organismsList = [Wolf, Sheep, Fox, Antelope, Turtle, Grass, Guarana, Berry, SowThistle];
+export let classesList = [Wolf, Sheep, Fox, Antelope, Turtle, Grass, Guarana, Berry, SowThistle];

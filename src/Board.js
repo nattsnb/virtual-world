@@ -1,4 +1,4 @@
-import { organismsList } from './organismsList.js';
+import { classesList } from './classesList.js';
 import { Player } from './player/Player.js';
 import { Tile } from './Tile.js';
 import { findRandomTile } from './findRandomTile';
@@ -34,7 +34,7 @@ export class Board {
   createInitialCharacters() {
     const numberOfCharacters = Math.round(this.width * this.height * 0.3);
     for (let i = 0; i < numberOfCharacters; i++) {
-      const RandomOrganismClass = organismsList[Math.floor(Math.random() * organismsList.length)];
+      const RandomOrganismClass = classesList[Math.floor(Math.random() * classesList.length)];
       const organism = new RandomOrganismClass();
       const tileForNewOrganism = findRandomTile(this.width, this.height, this.tiles)
       addAndRefresh(tileForNewOrganism, organism);
@@ -47,8 +47,11 @@ export class Board {
   }
 
   round(){
+    console.log(this.organisms);
+    this.organisms.sort((a, b) => a.initiative - b.initiative)
+    console.log(this.organisms);
     this.organisms.forEach(async function(organism){
-      await organism.action()
+      await organism.action();
     })
   }
 
