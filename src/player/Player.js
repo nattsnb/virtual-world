@@ -1,5 +1,6 @@
 import { Animal } from '../animal.js';
 import playerImage from './player.jpg';
+import {movePlayer} from "../movePlayer";
 
 export class Player extends Animal {
     constructor() {
@@ -29,19 +30,23 @@ export class Player extends Animal {
 
     checkKeyPressed(evt, resolve) {
         if (evt.code === "KeyW") {
-            console.log("keyW")
+            console.log("keyW");
+            const newY = this.y + 1;
             resolve();
         }
         if (evt.code === "KeyA") {
-            console.log("KeyA")
+            console.log("KeyA");
+            const newX = this.x - 1;
             resolve();
         }
         if (evt.code === "KeyS") {
-            console.log("KeyS")
+            console.log("KeyS");
+            const newY = this.y - 1;
             resolve();
         }
         if (evt.code === "KeyD") {
-            console.log("KeyD")
+            console.log("KeyD");
+            const newX = this.x + 1;
             resolve();
         }
     }

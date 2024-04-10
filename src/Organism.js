@@ -1,3 +1,5 @@
+import {moveOrganism} from "./moveOrganism";
+
 export class Organism {
   constructor() {
     this.age = 0;
