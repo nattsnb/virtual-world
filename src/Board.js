@@ -3,6 +3,7 @@ import { Player } from './player/Player.js';
 import { Tile } from './Tile.js';
 import { findRandomTile } from './findRandomTile';
 import { moveOrganism } from './moveOrganism';
+import {addAndRefresh} from "./addAndRefresh";
 
 export class Board {
   constructor(width, height) {
@@ -36,14 +37,12 @@ export class Board {
       const RandomOrganismClass = organismsList[Math.floor(Math.random() * organismsList.length)];
       const organism = new RandomOrganismClass();
       const tileForNewOrganism = findRandomTile(this.width, this.height, this.tiles)
-      tileForNewOrganism.addOrganism(organism);
-      tileForNewOrganism.refresh();
+      addAndRefresh(tileForNewOrganism, organism);
       this.organisms.push(organism);
     }
     const player = new Player();
     const tileForPlayer = findRandomTile(this.width, this.height, this.tiles)
-    tileForPlayer.addOrganism(player);
-    tileForPlayer.refresh();
+    addAndRefresh(tileForPlayer, player);
     this.organisms.push(player);
   }
 
