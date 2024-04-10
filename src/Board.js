@@ -48,7 +48,14 @@ export class Board {
 
   round(){
     console.log(this.organisms);
-    this.organisms.sort((a, b) => a.initiative - b.initiative)
+    this.organisms.sort((a, b) => b.initiative - a.initiative)
+    // this.organisms.sort(
+    //     function (a, b) {
+    //       if (a.initiative === b.initiative) {
+    //         return b.age - a.age
+    //       }
+    //       return (b.initiative > a.initiative)
+    //     })
     console.log(this.organisms);
     this.organisms.forEach(async function(organism){
       await organism.action();
