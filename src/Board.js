@@ -35,33 +35,33 @@ export class Board {
     const numberOfCharacters = Math.round(this.width * this.height * 0.3);
     for (let i = 0; i < numberOfCharacters; i++) {
       const RandomOrganismClass = classesList[Math.floor(Math.random() * classesList.length)];
-      const organism = new RandomOrganismClass();
+      const organism = new RandomOrganismClass(this);
       const tileForNewOrganism = findRandomTile(this.width, this.height, this.tiles)
-      addAndRefresh(tileForNewOrganism, organism);
+      tileForNewOrganism.addOrganism(organism);
       this.organisms.push(organism);
     }
-    const player = new Player();
+    const player = new Player(this);
     const tileForPlayer = findRandomTile(this.width, this.height, this.tiles)
-    addAndRefresh(tileForPlayer, player);
+    tileForPlayer.addOrganism(player);
     this.organisms.push(player);
   }
 
   round(){
     console.log(this.organisms);
-    this.organisms.sort((a, b) => b.initiative - a.initiative)
-    // this.organisms.sort(
-    //     function (a, b) {
-    //       if (a.initiative === b.initiative) {
-    //         return b.age - a.age
-    //       }
-    //       return (b.initiative > a.initiative)
-    //     })
+    // this.organisms.sort((a, b) => b.initiative - a.initiative)
+    this.organisms.sort(
+        function (leftOrganism, rightOrganism) {
+          if (leftOrganism.initiative === rightOrganism.initiative) {
+            return rightOrganism.age - leftOrganism.age
+          }
+          return (rightOrganism.initiative - leftOrganism.initiative)
+        }
+    )
     console.log(this.organisms);
     this.organisms.forEach(async function(organism){
       await organism.action();
     })
   }
-
 }
 
 

@@ -3,8 +3,8 @@ import playerImage from './player.jpg';
 import {movePlayer} from "../movePlayer";
 
 export class Player extends Animal {
-    constructor() {
-        super();
+    constructor(board) {
+        super(board);
         this.initiative = 5;
         this.strength = 4;
         this.createElement()

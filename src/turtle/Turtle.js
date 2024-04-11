@@ -2,8 +2,8 @@ import { Animal } from '../animal.js';
 import turtleImage from './turtle.jpg';
 
 export class Turtle extends Animal {
-    constructor() {
-        super();
+    constructor(board) {
+        super(board);
         this.initiative = 1;
         this.strength = 2;
         this.createElement()

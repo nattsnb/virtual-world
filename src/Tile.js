@@ -14,9 +14,11 @@ export class Tile {
         this.currentOrganism = organism;
         organism.x = this.x;
         organism.y = this.y;
+        this.refresh();
     }
 
     refresh() {
+        this.tileContainer.innerHTML = "";
         this.tileContainer.append(this.currentOrganism.element) // co jest z tym elementem?
     }
 }

@@ -1,8 +1,8 @@
 import { Organism } from './organism.js';
 
 export class Animal extends Organism {
-    constructor() {
-        super();
+    constructor(board) {
+        super(board);
         this.strength = 0;
         this.numberOfSteps = 1;
     }

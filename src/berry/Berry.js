@@ -2,8 +2,8 @@ import { Plant } from '../plant.js';
 import berryImage from './berry.jpg';
 
 export class Berry extends Plant {
-    constructor() {
-        super();
+    constructor(board) {
+        super(board);
         this.createElement()
     }
 

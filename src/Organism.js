@@ -1,11 +1,12 @@
 import {moveOrganism} from "./moveOrganism";
 
 export class Organism {
-  constructor() {
+  constructor(board) {
     this.age = 0;
     this.initiative = 0;
     this.element = document.createElement('span');
     this.element.innerText = "organism";
+    this.board = board
   }
 
   createElement() {
