@@ -1,5 +1,3 @@
-import {moveOrganism} from "./moveOrganism";
-
 export class Organism {
   constructor(board) {
     this.age = 0;

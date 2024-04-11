@@ -30,12 +30,9 @@ export class Player extends Animal {
 
     moveIfPossible = (coordinates) => {
         const tile = this.board.tiles[coordinates.x][coordinates.y]
-        if (tile) {
-            console.log(tile.y)
-            tile.addOrganism(this)
-            this.resolveMovement();
-        }
-
+        console.log(tile.y)
+        tile.addOrganism(this)
+        this.resolveMovement();
     }
 
     move = () => {
@@ -48,26 +45,35 @@ export class Player extends Animal {
         if (evt.code === "KeyW") {
             console.log("keyW");
             const newY = this.y - 1;
-            const coordinates = {x: this.x, y: newY};
-            this.moveIfPossible(coordinates);
+            if (newY < this.board.height && newY >= 0) {
+                const coordinates = {x: this.x, y: newY};
+                this.moveIfPossible(coordinates);
+            }
+
         }
         if (evt.code === "KeyA") {
             console.log("KeyA");
             const newX = this.x - 1;
-            const coordinates = {x: newX, y: this.y};
-            this.moveIfPossible(coordinates);
+            if (newX < this.board.width && newX >= 0) {
+                const coordinates = {x: newX, y: this.y};
+                this.moveIfPossible(coordinates);
+            }
         }
         if (evt.code === "KeyS") {
             console.log("KeyS");
             const newY = this.y + 1;
-            const coordinates = {x: this.x, y: newY};
-            this.moveIfPossible(coordinates);
+            if (newY < this.board.height && newY >= 0) {
+                const coordinates = {x: this.x, y: newY};
+                this.moveIfPossible(coordinates);
+            }
         }
         if (evt.code === "KeyD") {
             console.log("KeyD");
             const newX = this.x + 1;
-            const coordinates = {x: newX, y: this.y};
-            this.moveIfPossible(coordinates);
+            if (newX < this.board.width && newX >= 0) {
+                const coordinates = {x: newX, y: this.y};
+                this.moveIfPossible(coordinates);
+            }
         }
     }
 }
