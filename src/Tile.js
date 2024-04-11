@@ -19,6 +19,6 @@ export class Tile {
 
     refresh() {
         this.tileContainer.innerHTML = "";
-        this.tileContainer.append(this.currentOrganism.element) // co jest z tym elementem?
+        this.tileContainer.append(this.currentOrganism.element)
     }
 }

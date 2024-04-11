@@ -45,8 +45,6 @@ export class Board {
   }
 
   round(player){
-    console.log(this.organisms);
-    // this.organisms.sort((a, b) => b.initiative - a.initiative)
     this.organisms.sort(
         function (leftOrganism, rightOrganism) {
           if (leftOrganism.initiative === rightOrganism.initiative) {
@@ -55,7 +53,6 @@ export class Board {
           return (rightOrganism.initiative - leftOrganism.initiative)
         }
     )
-    console.log(this.organisms);
     this.organisms.forEach(async function(organism){
       await organism.action();
     })

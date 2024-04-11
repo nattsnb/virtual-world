@@ -30,7 +30,6 @@ export class Player extends Animal {
 
     moveIfPossible = (coordinates) => {
         const tile = this.board.tiles[coordinates.x][coordinates.y]
-        console.log(tile.y)
         tile.addOrganism(this)
         this.resolveMovement();
     }
