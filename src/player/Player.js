@@ -1,10 +1,10 @@
 import { Animal } from '../animal.js';
 import playerImage from './player.jpg';
-import {movePlayer} from "../movePlayer";
 
 export class Player extends Animal {
     constructor(board) {
         super(board);
+        this.initializeEventListener()
         this.initiative = 5;
         this.strength = 4;
         this.createElement()
@@ -19,35 +19,55 @@ export class Player extends Animal {
 
 
     action(){
-        const waitForAction = (resolve, reject) => {
-            window.addEventListener("keyup", (event) => {
-                this.checkKeyPressed(event, resolve)
-            })
-
-        }
-        return new Promise(waitForAction)
+        return this.move()
     }
 
-    checkKeyPressed(evt, resolve) {
+    initializeEventListener = () => {
+        window.addEventListener("keyup", (event) => {
+            this.checkKeyPressed(event)
+        })
+    }
+
+    moveIfPossible = (coordinates) => {
+        const tile = this.board.tiles[coordinates.x][coordinates.y]
+        if (tile) {
+            console.log(tile.y)
+            tile.addOrganism(this)
+            this.resolveMovement();
+        }
+
+    }
+
+    move = () => {
+        return new Promise((resolve, reject) => {
+            this.resolveMovement = resolve;
+        })
+    }
+
+    checkKeyPressed(evt) {
         if (evt.code === "KeyW") {
             console.log("keyW");
-            const newY = this.y + 1;
-            resolve();
+            const newY = this.y - 1;
+            const coordinates = {x: this.x, y: newY};
+            this.moveIfPossible(coordinates);
         }
         if (evt.code === "KeyA") {
             console.log("KeyA");
             const newX = this.x - 1;
-            resolve();
+            const coordinates = {x: newX, y: this.y};
+            this.moveIfPossible(coordinates);
         }
         if (evt.code === "KeyS") {
             console.log("KeyS");
-            const newY = this.y - 1;
-            resolve();
+            const newY = this.y + 1;
+            const coordinates = {x: this.x, y: newY};
+            this.moveIfPossible(coordinates);
         }
         if (evt.code === "KeyD") {
             console.log("KeyD");
             const newX = this.x + 1;
-            resolve();
+            const coordinates = {x: newX, y: this.y};
+            this.moveIfPossible(coordinates);
         }
     }
 }

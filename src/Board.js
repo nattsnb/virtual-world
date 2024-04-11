@@ -2,8 +2,6 @@ import { classesList } from './classesList.js';
 import { Player } from './player/Player.js';
 import { Tile } from './Tile.js';
 import { findRandomTile } from './findRandomTile';
-import { moveOrganism } from './moveOrganism';
-import {addAndRefresh} from "./addAndRefresh";
 
 export class Board {
   constructor(width, height) {
@@ -46,7 +44,7 @@ export class Board {
     this.organisms.push(player);
   }
 
-  round(){
+  round(player){
     console.log(this.organisms);
     // this.organisms.sort((a, b) => b.initiative - a.initiative)
     this.organisms.sort(
