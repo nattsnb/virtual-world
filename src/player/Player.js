@@ -12,7 +12,7 @@ export class Player extends Animal {
     this.x = 0;
     this.y = 0;
     this.tilesForAction = []
-    this.tileToEndAction = []
+    this.activeTile = []
   }
 
   createElement() {
@@ -23,6 +23,10 @@ export class Player extends Animal {
   action() {
     this.tilesForAction = findNearestTiles(this.board.tiles, this, this.board.width, this.board.height, this.numberOfSteps);
     this.tilesForAction.push(this.board.tiles[this.x][this.y])
+    //MAKE ACTIVE TILE RED
+    // const currentTile = this.board.tiles[this.x][this.y].tileContainer;
+    // console.log(currentTile)
+    // currentTile.setAttribute('id', 'active-tile')
     return this.move();
   }
 
@@ -36,7 +40,7 @@ export class Player extends Animal {
     const tile = this.board.tiles[coordinates.x][coordinates.y];
     console.log(tile)
     if (this.tilesForAction.includes(tile)){
-      this.tileToEndAction = tile;
+      this.activeTile = tile;
     }
   };
 
@@ -81,7 +85,7 @@ export class Player extends Animal {
     }
     if (evt.code === 'Enter') {
       console.log('Enter');
-      this.tileToEndAction.addOrganism(this);
+      this.activeTile.addOrganism(this);
       this.resolveMovement();
     }
   }
