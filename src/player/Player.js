@@ -23,8 +23,8 @@ export class Player extends Animal {
   action() {
     this.tilesForAction = findNearestTiles(this.board.tiles, this, this.board.width, this.board.height, this.numberOfSteps);
     this.tilesForAction.push(this.board.tiles[this.x][this.y])
-    const currentTile = this.board.tiles[this.x][this.y].tileContainer;
-    currentTile.setAttribute('id','activeTile');
+    const currentTileDiv = this.board.tiles[this.x][this.y].tileContainer;
+    currentTileDiv.setAttribute('id','activeTile');
     return this.move();
   }
 
@@ -35,10 +35,11 @@ export class Player extends Animal {
   };
 
   moveIfPossible = (coordinates) => {
-    const tile = this.board.tiles[coordinates.x][coordinates.y];
-    console.log(tile)
-    if (this.tilesForAction.includes(tile)){
-      this.activeTile = tile;
+    this.activeTile = this.board.tiles[coordinates.x][coordinates.y];
+    const activeTileDiv = this.activeTile.tileContainer;
+    if (this.tilesForAction.includes(this.activeTile)){
+      this.board.tiles[this.x][this.y].tileContainer.removeAttribute('id');
+      activeTileDiv.setAttribute('id','activeTile');
     }
   };
 
