@@ -48,15 +48,15 @@ export class Board {
     this.organisms.push(player);
   }
 
-  round(player) {
+  async round() {
     this.organisms.sort(function (leftOrganism, rightOrganism) {
       if (leftOrganism.initiative === rightOrganism.initiative) {
         return rightOrganism.age - leftOrganism.age;
       }
       return rightOrganism.initiative - leftOrganism.initiative;
     });
-    this.organisms.forEach(async function (organism) {
-      await organism.action();
-    });
+    for (let i = 0; i < this.organisms.length; i++){
+      await this.organisms[i].action();
+    }
   }
 }
