@@ -1,3 +1,3 @@
-export function isTileEmpty (givenTile){
-    return (givenTile.currentOrganism === null);
+export function isTileEmpty(givenTile) {
+  return givenTile.currentOrganism === null;
 }

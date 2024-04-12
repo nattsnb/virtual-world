@@ -1,6 +1,6 @@
-import { classesList } from './classesList.js';
-import { Player } from './player/Player.js';
-import { Tile } from './Tile.js';
+import { classesList } from './classesList';
+import { Player } from './player/Player';
+import { Tile } from './Tile';
 import { findRandomTile } from './findRandomTile';
 
 export class Board {
@@ -23,47 +23,40 @@ export class Board {
       row.classList.add(`row`);
       boardContainer.append(row);
       for (let j = 0; j < this.width; j++) {
-        this.tiles[j][i] = new Tile(j,i);
-        row.append(this.tiles[j][i].tileContainer)
+        this.tiles[j][i] = new Tile(j, i);
+        row.append(this.tiles[j][i].tileContainer);
       }
     }
-
   }
   createInitialCharacters() {
     const numberOfCharacters = Math.round(this.width * this.height * 0.3);
     for (let i = 0; i < numberOfCharacters; i++) {
-      const RandomOrganismClass = classesList[Math.floor(Math.random() * classesList.length)];
+      const RandomOrganismClass =
+        classesList[Math.floor(Math.random() * classesList.length)];
       const organism = new RandomOrganismClass(this);
-      const tileForNewOrganism = findRandomTile(this.width, this.height, this.tiles)
+      const tileForNewOrganism = findRandomTile(
+        this.width,
+        this.height,
+        this.tiles,
+      );
       tileForNewOrganism.addOrganism(organism);
       this.organisms.push(organism);
     }
     const player = new Player(this);
-    const tileForPlayer = findRandomTile(this.width, this.height, this.tiles)
+    const tileForPlayer = findRandomTile(this.width, this.height, this.tiles);
     tileForPlayer.addOrganism(player);
     this.organisms.push(player);
   }
 
-  round(player){
-    this.organisms.sort(
-        function (leftOrganism, rightOrganism) {
-          if (leftOrganism.initiative === rightOrganism.initiative) {
-            return rightOrganism.age - leftOrganism.age
-          }
-          return (rightOrganism.initiative - leftOrganism.initiative)
-        }
-    )
-    this.organisms.forEach(async function(organism){
+  round(player) {
+    this.organisms.sort(function (leftOrganism, rightOrganism) {
+      if (leftOrganism.initiative === rightOrganism.initiative) {
+        return rightOrganism.age - leftOrganism.age;
+      }
+      return rightOrganism.initiative - leftOrganism.initiative;
+    });
+    this.organisms.forEach(async function (organism) {
       await organism.action();
-    })
+    });
   }
 }
-
-
-
-
-
-
-
-
-

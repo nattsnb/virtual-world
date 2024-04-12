@@ -1,9 +1,9 @@
-import { Organism } from './organism.js';
+import { Organism } from './Organism';
 
 export class Plant extends Organism {
-    constructor(board) {
-        super(board);
-    }
+  constructor(board) {
+    super(board);
+  }
 
-    spread() {}
+  spread() {}
 }
