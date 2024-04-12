@@ -23,10 +23,8 @@ export class Player extends Animal {
   action() {
     this.tilesForAction = findNearestTiles(this.board.tiles, this, this.board.width, this.board.height, this.numberOfSteps);
     this.tilesForAction.push(this.board.tiles[this.x][this.y])
-    //MAKE ACTIVE TILE RED
-    // const currentTile = this.board.tiles[this.x][this.y].tileContainer;
-    // console.log(currentTile)
-    // currentTile.setAttribute('id', 'active-tile')
+    const currentTile = this.board.tiles[this.x][this.y].tileContainer;
+    currentTile.setAttribute('id','activeTile');
     return this.move();
   }
 
