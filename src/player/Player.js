@@ -12,6 +12,7 @@ export class Player extends Animal {
     this.x = 0;
     this.y = 0;
     this.tilesForAction = []
+    this.tileToEndAction = []
   }
 
   createElement() {
@@ -35,7 +36,7 @@ export class Player extends Animal {
     const tile = this.board.tiles[coordinates.x][coordinates.y];
     console.log(tile)
     if (this.tilesForAction.includes(tile)){
-      tile.addOrganism(this);
+      this.tileToEndAction = tile;
     }
   };
 
@@ -80,6 +81,7 @@ export class Player extends Animal {
     }
     if (evt.code === 'Enter') {
       console.log('Enter');
+      this.tileToEndAction.addOrganism(this);
       this.resolveMovement();
     }
   }
