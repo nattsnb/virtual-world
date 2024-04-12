@@ -1,5 +1,6 @@
 import { Animal } from '../Animal';
 import playerImage from './player.jpg';
+import {findNearestTiles} from "../findNearestTiles";
 
 export class Player extends Animal {
   constructor(board) {
@@ -10,6 +11,7 @@ export class Player extends Animal {
     this.createElement();
     this.x = 0;
     this.y = 0;
+    this.tilesForAction = []
   }
 
   createElement() {
@@ -18,6 +20,8 @@ export class Player extends Animal {
   }
 
   action() {
+    this.tilesForAction = findNearestTiles(this.board.tiles, this, this.board.width, this.board.height, this.numberOfSteps);
+    this.tilesForAction.push(this.board.tiles[this.x][this.y])
     return this.move();
   }
 
@@ -29,8 +33,10 @@ export class Player extends Animal {
 
   moveIfPossible = (coordinates) => {
     const tile = this.board.tiles[coordinates.x][coordinates.y];
-    tile.addOrganism(this);
-    this.resolveMovement();
+    console.log(tile)
+    if (this.tilesForAction.includes(tile)){
+      tile.addOrganism(this);
+    }
   };
 
   move = () => {
@@ -43,7 +49,7 @@ export class Player extends Animal {
     if (evt.code === 'KeyW') {
       console.log('keyW');
       const newY = this.y - 1;
-      if (newY < this.board.height && newY >= 0) {
+      if (newY < this.board.height && newY >= 0 && newY >= this.y -1 && newY <= this.y + 1) {
         const coordinates = { x: this.x, y: newY };
         this.moveIfPossible(coordinates);
       }
@@ -71,6 +77,10 @@ export class Player extends Animal {
         const coordinates = { x: newX, y: this.y };
         this.moveIfPossible(coordinates);
       }
+    }
+    if (evt.code === 'Enter') {
+      console.log('Enter');
+      this.resolveMovement();
     }
   }
 }
