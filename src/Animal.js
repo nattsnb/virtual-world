@@ -10,7 +10,7 @@ export class Animal extends Organism {
 
   mate(newTile, organism) {
     console.log(organism.constructor.name)
-    if (newTile.currentOrganism !== null){
+    if(newTile.currentOrganism !== null){
       console.log(newTile.currentOrganism.constructor.name)
       if(organism.constructor.name === newTile.currentOrganism.constructor.name){
         console.log("it's a match!")
@@ -29,18 +29,31 @@ export class Animal extends Organism {
             this.board.height,
             this.numberOfSteps
         );
+        console.log(parent2SurroundingTiles)
         let surroundingTiles = []
         for(let i = 0; i < parent1SurroundingTiles.length; i++) {
-          surroundingTiles.push(parent1SurroundingTiles[i])
+            surroundingTiles.push(parent1SurroundingTiles[i])
         }
         for(let i = 0; i < parent2SurroundingTiles.length; i++){
-          if (!surroundingTiles.includes(parent2SurroundingTiles[i])){
+          if(!surroundingTiles.includes(parent2SurroundingTiles[i])){
             surroundingTiles.push(parent2SurroundingTiles[i]);
           }
         }
-        console.log(parent2SurroundingTiles)
-        console.log(surroundingTiles)
+        // for(let i = 0; i < surroundingTiles.length; i++){
+        //   if(surroundingTiles[i] !== null){
+        //     console.log(surroundingTiles[i])
+        //     surroundingTiles.splice(i,1)
+        //   }
+        // }
 
+
+        // let availableTiles = surroundingTiles.filter((obj) => {
+        //   return obj.values.every((value) => {
+        //     return value !== null;
+        //   });
+        // });
+        console.log(`final`)
+        console.log(surroundingTiles)
       }
     }
   }
