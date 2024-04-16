@@ -12,7 +12,7 @@ export class Animal extends Organism {
 
   mate(newTile, organism) {
     console.log(organism.constructor.name);
-    if (newTile.currentOrganism !== null) {
+    if (newTile.currentOrganism) {
       console.log(newTile.currentOrganism.constructor.name);
       if (
         organism.constructor.name === newTile.currentOrganism.constructor.name
@@ -62,7 +62,28 @@ export class Animal extends Organism {
     }
   }
 
-  fight() {}
+  fight(newTile, organism) {
+    console.log(organism.constructor.name);
+    if (newTile.currentOrganism !== null) {
+      console.log(newTile.currentOrganism.constructor.name);
+      if (
+          organism.constructor.name !== newTile.currentOrganism.constructor.name && newTile.currentOrganism instanceof Animal
+      ) {
+        console.log("it's a fight!");
+        if (organism.strength > newTile.currentOrganism.strength){
+          delete newTile.currentOrganism
+          console.log(newTile)
+          return true
+        }
+        if (organism.strength < newTile.currentOrganism.strength){
+          delete organism.currentOrganism
+          console.log(newTile)
+          return true
+        }
+        return true
+      }
+    }
+  }
 
   async action() {
     const tiles = this.board.tiles;
@@ -79,6 +100,9 @@ export class Animal extends Organism {
     );
     const newTile = findRandomTileInArray(nearestTiles);
     if (this.mate(newTile, this)) {
+      return;
+    }
+    if (this.fight(newTile, this)) {
       return;
     }
     console.log(`from: ${organism.x}, ${organism.y}`);
