@@ -61,22 +61,24 @@ export class Animal extends Organism {
     if (newTile.currentOrganism !== null) {
       console.log(newTile.currentOrganism.constructor.name);
       if (
-          organism.constructor.name !== newTile.currentOrganism.constructor.name && newTile.currentOrganism instanceof Animal
+        organism.constructor.name !==
+          newTile.currentOrganism.constructor.name &&
+        newTile.currentOrganism instanceof Animal
       ) {
         console.log("it's a fight!");
-        if (organism.strength > newTile.currentOrganism.strength){
-          console.log(`first wins`)
-          delete newTile.refresh()
-          return true
+        if (organism.strength > newTile.currentOrganism.strength) {
+          console.log(`first wins`);
+          delete newTile.refresh();
+          return true;
         }
-        if (organism.strength < newTile.currentOrganism.strength){
-          delete organism.currentOrganism
-          console.log(`second wins`)
-          console.log(newTile.currentOrganism)
-          return false
+        if (organism.strength < newTile.currentOrganism.strength) {
+          delete organism.currentOrganism;
+          console.log(`second wins`);
+          console.log(newTile.currentOrganism);
+          return false;
         }
-        console.log(`draw`)
-        return false
+        console.log(`draw`);
+        return false;
       }
     }
   }
