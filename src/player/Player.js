@@ -1,6 +1,6 @@
 import { Animal } from '../Animal';
 import playerImage from './player.jpg';
-import {findNearestTiles} from "../findNearestTiles";
+import { findNearestTiles } from '../findNearestTiles';
 
 export class Player extends Animal {
   constructor(board) {
@@ -11,8 +11,8 @@ export class Player extends Animal {
     this.createElement();
     this.x = 0;
     this.y = 0;
-    this.tilesForAction = []
-    this.activeTile = []
+    this.tilesForAction = [];
+    this.activeTile = [];
   }
 
   createElement() {
@@ -21,13 +21,19 @@ export class Player extends Animal {
   }
 
   action() {
-    this.activeTile = this.board.tiles[this.x][this.y]
-    this.tilesForAction = findNearestTiles(this.board.tiles, this, this.board.width, this.board.height, this.numberOfSteps);
-    this.tilesForAction.push(this.board.tiles[this.x][this.y])
-    console.log(this.activeTile)
-    console.log(this.tilesForAction[1])
+    this.activeTile = this.board.tiles[this.x][this.y];
+    this.tilesForAction = findNearestTiles(
+      this.board.tiles,
+      this,
+      this.board.width,
+      this.board.height,
+      this.numberOfSteps,
+    );
+    this.tilesForAction.push(this.board.tiles[this.x][this.y]);
+    console.log(this.activeTile);
+    console.log(this.tilesForAction[1]);
     const currentTileDiv = this.board.tiles[this.x][this.y].tileContainer;
-    currentTileDiv.setAttribute('id','activeTile');
+    currentTileDiv.setAttribute('id', 'activeTile');
     return this.move();
   }
 
@@ -38,13 +44,17 @@ export class Player extends Animal {
   };
 
   moveIfPossible = (coordinates) => {
-    if (this.tilesForAction.includes(this.board.tiles[coordinates.x][coordinates.y])){
+    if (
+      this.tilesForAction.includes(
+        this.board.tiles[coordinates.x][coordinates.y],
+      )
+    ) {
       this.activeTile.tileContainer.removeAttribute('id');
       this.activeTile = this.board.tiles[coordinates.x][coordinates.y];
-      console.log(this.activeTile)
-      console.log(this.tilesForAction[1])
+      console.log(this.activeTile);
+      console.log(this.tilesForAction[1]);
       const activeTileDiv = this.activeTile.tileContainer;
-      activeTileDiv.setAttribute('id','activeTile');
+      activeTileDiv.setAttribute('id', 'activeTile');
     }
   };
 
@@ -58,7 +68,12 @@ export class Player extends Animal {
     if (evt.code === 'KeyW') {
       console.log('keyW');
       const newY = this.activeTile.y - 1;
-      if (newY < this.board.height && newY >= 0 && newY >= this.activeTile.y -1 && newY <= this.activeTile.y + 1) {
+      if (
+        newY < this.board.height &&
+        newY >= 0 &&
+        newY >= this.activeTile.y - 1 &&
+        newY <= this.activeTile.y + 1
+      ) {
         const coordinates = { x: this.activeTile.x, y: newY };
         this.moveIfPossible(coordinates);
       }

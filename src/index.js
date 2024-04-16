@@ -7,5 +7,3 @@ document.body.append(paragraph);
 
 const board = new Board(10, 10);
 board.round();
-
-

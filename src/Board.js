@@ -43,7 +43,11 @@ export class Board {
       this.organisms.push(organism);
     }
     const player = new Player(this);
-    const tileForPlayer = findRandomTileOnBoard(this.width, this.height, this.tiles);
+    const tileForPlayer = findRandomTileOnBoard(
+      this.width,
+      this.height,
+      this.tiles,
+    );
     tileForPlayer.addOrganism(player);
     this.organisms.push(player);
   }
@@ -55,7 +59,7 @@ export class Board {
       }
       return rightOrganism.initiative - leftOrganism.initiative;
     });
-    for (let i = 0; i < this.organisms.length; i++){
+    for (let i = 0; i < this.organisms.length; i++) {
       await this.organisms[i].action();
     }
   }

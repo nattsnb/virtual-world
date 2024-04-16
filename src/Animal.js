@@ -1,7 +1,7 @@
 import { Organism } from './Organism';
 import { findNearestTiles } from './findNearestTiles';
-import {classesList} from "./classesList";
-import {findRandomTileInArray} from "./findRandomTileInArray";
+import { classesList } from './classesList';
+import { findRandomTileInArray } from './findRandomTileInArray';
 
 export class Animal extends Organism {
   constructor(board) {
@@ -11,47 +11,52 @@ export class Animal extends Organism {
   }
 
   mate(newTile, organism) {
-    console.log(organism.constructor.name)
-    if(newTile.currentOrganism !== null){
-      console.log(newTile.currentOrganism.constructor.name)
-      if(organism.constructor.name === newTile.currentOrganism.constructor.name) {
-        console.log("it's a match!")
+    console.log(organism.constructor.name);
+    if (newTile.currentOrganism !== null) {
+      console.log(newTile.currentOrganism.constructor.name);
+      if (
+        organism.constructor.name === newTile.currentOrganism.constructor.name
+      ) {
+        console.log("it's a match!");
         const parent1SurroundingTiles = findNearestTiles(
-            this.board.tiles,
-            organism,
-            this.board.width,
-            this.board.height,
-            this.numberOfSteps
+          this.board.tiles,
+          organism,
+          this.board.width,
+          this.board.height,
+          this.numberOfSteps,
         );
-        console.log(parent1SurroundingTiles)
+        console.log(parent1SurroundingTiles);
         const parent2SurroundingTiles = findNearestTiles(
-            this.board.tiles,
-            newTile.currentOrganism,
-            this.board.width,
-            this.board.height,
-            this.numberOfSteps
+          this.board.tiles,
+          newTile.currentOrganism,
+          this.board.width,
+          this.board.height,
+          this.numberOfSteps,
         );
-        console.log(parent2SurroundingTiles)
-        let surroundingEmptyTiles = []
+        console.log(parent2SurroundingTiles);
+        let surroundingEmptyTiles = [];
         for (let i = 0; i < parent1SurroundingTiles.length; i++) {
-          if(!parent1SurroundingTiles[i].currentOrganism){
-            surroundingEmptyTiles.push(parent1SurroundingTiles[i])
+          if (!parent1SurroundingTiles[i].currentOrganism) {
+            surroundingEmptyTiles.push(parent1SurroundingTiles[i]);
           }
         }
         for (let i = 0; i < parent2SurroundingTiles.length; i++) {
-          if (!parent2SurroundingTiles[i].currentOrganism && !surroundingEmptyTiles.includes(parent2SurroundingTiles[i])) {
+          if (
+            !parent2SurroundingTiles[i].currentOrganism &&
+            !surroundingEmptyTiles.includes(parent2SurroundingTiles[i])
+          ) {
             surroundingEmptyTiles.push(parent2SurroundingTiles[i]);
           }
         }
 
-        if(surroundingEmptyTiles.length > 0){
+        if (surroundingEmptyTiles.length > 0) {
           const tileForChild = findRandomTileInArray(surroundingEmptyTiles);
           const child = Object.create(organism);
-          child.createElement()
+          child.createElement();
           child.age = 0;
-          tileForChild.addOrganism(child)
-          console.log(child)
-          return true
+          tileForChild.addOrganism(child);
+          console.log(child);
+          return true;
         }
       }
     }
@@ -72,9 +77,9 @@ export class Animal extends Organism {
       height,
       numberOfSteps,
     );
-    const newTile = findRandomTileInArray(nearestTiles)
-    if(this.mate(newTile, this)) {
-      return
+    const newTile = findRandomTileInArray(nearestTiles);
+    if (this.mate(newTile, this)) {
+      return;
     }
     console.log(`from: ${organism.x}, ${organism.y}`);
     newTile.addOrganism(organism);
