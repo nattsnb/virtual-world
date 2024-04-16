@@ -31,46 +31,26 @@ export class Animal extends Organism {
             this.numberOfSteps
         );
         console.log(parent2SurroundingTiles)
-        let surroundingTiles = []
+        let surroundingEmptyTiles = []
         let availableTiles = []
         for (let i = 0; i < parent1SurroundingTiles.length; i++) {
-          surroundingTiles.push(parent1SurroundingTiles[i])
+          if(!parent1SurroundingTiles[i].currentOrganism){
+            surroundingEmptyTiles.push(parent1SurroundingTiles[i])
+          }
         }
         for (let i = 0; i < parent2SurroundingTiles.length; i++) {
-          if (!surroundingTiles.includes(parent2SurroundingTiles[i])) {
-            surroundingTiles.push(parent2SurroundingTiles[i]);
+          if (!parent2SurroundingTiles[i].currentOrganism && !surroundingEmptyTiles.includes(parent2SurroundingTiles[i])) {
+            surroundingEmptyTiles.push(parent2SurroundingTiles[i]);
           }
         }
-        // for(let i = 0; i < surroundingTiles.length; i++){
-        //   if(surroundingTiles[i] !== null){
-        //     console.log(surroundingTiles[i])
-        //     surroundingTiles.splice(i,1)
+
+        // for (let i = 0; i < surroundingEmptyTiles.length; i++) {
+        //     if (!surroundingEmptyTiles[i].currentOrganism) {
+        //       console.log(surroundingEmptyTiles[i])
+        //       availableTiles.push(surroundingEmptyTiles[i])
+        //     }
         //   }
-        // }
 
-
-        // let availableTiles = surroundingTiles.filter((obj) => {
-        //   return obj.values.every((value) => {
-        //     return value !== null;
-        //   });
-        // });
-
-        // for (let i = 0; i < surroundingTiles.length; i++) {
-        //   if (surroundingTiles[i].currentOrganism) {
-        //     console.log(surroundingTiles[i])
-        //     surroundingTiles.splice(i,1)
-        //   }
-        // }
-
-        for (let i = 0; i < surroundingTiles.length; i++) {
-            if (!surroundingTiles[i].currentOrganism) {
-              console.log(surroundingTiles[i])
-              availableTiles.push(surroundingTiles[i])
-            }
-          }
-
-        console.log(`final`)
-        console.log(availableTiles)
       }
     }
   }
