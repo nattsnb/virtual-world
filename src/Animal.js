@@ -44,18 +44,15 @@ export class Animal extends Organism {
           }
         }
 
-        // for (let i = 0; i < surroundingEmptyTiles.length; i++) {
-        //     if (!surroundingEmptyTiles[i].currentOrganism) {
-        //       console.log(surroundingEmptyTiles[i])
-        //       availableTiles.push(surroundingEmptyTiles[i])
-        //     }
-        //   }
-
         if(surroundingEmptyTiles.length > 0){
           const tileForChild = findRandomTileInArray(surroundingEmptyTiles);
-          
+          const child = Object.create(organism);
+          child.createElement()
+          child.age = 0;
+          tileForChild.addOrganism(child)
+          console.log(child)
+          return true
         }
-
       }
     }
   }
@@ -76,7 +73,9 @@ export class Animal extends Organism {
       numberOfSteps,
     );
     const newTile = findRandomTileInArray(nearestTiles)
-    this.mate(newTile, this)
+    if(this.mate(newTile, this)) {
+      return
+    }
     console.log(`from: ${organism.x}, ${organism.y}`);
     newTile.addOrganism(organism);
     console.log(`to ${organism.x}, ${organism.y}`);
