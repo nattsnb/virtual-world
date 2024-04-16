@@ -11,13 +11,10 @@ export class Animal extends Organism {
   }
 
   mate(newTile, organism) {
-    console.log(organism.constructor.name);
     if (newTile.currentOrganism) {
-      console.log(newTile.currentOrganism.constructor.name);
       if (
         organism.constructor.name === newTile.currentOrganism.constructor.name
       ) {
-        console.log("it's a match!");
         const parent1SurroundingTiles = findNearestTiles(
           this.board.tiles,
           organism,
@@ -25,7 +22,6 @@ export class Animal extends Organism {
           this.board.height,
           this.numberOfSteps,
         );
-        console.log(parent1SurroundingTiles);
         const parent2SurroundingTiles = findNearestTiles(
           this.board.tiles,
           newTile.currentOrganism,
@@ -33,7 +29,6 @@ export class Animal extends Organism {
           this.board.height,
           this.numberOfSteps,
         );
-        console.log(parent2SurroundingTiles);
         let surroundingEmptyTiles = [];
         for (let i = 0; i < parent1SurroundingTiles.length; i++) {
           if (!parent1SurroundingTiles[i].currentOrganism) {
@@ -55,7 +50,6 @@ export class Animal extends Organism {
           child.createElement();
           child.age = 0;
           tileForChild.addOrganism(child);
-          console.log(child);
           return true;
         }
       }
@@ -71,16 +65,18 @@ export class Animal extends Organism {
       ) {
         console.log("it's a fight!");
         if (organism.strength > newTile.currentOrganism.strength){
-          delete newTile.currentOrganism
-          console.log(newTile)
+          console.log(`first wins`)
+          delete newTile.refresh()
           return true
         }
         if (organism.strength < newTile.currentOrganism.strength){
           delete organism.currentOrganism
-          console.log(newTile)
-          return true
+          console.log(`second wins`)
+          console.log(newTile.currentOrganism)
+          return false
         }
-        return true
+        console.log(`draw`)
+        return false
       }
     }
   }
@@ -102,7 +98,7 @@ export class Animal extends Organism {
     if (this.mate(newTile, this)) {
       return;
     }
-    if (this.fight(newTile, this)) {
+    if (!this.fight(newTile, this)) {
       return;
     }
     console.log(`from: ${organism.x}, ${organism.y}`);
