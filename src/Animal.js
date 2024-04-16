@@ -1,6 +1,7 @@
 import { Organism } from './Organism';
 import { findNearestTiles } from './findNearestTiles';
 import {classesList} from "./classesList";
+import {findRandomTileInArray} from "./findRandomTileInArray";
 
 export class Animal extends Organism {
   constructor(board) {
@@ -32,7 +33,6 @@ export class Animal extends Organism {
         );
         console.log(parent2SurroundingTiles)
         let surroundingEmptyTiles = []
-        let availableTiles = []
         for (let i = 0; i < parent1SurroundingTiles.length; i++) {
           if(!parent1SurroundingTiles[i].currentOrganism){
             surroundingEmptyTiles.push(parent1SurroundingTiles[i])
@@ -50,6 +50,11 @@ export class Animal extends Organism {
         //       availableTiles.push(surroundingEmptyTiles[i])
         //     }
         //   }
+
+        if(surroundingEmptyTiles.length > 0){
+          const tileForChild = findRandomTileInArray(surroundingEmptyTiles);
+          
+        }
 
       }
     }
@@ -70,8 +75,7 @@ export class Animal extends Organism {
       height,
       numberOfSteps,
     );
-    const randomTileNumber = Math.floor(Math.random() * nearestTiles.length);
-    const newTile = nearestTiles[randomTileNumber];
+    const newTile = findRandomTileInArray(nearestTiles)
     this.mate(newTile, this)
     console.log(`from: ${organism.x}, ${organism.y}`);
     newTile.addOrganism(organism);
