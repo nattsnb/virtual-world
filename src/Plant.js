@@ -45,5 +45,8 @@ export class Plant extends Organism {
     // console.log(`I didn't spread!`)
   }
 
-  itAteMe(organism) {}
+  animalEatsPlant(organism) {
+    console.log(this);
+    console.log(this.x, this.y);
+  }
 }

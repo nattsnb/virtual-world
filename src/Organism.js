@@ -12,6 +12,5 @@ export class Organism {
     this.element = document.createElement('img');
     this.element.classList.add('organism-image');
   }
-  async action() {
-  }
+  async action() {}
 }

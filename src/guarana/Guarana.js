@@ -12,8 +12,8 @@ export class Guarana extends Plant {
     this.element.src = guaranaImage;
   }
 
-  itAteMe(organism) {
-    super.itAteMe(organism);
+  animalEatsPlant(organism) {
+    super.animalEatsPlant(organism);
     organism.strength = organism.strength + 3;
     console.log('I ate guarana:');
     console.log(organism);
