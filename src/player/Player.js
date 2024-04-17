@@ -124,12 +124,20 @@ export class Player extends Animal {
         if (organism.strength > newTile.currentOrganism.strength) {
           console.log(`first wins`);
           newTile.currentOrganism = null;
+          newTile.tileContainer.innerHTML = '';
+          console.log(newTile.currentOrganism);
           return false;
         }
         if (organism.strength < newTile.currentOrganism.strength) {
-          delete organism.currentOrganism;
           console.log(`second wins`);
+          console.log(organism);
+          console.log(organism.x, organism.y);
           console.log(newTile.currentOrganism);
+          console.log(newTile.currentOrganism.x, newTile.currentOrganism.y);
+          console.log(this.board.tiles[organism.x][organism.y].currentOrganism);
+          this.board.tiles[organism.x][organism.y].currentOrganism = null;
+          this.board.tiles[organism.x][organism.y].tileContainer.innerHTML = '';
+          console.log(this.board.tiles[organism.x][organism.y].currentOrganism);
           alert('You lose!');
           throw new Error();
         }
