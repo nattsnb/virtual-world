@@ -37,7 +37,7 @@ export class Animal extends Organism {
 
       if (surroundingEmptyTiles.length > 0) {
         const tileForChild = findRandomTileInArray(surroundingEmptyTiles);
-        const child = Object.create(organism);
+        const child = new organism.constructor(this.board);
         child.createElement();
         child.age = 0;
         tileForChild.addOrganism(child);
@@ -52,34 +52,34 @@ export class Animal extends Organism {
     if (newTile.currentOrganism === null) {
       return false;
     }
-    console.log(organism.constructor.name);
+    // console.log(organism.constructor.name);
     if (
         organism.constructor !== newTile.currentOrganism.constructor &&
         newTile.currentOrganism instanceof Animal
     ) {
-      console.log(newTile.currentOrganism.constructor.name);
-      console.log("it's a fight!");
+      // console.log(newTile.currentOrganism.constructor.name);
+      // console.log("it's a fight!");
       if (organism.strength > newTile.currentOrganism.strength) {
-        console.log(`first wins`);
+        // console.log(`first wins`);
         newTile.currentOrganism = null;
         newTile.tileContainer.innerHTML = '';
-        console.log(newTile.currentOrganism);
+        // console.log(newTile.currentOrganism);
         return false;
       }
       if (organism.strength < newTile.currentOrganism.strength) {
-        console.log(`second wins`);
-        console.log(organism);
-        console.log(organism.x, organism.y);
-        console.log(newTile.currentOrganism);
-        console.log(newTile.currentOrganism.x, newTile.currentOrganism.y);
+        // console.log(`second wins`);
+        // console.log(organism);
+        // console.log(organism.x, organism.y);
+        // console.log(newTile.currentOrganism);
+        // console.log(newTile.currentOrganism.x, newTile.currentOrganism.y);
         organism.death()
-        console.log(newTile.currentOrganism);
+        // console.log(newTile.currentOrganism);
         return true;
       }
-      console.log(`draw`);
+      // console.log(`draw`);
       return true;
     }
-    console.log('I ate it!');
+    // console.log('I ate it!');
     return newTile.currentOrganism.animalEatsPlant(organism);
   }
 

@@ -46,7 +46,7 @@ export class Plant extends Organism {
   }
 
   animalEatsPlant(organism) {
-    console.log(this);
-    console.log(this.x, this.y);
+    // console.log(this);
+    // console.log(this.x, this.y);
   }
 }
