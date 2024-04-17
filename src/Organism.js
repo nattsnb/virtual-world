@@ -13,4 +13,12 @@ export class Organism {
     this.element.classList.add('organism-image');
   }
   async action() {}
+
+  death(){
+    console.log(this.board.tiles[this.x][this.y].currentOrganism);
+    this.board.tiles[this.x][this.y].currentOrganism = null;
+    this.board.tiles[this.x][this.y].tileContainer.innerHTML = '';
+    console.log(this.board.tiles[this.x][this.y].currentOrganism);
+
+  }
 }

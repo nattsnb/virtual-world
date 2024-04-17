@@ -72,10 +72,7 @@ export class Animal extends Organism {
         console.log(organism.x, organism.y);
         console.log(newTile.currentOrganism);
         console.log(newTile.currentOrganism.x, newTile.currentOrganism.y);
-        console.log(this.board.tiles[organism.x][organism.y].currentOrganism);
-        this.board.tiles[organism.x][organism.y].currentOrganism = null;
-        this.board.tiles[organism.x][organism.y].tileContainer.innerHTML = '';
-        console.log(this.board.tiles[organism.x][organism.y].currentOrganism);
+        organism.death()
         console.log(newTile.currentOrganism);
         return true;
       }
