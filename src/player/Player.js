@@ -106,11 +106,40 @@ export class Player extends Animal {
       console.log('Enter');
       this.tilesForAction = [];
       if (!this.fight(this.activeTile, this)) {
-        alert('You lose!');
-        window.stop();
+        return
       }
       this.activeTile.addOrganism(this);
       this.resolveMovement();
+    }
+  }
+
+  fight(newTile, organism) {
+    console.log(organism.constructor.name);
+    if (newTile.currentOrganism !== null) {
+      console.log(newTile.currentOrganism.constructor.name);
+      if (
+          organism.constructor.name !==
+          newTile.currentOrganism.constructor.name &&
+          newTile.currentOrganism instanceof Animal
+      ) {
+        console.log("it's a fight!");
+        if (organism.strength > newTile.currentOrganism.strength) {
+          console.log(`first wins`);
+          delete newTile.refresh();
+          return true;
+        }
+        if (organism.strength < newTile.currentOrganism.strength) {
+          delete organism.currentOrganism;
+          console.log(`second wins`);
+          console.log(newTile.currentOrganism);
+          alert('You lose!');
+          throw new Error("You lose!");
+        }
+        console.log(`draw`);
+        return false;
+      }
+      console.log('I ate it!');
+      newTile.currentOrganism.itAteMe(organism);
     }
   }
 }
