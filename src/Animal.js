@@ -7,7 +7,6 @@ export class Animal extends Organism {
   constructor(board) {
     super(board);
     this.strength = 0;
-    this.numberOfSteps = 1;
   }
 
   mate(newTile, organism) {

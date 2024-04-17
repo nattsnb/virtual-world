@@ -9,19 +9,22 @@ export class Plant extends Organism {
   }
 
   async action() {
-    this.spread(this);
+    this.spread();
   }
 
-  spread(organism) {
+  spread() {
     let odds = Math.random();
+    // console.log(odds)
+    // console.log(this.chancesToSpread)
     if (odds < this.chancesToSpread) {
       const parentSurroundingTiles = findNearestTiles(
         this.board.tiles,
-        organism,
+        this,
         this.board.width,
         this.board.height,
         this.numberOfSteps,
       );
+      // console.log(parentSurroundingTiles)
       let surroundingEmptyTiles = [];
       for (let i = 0; i < parentSurroundingTiles.length; i++) {
         if (!parentSurroundingTiles[i].currentOrganism) {
@@ -30,13 +33,16 @@ export class Plant extends Organism {
       }
       if (surroundingEmptyTiles.length > 0) {
         const tileForChild = findRandomTileInArray(surroundingEmptyTiles);
-        const child = Object.create(organism);
+        const child = Object.create(this);
         child.createElement();
         child.age = 0;
         tileForChild.addOrganism(child);
+        // console.log(`I spread!`)
+        // console.log(child)
         return true;
       }
     }
+    // console.log(`I didn't spread!`)
   }
 
   itAteMe(organism) {}

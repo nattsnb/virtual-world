@@ -5,6 +5,7 @@ export class Organism {
     this.element = document.createElement('span');
     this.element.innerText = 'organism';
     this.board = board;
+    this.numberOfSteps = 1;
   }
 
   createElement() {
