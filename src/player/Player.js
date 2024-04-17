@@ -6,8 +6,8 @@ export class Player extends Animal {
   constructor(board) {
     super(board);
     this.initializeEventListener();
-    this.initiative = 5;
-    this.strength = 4;
+    this.initiative = 4;
+    this.strength = 5;
     this.createElement();
     this.x = 0;
     this.y = 0;

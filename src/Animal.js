@@ -17,22 +17,22 @@ export class Animal extends Organism {
     if (organism.constructor === newTile.currentOrganism.constructor) {
       console.log(newTile.currentOrganism.constructor.name);
       const parent1SurroundingTiles = findNearestTiles(
-        this.board.tiles,
-        organism,
-        this.board.width,
-        this.board.height,
-        this.numberOfSteps,
+          this.board.tiles,
+          organism,
+          this.board.width,
+          this.board.height,
+          this.numberOfSteps,
       );
       const parent2SurroundingTiles = findNearestTiles(
-        this.board.tiles,
-        newTile.currentOrganism,
-        this.board.width,
-        this.board.height,
-        this.numberOfSteps,
+          this.board.tiles,
+          newTile.currentOrganism,
+          this.board.width,
+          this.board.height,
+          this.numberOfSteps,
       );
       const surroundingEmptyTiles = findEmptyTilesSurroundingParents(
-        parent1SurroundingTiles,
-        parent2SurroundingTiles,
+          parent1SurroundingTiles,
+          parent2SurroundingTiles,
       );
 
       if (surroundingEmptyTiles.length > 0) {
@@ -54,8 +54,8 @@ export class Animal extends Organism {
     }
     console.log(organism.constructor.name);
     if (
-      organism.constructor !== newTile.currentOrganism.constructor &&
-      newTile.currentOrganism instanceof Animal
+        organism.constructor !== newTile.currentOrganism.constructor &&
+        newTile.currentOrganism instanceof Animal
     ) {
       console.log(newTile.currentOrganism.constructor.name);
       console.log("it's a fight!");
@@ -90,11 +90,11 @@ export class Animal extends Organism {
     const height = this.board.height;
     const numberOfSteps = this.numberOfSteps;
     const nearestTiles = findNearestTiles(
-      tiles,
-      organism,
-      width,
-      height,
-      numberOfSteps,
+        tiles,
+        organism,
+        width,
+        height,
+        numberOfSteps,
     );
     // console.log(organism)
     const newTile = findRandomTileInArray(nearestTiles);
