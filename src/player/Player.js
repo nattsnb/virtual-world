@@ -133,7 +133,7 @@ export class Player extends Animal {
           console.log(`second wins`);
           console.log(newTile.currentOrganism);
           alert('You lose!');
-          throw new Error("You lose!");
+          throw new Error;
         }
         console.log(`draw`);
         return false;

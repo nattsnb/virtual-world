@@ -49,6 +49,8 @@ export class Animal extends Organism {
           child.createElement();
           child.age = 0;
           tileForChild.addOrganism(child);
+          console.log(`it's  a match!`)
+          console.log(child)
           return true;
         }
       }
@@ -68,16 +70,16 @@ export class Animal extends Organism {
         if (organism.strength > newTile.currentOrganism.strength) {
           console.log(`first wins`);
           delete newTile.refresh();
-          return true;
+          return false;
         }
         if (organism.strength < newTile.currentOrganism.strength) {
           delete organism.currentOrganism;
           console.log(`second wins`);
           console.log(newTile.currentOrganism);
-          return false;
+          return true;
         }
         console.log(`draw`);
-        return false;
+        return true;
       }
       console.log('I ate it!');
       newTile.currentOrganism.itAteMe(organism);
@@ -101,7 +103,7 @@ export class Animal extends Organism {
     if (this.mate(newTile, this)) {
       return;
     }
-    if (!this.fight(newTile, this)) {
+    if (this.fight(newTile, this)) {
       return;
     }
     console.log(`from: ${organism.x}, ${organism.y}`);
