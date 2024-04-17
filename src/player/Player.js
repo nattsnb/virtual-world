@@ -105,6 +105,10 @@ export class Player extends Animal {
     if (evt.code === 'Enter') {
       console.log('Enter');
       this.tilesForAction = [];
+      if (!this.fight(this.activeTile, this)) {
+        alert('You lose!');
+        window.stop();
+      }
       this.activeTile.addOrganism(this);
       this.resolveMovement();
     }

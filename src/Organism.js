@@ -13,6 +13,6 @@ export class Organism {
     this.element.classList.add('organism-image');
   }
   async action() {
-    console.log('action done');
+    // console.log('action done');
   }
 }
