@@ -83,7 +83,7 @@ export class Animal extends Organism {
       return true;
     }
     console.log('I ate it!');
-    newTile.currentOrganism.animalEatsPlant(organism);
+    return newTile.currentOrganism.animalEatsPlant(organism);
   }
 
   async action() {
@@ -99,6 +99,7 @@ export class Animal extends Organism {
       height,
       numberOfSteps,
     );
+    // console.log(organism)
     const newTile = findRandomTileInArray(nearestTiles);
     if (this.mate(newTile, this)) {
       return;
@@ -106,8 +107,8 @@ export class Animal extends Organism {
     if (this.fight(newTile, this)) {
       return;
     }
-    console.log(`from: ${organism.x}, ${organism.y}`);
+    // console.log(`from: ${organism.x}, ${organism.y}`);
     newTile.addOrganism(organism);
-    console.log(`to ${organism.x}, ${organism.y}`);
+    // console.log(`to ${organism.x}, ${organism.y}`);
   }
 }
