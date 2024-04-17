@@ -31,7 +31,6 @@ export class Player extends Animal {
     );
     this.tilesForAction.push(this.board.tiles[this.x][this.y]);
     console.log(this.activeTile);
-    console.log(this.tilesForAction[1]);
     const currentTileDiv = this.board.tiles[this.x][this.y].tileContainer;
     currentTileDiv.setAttribute('id', 'activeTile');
     return this.move();
@@ -52,7 +51,6 @@ export class Player extends Animal {
       this.activeTile.tileContainer.removeAttribute('id');
       this.activeTile = this.board.tiles[coordinates.x][coordinates.y];
       console.log(this.activeTile);
-      console.log(this.tilesForAction[1]);
       const activeTileDiv = this.activeTile.tileContainer;
       activeTileDiv.setAttribute('id', 'activeTile');
     }
@@ -105,7 +103,7 @@ export class Player extends Animal {
     if (evt.code === 'Enter') {
       console.log('Enter');
       this.tilesForAction = [];
-      if (!this.fight(this.activeTile, this)) {
+      if (this.fight(this.activeTile, this)) {
         return
       }
       this.activeTile.addOrganism(this);
@@ -126,7 +124,7 @@ export class Player extends Animal {
         if (organism.strength > newTile.currentOrganism.strength) {
           console.log(`first wins`);
           delete newTile.refresh();
-          return true;
+          return false;
         }
         if (organism.strength < newTile.currentOrganism.strength) {
           delete organism.currentOrganism;
@@ -135,8 +133,8 @@ export class Player extends Animal {
           alert('You lose!');
           throw new Error;
         }
-        console.log(`draw`);
-        return false;
+        console.log(`it's a draw`)
+        return true
       }
       console.log('I ate it!');
       newTile.currentOrganism.itAteMe(organism);
