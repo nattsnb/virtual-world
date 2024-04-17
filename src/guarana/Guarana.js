@@ -1,14 +1,14 @@
-import { Plant } from '../plant.js';
+import { Plant } from '../Plant';
 import guaranaImage from './guarana.jpg';
 
 export class Guarana extends Plant {
-    constructor() {
-        super();
-        this.createElement()
-    }
+  constructor(board) {
+    super(board);
+    this.createElement();
+  }
 
-    createElement() {
-        super.createElement()
-        this.element.src = guaranaImage;
-    }
+  createElement() {
+    super.createElement();
+    this.element.src = guaranaImage;
+  }
 }

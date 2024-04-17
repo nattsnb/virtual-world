@@ -1,15 +1,17 @@
 export class Organism {
-  constructor() {
+  constructor(board) {
     this.age = 0;
     this.initiative = 0;
     this.element = document.createElement('span');
-    this.element.innerText = "organism";
+    this.element.innerText = 'organism';
+    this.board = board;
   }
 
   createElement() {
     this.element = document.createElement('img');
-    this.element.classList.add('organism-image')
+    this.element.classList.add('organism-image');
   }
-  action() {}
+  async action() {
+    console.log('action done');
+  }
 }
-
