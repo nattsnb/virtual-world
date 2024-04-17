@@ -7,5 +7,5 @@ export class Plant extends Organism {
 
   spread() {}
 
-  itAteMe() {}
+  itAteMe(organism) {}
 }

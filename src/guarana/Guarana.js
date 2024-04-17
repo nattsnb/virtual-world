@@ -11,4 +11,11 @@ export class Guarana extends Plant {
     super.createElement();
     this.element.src = guaranaImage;
   }
+
+  itAteMe(organism) {
+    super.itAteMe(organism);
+    organism.strength = organism.strength + 3;
+    console.log('I ate guarana:');
+    console.log(organism);
+  }
 }
