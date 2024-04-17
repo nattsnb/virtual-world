@@ -80,6 +80,8 @@ export class Animal extends Organism {
         console.log(`draw`);
         return false;
       }
+      console.log('I ate it!');
+      newTile.currentOrganism.itAteMe(organism);
     }
   }
 
