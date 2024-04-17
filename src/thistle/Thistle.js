@@ -5,6 +5,7 @@ export class SowThistle extends Plant {
   constructor(board) {
     super(board);
     this.createElement();
+    this.chancesToSpread = this.chancesToSpread * 3;
   }
 
   createElement() {
