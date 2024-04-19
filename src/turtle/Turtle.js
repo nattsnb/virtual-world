@@ -7,16 +7,10 @@ export class Turtle extends Animal {
     age: 0,
     numberOfSteps: 1,
     initiative: 1,
+    image: turtleImage,
   };
   constructor(board, startParameters) {
     super(board, startParameters);
-    this.initiative = 1;
-    this.strength = 2;
     this.createElement();
-  }
-
-  createElement() {
-    super.createElement();
-    this.element.src = turtleImage;
   }
 }

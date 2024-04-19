@@ -7,16 +7,10 @@ export class Sheep extends Animal {
     age: 0,
     numberOfSteps: 1,
     initiative: 4,
+    image: sheepImage,
   };
   constructor(board, startParameters) {
     super(board, startParameters);
-    this.initiative = 4;
-    this.strength = 3;
     this.createElement();
-  }
-
-  createElement() {
-    super.createElement();
-    this.element.src = sheepImage;
   }
 }

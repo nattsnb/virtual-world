@@ -5,15 +5,11 @@ export class Berry extends Plant {
   static startParameters = {
     age: 0,
     chancesToSpread: 0.1,
+    image: berryImage,
   };
   constructor(board, startParameters) {
     super(board, startParameters);
     this.createElement();
-  }
-
-  createElement() {
-    super.createElement();
-    this.element.src = berryImage;
   }
 
   animalEatsPlant(organism) {

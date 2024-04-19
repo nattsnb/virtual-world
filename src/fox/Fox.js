@@ -7,16 +7,10 @@ export class Fox extends Animal {
     age: 0,
     numberOfSteps: 1,
     initiative: 7,
+    image: foxImage,
   };
   constructor(board, startParameters) {
     super(board, startParameters);
-    this.initiative = 7;
-    this.strength = 4;
     this.createElement();
-  }
-
-  createElement() {
-    super.createElement();
-    this.element.src = foxImage;
   }
 }

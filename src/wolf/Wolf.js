@@ -7,16 +7,10 @@ export class Wolf extends Animal {
     age: 0,
     numberOfSteps: 1,
     initiative: 5,
+    image: wolfImage,
   };
   constructor(board, startParameters) {
     super(board, startParameters);
-    this.initiative = 5;
-    this.strength = 9;
     this.createElement();
-  }
-
-  createElement() {
-    super.createElement();
-    this.element.src = wolfImage;
   }
 }

@@ -1,6 +1,9 @@
+import playerImage from './player/player.jpg';
+
 export class Organism {
   constructor(board, startParameters) {
     this.age = startParameters.age;
+    this.image = startParameters.image;
     this.element = document.createElement('span');
     this.element.innerText = 'organism';
     this.board = board;
@@ -11,6 +14,7 @@ export class Organism {
   createElement() {
     this.element = document.createElement('img');
     this.element.classList.add('organism-image');
+    this.element.src = this.image;
   }
   async action() {}
 

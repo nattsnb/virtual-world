@@ -45,7 +45,7 @@ export class Board {
       // console.log(organism);
     }
     const player = new Player(this, Player.startParameters);
-    console.log(player);
+    // console.log(player);
     const tileForPlayer = findRandomTileOnBoard(
       this.width,
       this.height,
