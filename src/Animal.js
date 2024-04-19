@@ -39,12 +39,12 @@ export class Animal extends Organism {
 
       if (surroundingEmptyTiles.length > 0) {
         const tileForChild = findRandomTileInArray(surroundingEmptyTiles);
-        const child = new organism.constructor(this, organism.startParameters);
+        const child = new organism.constructor(this, organism.constructor.startParameters);
         child.createElement();
         child.age = 0;
         tileForChild.setOrganism(child);
-        console.log(`it's  a match!`);
-        console.log(child);
+        // console.log(`it's  a match!`);
+        // console.log(child);
         return true;
       }
     }

@@ -1,7 +1,7 @@
 import { classesList } from './classesList';
 import { Player } from './player/Player';
 import { Tile } from './Tile';
-import { findRandomTileOnBoard } from './findRandomTileOnBoard';
+import {isTileEmpty} from "./isTileEmpty";
 
 export class Board {
   constructor(width, height) {
@@ -36,21 +36,13 @@ export class Board {
         this,
         RandomOrganismClass.startParameters,
       );
-      const tileForNewOrganism = findRandomTileOnBoard(
-        this.width,
-        this.height,
-        this.tiles,
-      );
+      const tileForNewOrganism = this.findRandomTileOnBoard();
       tileForNewOrganism.setOrganism(organism);
       // console.log(organism);
     }
     const player = new Player(this, Player.startParameters);
     // console.log(player);
-    const tileForPlayer = findRandomTileOnBoard(
-      this.width,
-      this.height,
-      this.tiles,
-    );
+    const tileForPlayer = this.findRandomTileOnBoard();
     tileForPlayer.setOrganism(player);
   }
 
@@ -75,6 +67,16 @@ export class Board {
       }
     }
     return organismsOnBoard;
+  }
+
+  findRandomTileOnBoard() {
+    const randomX = Math.floor(Math.random() * this.width);
+    const randomY = Math.floor(Math.random() * this.height);
+    const foundTile = this.tiles[randomX][randomY];
+    if (!isTileEmpty(foundTile)) {
+      return this.findRandomTileOnBoard();
+    }
+    return foundTile;
   }
 
   // sortOrganisms
