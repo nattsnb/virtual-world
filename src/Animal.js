@@ -1,6 +1,5 @@
 import { Organism } from './Organism';
 import { findNearestTiles } from './findNearestTiles';
-import { classesList } from './classesList';
 import { findRandomTileInArray } from './findRandomTileInArray';
 import { findEmptyTilesSurroundingParents } from './findEmptyTilesSurroundingParents';
 
@@ -17,7 +16,7 @@ export class Animal extends Organism {
       return false;
     }
     if (organism.constructor === newTile.currentOrganism.constructor) {
-      console.log(newTile.currentOrganism.constructor.name);
+      // console.log(newTile.currentOrganism.constructor.name);
       const parent1SurroundingTiles = findNearestTiles(
         this.board.tiles,
         organism,

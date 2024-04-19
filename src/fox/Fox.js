@@ -1,5 +1,7 @@
 import { Animal } from '../Animal';
 import foxImage from './fox.jpg';
+import {findRandomTileInArray} from "../findRandomTileInArray";
+import {findNearestTiles} from "../findNearestTiles";
 
 export class Fox extends Animal {
   static startParameters = {
@@ -9,8 +11,92 @@ export class Fox extends Animal {
     initiative: 7,
     image: foxImage,
   };
+
   constructor(board, startParameters) {
     super(board, startParameters);
     this.createElement();
+  }
+
+  fight(newTile, organism) {
+    if (newTile.currentOrganism === null) {
+      return false;
+    }
+    // console.log(organism.constructor.name);
+    if (
+        organism.constructor !== newTile.currentOrganism.constructor &&
+        newTile.currentOrganism instanceof Animal
+    ) {
+      // console.log(newTile.currentOrganism.constructor.name);
+      // console.log("it's a fight!");
+      if (organism.strength > newTile.currentOrganism.strength) {
+        // console.log(`first wins`);
+        newTile.currentOrganism.death();
+        // console.log(newTile.currentOrganism);
+        return false;
+      }
+      if (organism.strength < newTile.currentOrganism.strength) {
+        const tiles = this.board.tiles;
+        const organism = this;
+        const width = this.board.width;
+        const height = this.board.height;
+        const numberOfSteps = this.numberOfSteps;
+        const nearestTiles = findNearestTiles(
+            tiles,
+            organism,
+            width,
+            height,
+            numberOfSteps,
+        );
+        const surroundingPossibleTiles = findRandomTileInArray(nearestTiles);
+
+
+        return true;
+      }
+      // console.log(`draw`);
+      return true;
+    }
+    // console.log('I ate it!');
+    return newTile.currentOrganism.animalEatsPlant(organism);
+  }
+
+  async action() {
+    const tiles = this.board.tiles;
+    const organism = this;
+    const width = this.board.width;
+    const height = this.board.height;
+    const numberOfSteps = this.numberOfSteps;
+    const nearestTiles = findNearestTiles(
+        tiles,
+        organism,
+        width,
+        height,
+        numberOfSteps,
+    );
+    let surroundingPossibleTiles = [];
+    for (let i = 0; i < nearestTiles.length; i++) {
+      if (!nearestTiles[i].currentOrganism) {
+        surroundingPossibleTiles.push(nearestTiles[i]);
+      } else {
+        if (nearestTiles[i].currentOrganism.constructor.name === "Plant") {
+          surroundingPossibleTiles.push(nearestTiles[i]);
+        }
+        if (nearestTiles[i].currentOrganism.strength <= organism.strength) {
+          surroundingPossibleTiles.push(nearestTiles[i]);
+        }
+      }
+    }
+    if(surroundingPossibleTiles.length>0) {
+      console.log(`fox fled`)
+      const newTile = findRandomTileInArray(surroundingPossibleTiles);
+      if (this.mate(newTile, this)) {
+        return;
+      }
+      if (this.fight(newTile, this)) {
+        return;
+      }
+      // console.log(`from: ${organism.x}, ${organism.y}`);
+      newTile.setOrganism(organism);
+      // console.log(`to ${organism.x}, ${organism.y}`);
+    }
   }
 }
