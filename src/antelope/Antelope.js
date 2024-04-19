@@ -15,37 +15,27 @@ export class Antelope extends Animal {
     this.createElement();
   }
   fight(newTile, organism) {
-    if (newTile.currentOrganism === null) {
+    // console.log(organism.constructor.name);
+    // console.log(newTile.currentOrganism.constructor.name);
+    // console.log("it's a fight!");
+    if (organism.strength > newTile.currentOrganism.strength) {
+      // console.log(`first wins`);
+      newTile.currentOrganism.death();
+      // console.log(newTile.currentOrganism);
       return false;
     }
-    // console.log(organism.constructor.name);
-    if (
-        organism.constructor !== newTile.currentOrganism.constructor &&
-        newTile.currentOrganism instanceof Animal
-    ) {
-      // console.log(newTile.currentOrganism.constructor.name);
-      // console.log("it's a fight!");
-      if (organism.strength > newTile.currentOrganism.strength) {
-        // console.log(`first wins`);
-        newTile.currentOrganism.death();
+    if (organism.strength < newTile.currentOrganism.strength) {
+      let odds = Math.random();
+      if (odds < 0.5) {
+        // console.log(`antelope flies`)
+        this.action()
+      } else {
+        organism.death();
         // console.log(newTile.currentOrganism);
-        return false;
-      }
-      if (organism.strength < newTile.currentOrganism.strength) {
-        let odds = Math.random();
-        if (odds < 0.5) {
-          // console.log(`antelope flies`)
-          this.action()
-        } else {
-          organism.death();
-          // console.log(newTile.currentOrganism);
-          return true;
-        }
+        return true;
       }
       // console.log(`draw`);
       return true;
     }
-    // console.log('I ate it!');
-    return newTile.currentOrganism.animalEatsPlant(organism);
   }
 }

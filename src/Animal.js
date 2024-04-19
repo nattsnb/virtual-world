@@ -2,6 +2,7 @@ import { Organism } from './Organism';
 import { findNearestTiles } from './findNearestTiles';
 import { findRandomTileInArray } from './findRandomTileInArray';
 import { findEmptyTilesSurroundingParents } from './findEmptyTilesSurroundingParents';
+import {Plant} from "./Plant";
 
 export class Animal extends Organism {
   constructor(board, startParameters) {
@@ -102,18 +103,21 @@ export class Animal extends Organism {
 
   shouldMate(newTile, organism) {
     if (organism.constructor === newTile.currentOrganism.constructor) {
+      // console.log(`should mate`)
       this.mate(newTile, organism)
     }
   }
 
   shouldFight(newTile, organism) {
-    if (newTile.currentOrganism.constructor === Animal) {
+    if (newTile.currentOrganism instanceof Animal) {
+      // console.log(`should fight`)
       this.fight(newTile, organism)
     }
   }
 
   shouldEat(newTile, organism) {
-    if (newTile.currentOrganism.constructor === Plant) {
+    if (newTile.currentOrganism instanceof Plant) {
+      // console.log(`should eat`)
       newTile.currentOrganism.animalEatsPlant(organism)
     }
   }

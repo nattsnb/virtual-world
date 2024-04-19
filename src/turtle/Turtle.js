@@ -16,31 +16,30 @@ export class Turtle extends Animal {
     this.createElement();
   }
   async action() {
-    let odds = Math.random();
-    if (odds < 0.25){
-      // console.log(`turtle moves`)
-      const tiles = this.board.tiles;
-      const organism = this;
-      const width = this.board.width;
-      const height = this.board.height;
-      const numberOfSteps = this.numberOfSteps;
-      const nearestTiles = findNearestTiles(
-          tiles,
-          organism,
-          width,
-          height,
-          numberOfSteps,
-      );
-      // console.log(organism)
-      const newTile = findRandomTileInArray(nearestTiles);
-      if (this.mate(newTile, this)) {
-        return;
-      }
-      if (this.fight(newTile, this)) {
-        return;
-      }
+    const tiles = this.board.tiles;
+    const organism = this;
+    const width = this.board.width;
+    const height = this.board.height;
+    const numberOfSteps = this.numberOfSteps;
+    const nearestTiles = findNearestTiles(
+        tiles,
+        organism,
+        width,
+        height,
+        numberOfSteps,
+    );
+    // console.log(organism)
+    const newTile = findRandomTileInArray(nearestTiles);
+    if (newTile.currentOrganism) {
+      this.shouldMate(newTile, organism)
+      this.shouldFight(newTile, organism)
+      this.shouldEat(newTile, organism)
+    } else {
       // console.log(`from: ${organism.x}, ${organism.y}`);
-      newTile.setOrganism(organism);
+      let odds = Math.random();
+      if (odds < 0.25) {
+        newTile.setOrganism(organism);
+      }
       // console.log(`to ${organism.x}, ${organism.y}`);
     }
   }

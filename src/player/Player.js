@@ -103,49 +103,54 @@ export class Player extends Animal {
     if (evt.code === 'Enter') {
       console.log('Enter');
       this.tilesForAction = [];
-      if (this.fight(this.activeTile, this)) {
-        return;
+      if (this.activeTile.currentOrganism) {
+        this.shouldMate(this.activeTile, this)
+        this.shouldFight(this.activeTile, this)
+        this.shouldEat(this.activeTile, this)
+      } else {
+        // console.log(`from: ${organism.x}, ${organism.y}`);
+        this.activeTile.setOrganism(this);
+        // console.log(`to ${organism.x}, ${organism.y}`);
       }
-      this.activeTile.setOrganism(this);
       this.resolveMovement();
     }
   }
 
-  fight(newTile, organism) {
-    console.log(organism.constructor.name);
-    if (newTile.currentOrganism !== null) {
-      console.log(newTile.currentOrganism.constructor.name);
-      if (
-        organism.constructor.name !==
-          newTile.currentOrganism.constructor.name &&
-        newTile.currentOrganism instanceof Animal
-      ) {
-        console.log("it's a fight!");
-        if (organism.strength > newTile.currentOrganism.strength) {
-          console.log(`first wins`);
-          newTile.currentOrganism = null;
-          newTile.tileContainer.innerHTML = '';
-          console.log(newTile.currentOrganism);
-          return false;
-        }
-        if (organism.strength < newTile.currentOrganism.strength) {
-          console.log(`second wins`);
-          console.log(organism);
-          console.log(organism.x, organism.y);
-          console.log(newTile.currentOrganism);
-          console.log(newTile.currentOrganism.x, newTile.currentOrganism.y);
-          console.log(this.board.tiles[organism.x][organism.y].currentOrganism);
-          this.board.tiles[organism.x][organism.y].currentOrganism = null;
-          this.board.tiles[organism.x][organism.y].tileContainer.innerHTML = '';
-          console.log(this.board.tiles[organism.x][organism.y].currentOrganism);
-          alert('You lose!');
-          throw new Error();
-        }
-        console.log(`it's a draw`);
-        return true;
-      }
-      console.log('I ate it!');
-      newTile.currentOrganism.animalEatsPlant(organism);
-    }
-  }
+  // fight(newTile, organism) {
+  //   console.log(organism.constructor.name);
+  //   if (newTile.currentOrganism !== null) {
+  //     console.log(newTile.currentOrganism.constructor.name);
+  //     if (
+  //       organism.constructor.name !==
+  //         newTile.currentOrganism.constructor.name &&
+  //       newTile.currentOrganism instanceof Animal
+  //     ) {
+  //       console.log("it's a fight!");
+  //       if (organism.strength > newTile.currentOrganism.strength) {
+  //         console.log(`first wins`);
+  //         newTile.currentOrganism = null;
+  //         newTile.tileContainer.innerHTML = '';
+  //         console.log(newTile.currentOrganism);
+  //         return false;
+  //       }
+  //       if (organism.strength < newTile.currentOrganism.strength) {
+  //         console.log(`second wins`);
+  //         console.log(organism);
+  //         console.log(organism.x, organism.y);
+  //         console.log(newTile.currentOrganism);
+  //         console.log(newTile.currentOrganism.x, newTile.currentOrganism.y);
+  //         console.log(this.board.tiles[organism.x][organism.y].currentOrganism);
+  //         this.board.tiles[organism.x][organism.y].currentOrganism = null;
+  //         this.board.tiles[organism.x][organism.y].tileContainer.innerHTML = '';
+  //         console.log(this.board.tiles[organism.x][organism.y].currentOrganism);
+  //         alert('You lose!');
+  //         throw new Error();
+  //       }
+  //       console.log(`it's a draw`);
+  //       return true;
+  //     }
+  //     console.log('I ate it!');
+  //     newTile.currentOrganism.animalEatsPlant(organism);
+  //   }
+  // }
 }

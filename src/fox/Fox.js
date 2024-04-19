@@ -59,44 +59,9 @@ export class Fox extends Animal {
     return newTile.currentOrganism.animalEatsPlant(organism);
   }
 
-  async action() {
-    const tiles = this.board.tiles;
-    const organism = this;
-    const width = this.board.width;
-    const height = this.board.height;
-    const numberOfSteps = this.numberOfSteps;
-    const nearestTiles = findNearestTiles(
-        tiles,
-        organism,
-        width,
-        height,
-        numberOfSteps,
-    );
-    let surroundingPossibleTiles = [];
-    for (let i = 0; i < nearestTiles.length; i++) {
-      if (!nearestTiles[i].currentOrganism) {
-        surroundingPossibleTiles.push(nearestTiles[i]);
-      } else {
-        if (nearestTiles[i].currentOrganism.constructor.name === "Plant") {
-          surroundingPossibleTiles.push(nearestTiles[i]);
-        }
-        if (nearestTiles[i].currentOrganism.strength <= organism.strength) {
-          surroundingPossibleTiles.push(nearestTiles[i]);
-        }
-      }
-    }
-    if(surroundingPossibleTiles.length>0) {
-      // console.log(`fox sneaks out`)
-      const newTile = findRandomTileInArray(surroundingPossibleTiles);
-      if (this.mate(newTile, this)) {
-        return;
-      }
-      if (this.fight(newTile, this)) {
-        return;
-      }
-      // console.log(`from: ${organism.x}, ${organism.y}`);
-      newTile.setOrganism(organism);
-      // console.log(`to ${organism.x}, ${organism.y}`);
+  shouldFight(newTile, organism) {
+    if (newTile.currentOrganism.constructor === Animal && newTile.currentOrganism.strength <= organism.strength) {
+      this.fight(newTile, organism)
     }
   }
 }
