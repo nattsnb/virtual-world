@@ -3,12 +3,14 @@ import playerImage from './player.jpg';
 import { findNearestTiles } from '../findNearestTiles';
 
 export class Player extends Animal {
-  static initialParameters = {
-    initiative: 4,
+  static startParameters = {
     strength: 5,
-  }
-  constructor(board, initiative, strength) {
-    super(board, initiative, strength);
+    age: 0,
+    numberOfSteps: 1,
+    initiative: 4,
+  };
+  constructor(board, startParameters) {
+    super(board, startParameters);
     this.initializeEventListener();
     this.createElement();
     this.x = 0;

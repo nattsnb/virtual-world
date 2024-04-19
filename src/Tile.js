@@ -23,7 +23,7 @@ export class Tile {
     this.tileContainer.append(this.currentOrganism.element);
   }
 
-  deleteOrganism(){
+  deleteOrganism() {
     this.tileContainer.innerHTML = '';
     this.currentOrganism = null;
   }

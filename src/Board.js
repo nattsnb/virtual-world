@@ -30,17 +30,22 @@ export class Board {
   createInitialCharacters() {
     const numberOfCharacters = Math.round(this.width * this.height * 0.3);
     for (let i = 0; i < numberOfCharacters; i++) {
-      const RandomOrganismClass =
+      let RandomOrganismClass =
         classesList[Math.floor(Math.random() * classesList.length)];
-      const organism = new RandomOrganismClass(this);
+      const organism = new RandomOrganismClass(
+        this,
+        RandomOrganismClass.startParameters,
+      );
       const tileForNewOrganism = findRandomTileOnBoard(
         this.width,
         this.height,
         this.tiles,
       );
       tileForNewOrganism.setOrganism(organism);
+      // console.log(organism);
     }
-    const player = new Player(this, Player.initialParameters.initiative, Player.initialParameters.strength);
+    const player = new Player(this, Player.startParameters);
+    console.log(player);
     const tileForPlayer = findRandomTileOnBoard(
       this.width,
       this.height,
@@ -51,25 +56,25 @@ export class Board {
 
   async round() {
     //SORT
-    const sortedOrganismsOnBoard = this.getOrganisms()
+    const sortedOrganismsOnBoard = this.getOrganisms();
     for (let i = 0; i < sortedOrganismsOnBoard.length; i++) {
       await sortedOrganismsOnBoard[i].action();
     }
-    const organismsAfterRound = this.getOrganisms()
+    const organismsAfterRound = this.getOrganisms();
     // check if instance of player exists
     // return organismsAfterRound.find()
   }
 
-  getOrganisms(){
-    const organismsOnBoard = []
-    for(let y = 0; y < this.tiles.length; y++){
-      for(let x = 0; x < this.tiles.length; x++) {
-        if(this.tiles[x][y].currentOrganism){
-          organismsOnBoard.push(this.tiles[x][y].currentOrganism)
+  getOrganisms() {
+    const organismsOnBoard = [];
+    for (let y = 0; y < this.tiles.length; y++) {
+      for (let x = 0; x < this.tiles.length; x++) {
+        if (this.tiles[x][y].currentOrganism) {
+          organismsOnBoard.push(this.tiles[x][y].currentOrganism);
         }
       }
     }
-    return organismsOnBoard
+    return organismsOnBoard;
   }
 
   // sortOrganisms

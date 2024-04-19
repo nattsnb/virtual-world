@@ -3,9 +3,9 @@ import { findNearestTiles } from './findNearestTiles';
 import { findRandomTileInArray } from './findRandomTileInArray';
 
 export class Plant extends Organism {
-  constructor(board) {
-    super(board);
-    this.chancesToSpread = 0.1;
+  constructor(board, startParameters) {
+    super(board, startParameters);
+    this.chancesToSpread = startParameters.chancesToSpread;
   }
 
   async action() {
