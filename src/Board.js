@@ -1,7 +1,7 @@
 import { classesList } from './classesList';
 import { Player } from './player/Player';
 import { Tile } from './Tile';
-import {isTileEmpty} from "./isTileEmpty";
+import { isTileEmpty } from './isTileEmpty';
 
 export class Board {
   constructor(width, height) {
@@ -45,20 +45,16 @@ export class Board {
     const tileForPlayer = this.findRandomTileOnBoard();
     tileForPlayer.setOrganism(player);
   }
-
   async round() {
-    //SORT
-    const organismsOnBoard= this.getOrganisms();
-    const sortedOrganismsOnBoard = this.sortOrganisms(organismsOnBoard)
-    console.log(sortedOrganismsOnBoard)
+    const organismsOnBoard = this.getOrganisms();
+    const sortedOrganismsOnBoard = this.sortOrganisms(organismsOnBoard);
+    console.log(sortedOrganismsOnBoard);
     for (let i = 0; i < sortedOrganismsOnBoard.length; i++) {
       await sortedOrganismsOnBoard[i].action();
     }
     const organismsAfterRound = this.getOrganisms();
-    // check if instance of player exists
-    // return organismsAfterRound.find()
+    console.log(organismsAfterRound.find(this.isPlayerAlive));
   }
-
   getOrganisms() {
     const organismsOnBoard = [];
     for (let y = 0; y < this.tiles.length; y++) {
@@ -70,7 +66,6 @@ export class Board {
     }
     return organismsOnBoard;
   }
-
   findRandomTileOnBoard() {
     const randomX = Math.floor(Math.random() * this.width);
     const randomY = Math.floor(Math.random() * this.height);
@@ -80,14 +75,17 @@ export class Board {
     }
     return foundTile;
   }
-
-  sortOrganisms(organismsOnBoard){
+  sortOrganisms(organismsOnBoard) {
     organismsOnBoard.sort(function (leftOrganism, rightOrganism) {
       if (leftOrganism.initiative === rightOrganism.initiative) {
         return rightOrganism.age - leftOrganism.age;
       }
       return rightOrganism.initiative - leftOrganism.initiative;
     });
-    return organismsOnBoard
+    return organismsOnBoard;
+  }
+  isPlayerAlive(organism) {
+    console.log(`is alive?`);
+    return organism.constructor === Player;
   }
 }

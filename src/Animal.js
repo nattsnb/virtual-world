@@ -2,7 +2,7 @@ import { Organism } from './Organism';
 import { findNearestTiles } from './findNearestTiles';
 import { findRandomTileInArray } from './findRandomTileInArray';
 import { findEmptyTilesSurroundingParents } from './findEmptyTilesSurroundingParents';
-import {Plant} from "./Plant";
+import { Plant } from './Plant';
 
 export class Animal extends Organism {
   constructor(board, startParameters) {
@@ -14,27 +14,30 @@ export class Animal extends Organism {
 
   mate(newTile, organism) {
     const parent1SurroundingTiles = findNearestTiles(
-        this.board.tiles,
-        organism,
-        this.board.width,
-        this.board.height,
-        this.numberOfSteps,
+      this.board.tiles,
+      organism,
+      this.board.width,
+      this.board.height,
+      this.numberOfSteps,
     );
     const parent2SurroundingTiles = findNearestTiles(
-        this.board.tiles,
-        newTile.currentOrganism,
-        this.board.width,
-        this.board.height,
-        this.numberOfSteps,
+      this.board.tiles,
+      newTile.currentOrganism,
+      this.board.width,
+      this.board.height,
+      this.numberOfSteps,
     );
     const surroundingEmptyTiles = findEmptyTilesSurroundingParents(
-        parent1SurroundingTiles,
-        parent2SurroundingTiles,
+      parent1SurroundingTiles,
+      parent2SurroundingTiles,
     );
 
     if (surroundingEmptyTiles.length > 0) {
       const tileForChild = findRandomTileInArray(surroundingEmptyTiles);
-      const child = new organism.constructor(this, organism.constructor.startParameters);
+      const child = new organism.constructor(
+        this,
+        organism.constructor.startParameters,
+      );
       child.createElement();
       child.age = 0;
       tileForChild.setOrganism(child);
@@ -42,7 +45,6 @@ export class Animal extends Organism {
       // console.log(child);
       return true;
     }
-
   }
 
   fight(newTile, organism) {
@@ -50,7 +52,10 @@ export class Animal extends Organism {
     // console.log(newTile.currentOrganism.constructor.name);
     // console.log("it's a fight!");
     if (organism.strength > newTile.currentOrganism.strength) {
-      if (newTile.currentOrganism.constructor.name === `Turtle` && organism.strength < 5) {
+      if (
+        newTile.currentOrganism.constructor.name === `Turtle` &&
+        organism.strength < 5
+      ) {
         // console.log(`turtle defends itself`)
         return true;
       }
@@ -81,44 +86,43 @@ export class Animal extends Organism {
     const height = this.board.height;
     const numberOfSteps = this.numberOfSteps;
     const nearestTiles = findNearestTiles(
-        tiles,
-        organism,
-        width,
-        height,
-        numberOfSteps,
+      tiles,
+      organism,
+      width,
+      height,
+      numberOfSteps,
     );
     // console.log(organism)
     const newTile = findRandomTileInArray(nearestTiles);
     if (newTile.currentOrganism) {
-      this.shouldMate(newTile, organism)
-      this.shouldFight(newTile, organism)
-      this.shouldEat(newTile, organism)
+      this.shouldMate(newTile, organism);
+      this.shouldFight(newTile, organism);
+      this.shouldEat(newTile, organism);
     } else {
       // console.log(`from: ${organism.x}, ${organism.y}`);
       newTile.setOrganism(organism);
       // console.log(`to ${organism.x}, ${organism.y}`);
     }
-
   }
 
   shouldMate(newTile, organism) {
     if (organism.constructor === newTile.currentOrganism.constructor) {
       // console.log(`should mate`)
-      this.mate(newTile, organism)
+      this.mate(newTile, organism);
     }
   }
 
   shouldFight(newTile, organism) {
     if (newTile.currentOrganism instanceof Animal) {
       // console.log(`should fight`)
-      this.fight(newTile, organism)
+      this.fight(newTile, organism);
     }
   }
 
   shouldEat(newTile, organism) {
     if (newTile.currentOrganism instanceof Plant) {
       // console.log(`should eat`)
-      newTile.currentOrganism.animalEatsPlant(organism)
+      newTile.currentOrganism.animalEatsPlant(organism);
     }
   }
 }

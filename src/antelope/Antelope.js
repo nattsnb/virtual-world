@@ -1,6 +1,6 @@
 import { Animal } from '../Animal';
 import antelopeImage from './antelope.jpg';
-import {findNearestTiles} from "../findNearestTiles";
+import { findNearestTiles } from '../findNearestTiles';
 
 export class Antelope extends Animal {
   static startParameters = {
@@ -28,7 +28,7 @@ export class Antelope extends Animal {
       let odds = Math.random();
       if (odds < 0.5) {
         // console.log(`antelope flies`)
-        this.action()
+        this.action();
       } else {
         organism.death();
         // console.log(newTile.currentOrganism);

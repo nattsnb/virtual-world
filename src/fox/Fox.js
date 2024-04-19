@@ -1,7 +1,7 @@
 import { Animal } from '../Animal';
 import foxImage from './fox.jpg';
-import {findRandomTileInArray} from "../findRandomTileInArray";
-import {findNearestTiles} from "../findNearestTiles";
+import { findRandomTileInArray } from '../findRandomTileInArray';
+import { findNearestTiles } from '../findNearestTiles';
 
 export class Fox extends Animal {
   static startParameters = {
@@ -23,8 +23,8 @@ export class Fox extends Animal {
     }
     // console.log(organism.constructor.name);
     if (
-        organism.constructor !== newTile.currentOrganism.constructor &&
-        newTile.currentOrganism instanceof Animal
+      organism.constructor !== newTile.currentOrganism.constructor &&
+      newTile.currentOrganism instanceof Animal
     ) {
       // console.log(newTile.currentOrganism.constructor.name);
       // console.log("it's a fight!");
@@ -41,14 +41,13 @@ export class Fox extends Animal {
         const height = this.board.height;
         const numberOfSteps = this.numberOfSteps;
         const nearestTiles = findNearestTiles(
-            tiles,
-            organism,
-            width,
-            height,
-            numberOfSteps,
+          tiles,
+          organism,
+          width,
+          height,
+          numberOfSteps,
         );
         const surroundingPossibleTiles = findRandomTileInArray(nearestTiles);
-
 
         return true;
       }
@@ -60,8 +59,11 @@ export class Fox extends Animal {
   }
 
   shouldFight(newTile, organism) {
-    if (newTile.currentOrganism.constructor === Animal && newTile.currentOrganism.strength <= organism.strength) {
-      this.fight(newTile, organism)
+    if (
+      newTile.currentOrganism.constructor === Animal &&
+      newTile.currentOrganism.strength <= organism.strength
+    ) {
+      this.fight(newTile, organism);
     }
   }
 }
