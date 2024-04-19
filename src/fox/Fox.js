@@ -86,7 +86,7 @@ export class Fox extends Animal {
       }
     }
     if(surroundingPossibleTiles.length>0) {
-      console.log(`fox fled`)
+      console.log(`fox sneaks out`)
       const newTile = findRandomTileInArray(surroundingPossibleTiles);
       if (this.mate(newTile, this)) {
         return;
