@@ -5,9 +5,9 @@ import { findRandomTileInArray } from './findRandomTileInArray';
 import { findEmptyTilesSurroundingParents } from './findEmptyTilesSurroundingParents';
 
 export class Animal extends Organism {
-  constructor(board) {
-    super(board);
-    this.strength = 0;
+  constructor(board, initiative, strength) {
+    super(board, strength);
+    this.initiative = initiative;
   }
 
   mate(newTile, organism) {

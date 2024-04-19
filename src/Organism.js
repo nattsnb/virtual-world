@@ -1,7 +1,7 @@
 export class Organism {
-  constructor(board) {
+  constructor(board, strength) {
     this.age = 0;
-    this.initiative = 0;
+    this.strength = strength;
     this.element = document.createElement('span');
     this.element.innerText = 'organism';
     this.board = board;

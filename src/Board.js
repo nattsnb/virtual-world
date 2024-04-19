@@ -40,7 +40,7 @@ export class Board {
       );
       tileForNewOrganism.setOrganism(organism);
     }
-    const player = new Player(this);
+    const player = new Player(this, Player.initialParameters.initiative, Player.initialParameters.strength);
     const tileForPlayer = findRandomTileOnBoard(
       this.width,
       this.height,
