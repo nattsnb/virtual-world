@@ -10,8 +10,9 @@ export class Tile {
     this.tileContainer.classList.add('tileContainer');
   }
 
-  addOrganism(organism) {
+  setOrganism(organism) {
     this.currentOrganism = organism;
+    // setCoordinates
     organism.x = this.x;
     organism.y = this.y;
     this.refresh();
@@ -20,5 +21,10 @@ export class Tile {
   refresh() {
     this.tileContainer.innerHTML = '';
     this.tileContainer.append(this.currentOrganism.element);
+  }
+
+  deleteOrganism(){
+    this.tileContainer.innerHTML = '';
+    this.currentOrganism = null;
   }
 }

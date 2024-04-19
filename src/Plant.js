@@ -36,7 +36,7 @@ export class Plant extends Organism {
         const child = Object.create(this);
         child.createElement();
         child.age = 0;
-        tileForChild.addOrganism(child);
+        tileForChild.setOrganism(child);
         // console.log(`I spread!`)
         // console.log(child)
         return true;

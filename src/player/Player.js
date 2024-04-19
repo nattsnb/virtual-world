@@ -106,7 +106,7 @@ export class Player extends Animal {
       if (this.fight(this.activeTile, this)) {
         return;
       }
-      this.activeTile.addOrganism(this);
+      this.activeTile.setOrganism(this);
       this.resolveMovement();
     }
   }

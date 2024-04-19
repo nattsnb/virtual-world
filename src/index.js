@@ -17,3 +17,7 @@ const board = new Board(10, 10);
 // }
 
 board.round();
+
+while(isPlayerAlive){
+    const isPlayerAlive = await board.round()
+}

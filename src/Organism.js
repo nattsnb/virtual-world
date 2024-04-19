@@ -6,6 +6,8 @@ export class Organism {
     this.element.innerText = 'organism';
     this.board = board;
     this.numberOfSteps = 1;
+    this.x = null;
+    this.y = null;
   }
 
   createElement() {
@@ -16,9 +18,11 @@ export class Organism {
 
   death(){
     // console.log(this.board.tiles[this.x][this.y].currentOrganism);
-    this.board.tiles[this.x][this.y].currentOrganism = null;
-    this.board.tiles[this.x][this.y].tileContainer.innerHTML = '';
+    this.board.tiles[this.x][this.y].deleteOrganism()
     // console.log(this.board.tiles[this.x][this.y].currentOrganism);
-
   }
+
+  // setCoordinates(){
+  //
+  // }
 }

@@ -8,7 +8,6 @@ export class Board {
     this.width = width;
     this.height = height;
     this.tiles = [];
-    this.organisms = [];
     this.render();
     this.createInitialCharacters();
   }
@@ -39,8 +38,7 @@ export class Board {
         this.height,
         this.tiles,
       );
-      tileForNewOrganism.addOrganism(organism);
-      this.organisms.push(organism);
+      tileForNewOrganism.setOrganism(organism);
     }
     const player = new Player(this);
     const tileForPlayer = findRandomTileOnBoard(
@@ -48,19 +46,37 @@ export class Board {
       this.height,
       this.tiles,
     );
-    tileForPlayer.addOrganism(player);
-    this.organisms.push(player);
+    tileForPlayer.setOrganism(player);
   }
 
   async round() {
-    this.organisms.sort(function (leftOrganism, rightOrganism) {
-      if (leftOrganism.initiative === rightOrganism.initiative) {
-        return rightOrganism.age - leftOrganism.age;
-      }
-      return rightOrganism.initiative - leftOrganism.initiative;
-    });
-    for (let i = 0; i < this.organisms.length; i++) {
-      await this.organisms[i].action();
+    //SORT
+    const sortedOrganismsOnBoard = this.getOrganisms()
+    for (let i = 0; i < sortedOrganismsOnBoard.length; i++) {
+      await sortedOrganismsOnBoard[i].action();
     }
+    const organismsAfterRound = this.getOrganisms()
+    // check if instance of player exists
+    // return organismsAfterRound.find()
   }
+
+  getOrganisms(){
+    const organismsOnBoard = []
+    for(let y = 0; y < this.tiles.length; y++){
+      for(let x = 0; x < this.tiles.length; x++) {
+        if(this.tiles[x][y].currentOrganism){
+          organismsOnBoard.push(this.tiles[x][y].currentOrganism)
+        }
+      }
+    }
+    return organismsOnBoard
+  }
+
+  // sortOrganisms
+  // this.organisms.sort(function (leftOrganism, rightOrganism) {
+  //   if (leftOrganism.initiative === rightOrganism.initiative) {
+  //     return rightOrganism.age - leftOrganism.age;
+  //   }
+  //   return rightOrganism.initiative - leftOrganism.initiative;
+  // });
 }

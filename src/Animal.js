@@ -40,7 +40,7 @@ export class Animal extends Organism {
         const child = new organism.constructor(this.board);
         child.createElement();
         child.age = 0;
-        tileForChild.addOrganism(child);
+        tileForChild.setOrganism(child);
         console.log(`it's  a match!`);
         console.log(child);
         return true;
@@ -61,8 +61,7 @@ export class Animal extends Organism {
       // console.log("it's a fight!");
       if (organism.strength > newTile.currentOrganism.strength) {
         // console.log(`first wins`);
-        newTile.currentOrganism = null;
-        newTile.tileContainer.innerHTML = '';
+        newTile.currentOrganism.death()
         // console.log(newTile.currentOrganism);
         return false;
       }
@@ -105,7 +104,7 @@ export class Animal extends Organism {
       return;
     }
     // console.log(`from: ${organism.x}, ${organism.y}`);
-    newTile.addOrganism(organism);
+    newTile.setOrganism(organism);
     // console.log(`to ${organism.x}, ${organism.y}`);
   }
 }
