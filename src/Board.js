@@ -48,7 +48,9 @@ export class Board {
 
   async round() {
     //SORT
-    const sortedOrganismsOnBoard = this.getOrganisms();
+    const organismsOnBoard= this.getOrganisms();
+    const sortedOrganismsOnBoard = this.sortOrganisms(organismsOnBoard)
+    console.log(sortedOrganismsOnBoard)
     for (let i = 0; i < sortedOrganismsOnBoard.length; i++) {
       await sortedOrganismsOnBoard[i].action();
     }
@@ -79,11 +81,13 @@ export class Board {
     return foundTile;
   }
 
-  // sortOrganisms
-  // this.organisms.sort(function (leftOrganism, rightOrganism) {
-  //   if (leftOrganism.initiative === rightOrganism.initiative) {
-  //     return rightOrganism.age - leftOrganism.age;
-  //   }
-  //   return rightOrganism.initiative - leftOrganism.initiative;
-  // });
+  sortOrganisms(organismsOnBoard){
+    organismsOnBoard.sort(function (leftOrganism, rightOrganism) {
+      if (leftOrganism.initiative === rightOrganism.initiative) {
+        return rightOrganism.age - leftOrganism.age;
+      }
+      return rightOrganism.initiative - leftOrganism.initiative;
+    });
+    return organismsOnBoard
+  }
 }
