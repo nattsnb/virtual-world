@@ -12,9 +12,7 @@ export class Tile {
 
   setOrganism(organism) {
     this.currentOrganism = organism;
-    // setCoordinates
-    organism.x = this.x;
-    organism.y = this.y;
+    this.setCoordinates(this.x, this.y)
     this.refresh();
   }
 
@@ -26,5 +24,10 @@ export class Tile {
   deleteOrganism() {
     this.tileContainer.innerHTML = '';
     this.currentOrganism = null;
+  }
+
+  setCoordinates(x,y){
+    this.currentOrganism.x = x;
+    this.currentOrganism.y = y;
   }
 }

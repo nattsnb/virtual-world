@@ -24,8 +24,4 @@ export class Organism {
     this.board.tiles[this.x][this.y].deleteOrganism();
     // console.log(this.board.tiles[this.x][this.y].currentOrganism);
   }
-
-  // setCoordinates(){
-  //
-  // }
 }
