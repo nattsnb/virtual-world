@@ -61,6 +61,10 @@ export class Animal extends Organism {
       // console.log(newTile.currentOrganism.constructor.name);
       // console.log("it's a fight!");
       if (organism.strength > newTile.currentOrganism.strength) {
+        if (newTile.currentOrganism.constructor.name === `Turtle` && organism.strength < 5){
+          // console.log(`turtle defends itself`)
+            return true;
+          }
         // console.log(`first wins`);
         newTile.currentOrganism.death();
         // console.log(newTile.currentOrganism);
