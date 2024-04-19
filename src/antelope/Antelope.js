@@ -34,7 +34,7 @@ export class Antelope extends Animal {
       if (organism.strength < newTile.currentOrganism.strength) {
         let odds = Math.random();
         if (odds < 0.5) {
-          console.log(`antelope flies`)
+          // console.log(`antelope flies`)
           this.action()
         } else {
           organism.death();
