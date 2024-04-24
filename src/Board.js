@@ -53,7 +53,11 @@ export class Board {
       await sortedOrganismsOnBoard[i].action();
     }
     const organismsAfterRound = this.getOrganisms();
-    return organismsAfterRound.find(this.findPlayer);
+    console.log(`is alive?`);
+    if (organismsAfterRound.find(this.findPlayer)){
+      console.log(`yes`)
+      return true
+    }
   }
   getOrganisms() {
     const organismsOnBoard = [];
@@ -85,8 +89,9 @@ export class Board {
     return organismsOnBoard;
   }
   findPlayer(organism) {
-    console.log(`is alive?`);
-    return organism instanceof Player;
+    if(organism instanceof Player){
+      return true
+    }
   }
 
   findNearestTiles(organism) {

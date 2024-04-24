@@ -19,14 +19,14 @@ export class Turtle extends Animal {
     // console.log(organism)
     const newTile = findRandomTileInArray(nearestTiles);
     if (newTile.currentOrganism) {
-      this.shouldMate(newTile, organism);
-      this.shouldFight(newTile, organism);
-      this.shouldEat(newTile, organism);
+      this.shouldMate(newTile, this);
+      this.shouldFight(newTile, this);
+      this.shouldEat(newTile, this);
     } else {
       // console.log(`from: ${organism.x}, ${organism.y}`);
       let odds = Math.random();
       if (odds < 0.25) {
-        newTile.setOrganism(organism);
+        newTile.setOrganism(this);
       }
       // console.log(`to ${organism.x}, ${organism.y}`);
     }
