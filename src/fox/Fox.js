@@ -17,24 +17,24 @@ export class Fox extends Animal {
     this.createElement();
   }
 
-  fight(newTile, organism) {
+  fight(newTile) {
     if (newTile.currentOrganism === null) {
       return false;
     }
-    // console.log(organism.constructor.name);
+    // console.log(this.constructor.name);
     if (
-      organism.constructor !== newTile.currentOrganism.constructor &&
+      this.constructor !== newTile.currentOrganism.constructor &&
       newTile.currentOrganism instanceof Animal
     ) {
       // console.log(newTile.currentOrganism.constructor.name);
       // console.log("it's a fight!");
-      if (organism.strength > newTile.currentOrganism.strength) {
+      if (this.strength > newTile.currentOrganism.strength) {
         // console.log(`first wins`);
         newTile.currentOrganism.death();
         // console.log(newTile.currentOrganism);
         return false;
       }
-      if (organism.strength < newTile.currentOrganism.strength) {
+      if (this.strength < newTile.currentOrganism.strength) {
         const tiles = this.board.tiles;
         const organism = this;
         const width = this.board.width;
@@ -55,7 +55,7 @@ export class Fox extends Animal {
       return true;
     }
     // console.log('I ate it!');
-    return newTile.currentOrganism.animalEatsPlant(organism);
+    return newTile.currentOrganism.animalEatsPlant(this);
   }
 
   shouldFight(newTile, organism) {

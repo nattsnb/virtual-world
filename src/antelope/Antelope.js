@@ -14,23 +14,23 @@ export class Antelope extends Animal {
     super(board, startParameters);
     this.createElement();
   }
-  fight(newTile, organism) {
-    // console.log(organism.constructor.name);
+  fight(newTile) {
+    // console.log(this.constructor.name);
     // console.log(newTile.currentOrganism.constructor.name);
     // console.log("it's a fight!");
-    if (organism.strength > newTile.currentOrganism.strength) {
+    if (this.strength > newTile.currentOrganism.strength) {
       // console.log(`first wins`);
       newTile.currentOrganism.death();
       // console.log(newTile.currentOrganism);
       return false;
     }
-    if (organism.strength < newTile.currentOrganism.strength) {
+    if (this.strength < newTile.currentOrganism.strength) {
       let odds = Math.random();
       if (odds < 0.5) {
         // console.log(`antelope flies`)
         this.action();
       } else {
-        organism.death();
+        this.death();
         // console.log(newTile.currentOrganism);
         return true;
       }

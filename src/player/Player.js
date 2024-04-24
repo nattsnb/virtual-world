@@ -113,9 +113,6 @@ export class Player extends Animal {
       console.log('Enter');
       this.tilesForAction = [];
       if (this.activeTile.currentOrganism) {
-        if (this.shouldMate(this.activeTile, this)) {
-          this.mate(this.activeTile, this)
-        }
         if (this.shouldFight(this.activeTile, this)) {
           this.fight(this.activeTile, this);
         }

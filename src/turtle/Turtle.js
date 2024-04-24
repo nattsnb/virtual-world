@@ -43,24 +43,24 @@ export class Turtle extends Animal {
       // console.log(`to ${organism.x}, ${organism.y}`);
     }
   }
-  fight(newTile, organism) {
-    // console.log(organism.constructor.name);
+  fight(newTile) {
+    // console.log(this.constructor.name);
     // console.log(newTile.currentOrganism.constructor.name);
     // console.log("it's a fight!");
-    if (organism.strength > newTile.currentOrganism.strength) {
+    if (this.strength > newTile.currentOrganism.strength) {
       // console.log(`first wins`);
       newTile.currentOrganism.death();
-      newTile.setOrganism(organism);
+      newTile.setOrganism(this);
       // console.log(newTile.currentOrganism);
       return false;
     }
-    if (organism.strength < newTile.currentOrganism.strength && newTile.currentOrganism.strength > 5) {
+    if (this.strength < newTile.currentOrganism.strength && newTile.currentOrganism.strength > 5) {
       // console.log(`second wins`);
-      // console.log(organism);
-      // console.log(organism.x, organism.y);
+      // console.log(this);
+      // console.log(this.x, this.y);
       // console.log(newTile.currentOrganism);
       // console.log(newTile.currentOrganism.x, newTile.currentOrganism.y);
-      organism.death();
+      this.death();
       // console.log(newTile.currentOrganism);
       return true;
     }
