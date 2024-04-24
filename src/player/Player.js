@@ -10,6 +10,7 @@ export class Player extends Animal {
     initiative: 4,
     image: playerImage,
   };
+
   constructor(board, startParameters) {
     super(board, startParameters);
     this.initializeEventListener();
@@ -23,11 +24,11 @@ export class Player extends Animal {
   action() {
     this.activeTile = this.board.tiles[this.x][this.y];
     this.tilesForAction = findNearestTiles(
-      this.board.tiles,
-      this,
-      this.board.width,
-      this.board.height,
-      this.numberOfSteps,
+        this.board.tiles,
+        this,
+        this.board.width,
+        this.board.height,
+        this.numberOfSteps,
     );
     this.tilesForAction.push(this.board.tiles[this.x][this.y]);
     console.log(this.activeTile);
@@ -44,9 +45,9 @@ export class Player extends Animal {
 
   moveIfPossible = (coordinates) => {
     if (
-      this.tilesForAction.includes(
-        this.board.tiles[coordinates.x][coordinates.y],
-      )
+        this.tilesForAction.includes(
+            this.board.tiles[coordinates.x][coordinates.y],
+        )
     ) {
       this.activeTile.tileContainer.removeAttribute('id');
       this.activeTile = this.board.tiles[coordinates.x][coordinates.y];
@@ -63,58 +64,73 @@ export class Player extends Animal {
   };
 
   checkKeyPressed(evt) {
+    const nearestTiles = findNearestTiles(this.board.tiles, this, this.board.width, this.board.height, this.numberOfSteps)
     if (evt.code === 'KeyW') {
       console.log('keyW');
       const newY = this.activeTile.y - 1;
-      if (
-        newY < this.board.height &&
-        newY >= 0 &&
-        newY >= this.activeTile.y - 1 &&
-        newY <= this.activeTile.y + 1
-      ) {
-        const coordinates = { x: this.activeTile.x, y: newY };
-        this.moveIfPossible(coordinates);
+      const coordinates = {x: this.activeTile.x, y: newY};
+      for (let i = 0; i > nearestTiles.length; i++) {
+        const iElementCoordinates = {x: nearestTiles[i].x, y: nearestTiles[i].y};
+        if (iElementCoordinates === coordinates) {
+          this.moveIfPossible(coordinates);
+        }
       }
     }
     if (evt.code === 'KeyA') {
       console.log('KeyA');
       const newX = this.activeTile.x - 1;
-      if (newX < this.board.width && newX >= 0) {
-        const coordinates = { x: newX, y: this.activeTile.y };
-        this.moveIfPossible(coordinates);
+      const coordinates = {x: newX, y: this.activeTile.y};
+      for (let i = 0; i > nearestTiles.length; i++) {
+        const iElementCoordinates = {x: nearestTiles[i].x, y: nearestTiles[i].y};
+        if (iElementCoordinates === coordinates) {
+          this.moveIfPossible(coordinates);
+        }
       }
     }
     if (evt.code === 'KeyS') {
       console.log('KeyS');
       const newY = this.activeTile.y + 1;
-      if (newY < this.board.height && newY >= 0) {
-        const coordinates = { x: this.activeTile.x, y: newY };
-        this.moveIfPossible(coordinates);
+      const coordinates = {x: this.activeTile.x, y: newY};
+      for (let i = 0; i > nearestTiles.length; i++) {
+        const iElementCoordinates = {x: nearestTiles[i].x, y: nearestTiles[i].y};
+        if (iElementCoordinates === coordinates) {
+          this.moveIfPossible(coordinates);
+        }
       }
     }
     if (evt.code === 'KeyD') {
       console.log('KeyD');
       const newX = this.activeTile.x + 1;
-      if (newX < this.board.width && newX >= 0) {
-        const coordinates = { x: newX, y: this.activeTile.y };
-        this.moveIfPossible(coordinates);
+      const coordinates = {x: newX, y: this.activeTile.y};
+      for (let i = 0; i > nearestTiles.length; i++) {
+        const iElementCoordinates = {x: nearestTiles[i].x, y: nearestTiles[i].y};
+        if (iElementCoordinates === coordinates) {
+          this.moveIfPossible(coordinates);
+        }
       }
     }
     if (evt.code === 'Enter') {
       console.log('Enter');
       this.tilesForAction = [];
       if (this.activeTile.currentOrganism) {
-        this.shouldMate(this.activeTile, this);
-        this.shouldFight(this.activeTile, this);
-        this.shouldEat(this.activeTile, this);
-      } else {
-        // console.log(`from: ${organism.x}, ${organism.y}`);
-        this.activeTile.setOrganism(this);
-        // console.log(`to ${organism.x}, ${organism.y}`);
+        if (this.shouldMate(this.activeTile, this)) {
+          this.mate(this.activeTile, this)
+        }
+        if (this.shouldFight(this.activeTile, this)) {
+          this.fight(this.activeTile, this);
+        }
+        if (this.shouldEat(this.activeTile, this)) {
+          this.activeTile.currentOrganism.animalEatsPlant(this);
+        } else {
+          // console.log(`from: ${organism.x}, ${organism.y}`);
+          this.activeTile.setOrganism(this);
+          // console.log(`to ${organism.x}, ${organism.y}`);
+        }
+        this.resolveMovement();
       }
-      this.resolveMovement();
     }
   }
+}
 
   // fight(newTile, organism) {
   //   console.log(organism.constructor.name);
@@ -153,4 +169,4 @@ export class Player extends Animal {
   //     newTile.currentOrganism.animalEatsPlant(organism);
   //   }
   // }
-}
+

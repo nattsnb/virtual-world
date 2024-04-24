@@ -10,7 +10,7 @@ export function findNearestTiles(tiles, organism, width, height, steps) {
     arrayOfNearestTiles.push(tiles[x - steps][y - steps]);
   }
  //move straight.up
-  if (y >= minimalStep) {
+  if (y > minimalStep) {
     arrayOfNearestTiles.push(tiles[x][y - steps]);
   }
   // move right.up
