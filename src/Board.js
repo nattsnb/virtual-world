@@ -53,7 +53,7 @@ export class Board {
       await sortedOrganismsOnBoard[i].action();
     }
     const organismsAfterRound = this.getOrganisms();
-    console.log(organismsAfterRound.find(this.isPlayerAlive));
+    return organismsAfterRound.find(this.isPlayerAlive);
   }
   getOrganisms() {
     const organismsOnBoard = [];

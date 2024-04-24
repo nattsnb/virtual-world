@@ -38,11 +38,9 @@ export class Animal extends Organism {
         this,
         organism.constructor.startParameters,
       );
-      child.createElement();
-      child.age = 0;
       tileForChild.setOrganism(child);
-      // console.log(`it's  a match!`);
-      // console.log(child);
+      console.log(`it's  a match!`);
+      console.log(child);
       return true;
     }
   }
@@ -52,13 +50,6 @@ export class Animal extends Organism {
     // console.log(newTile.currentOrganism.constructor.name);
     // console.log("it's a fight!");
     if (organism.strength > newTile.currentOrganism.strength) {
-      if (
-        newTile.currentOrganism.constructor.name === `Turtle` &&
-        organism.strength < 5
-      ) {
-        // console.log(`turtle defends itself`)
-        return true;
-      }
       // console.log(`first wins`);
       newTile.currentOrganism.death();
       newTile.setOrganism(organism);
@@ -107,7 +98,7 @@ export class Animal extends Organism {
 
   shouldMate(newTile, organism) {
     if (organism.constructor === newTile.currentOrganism.constructor) {
-      // console.log(`should mate`)
+      console.log(`should mate`)
       this.mate(newTile, organism);
     }
   }
