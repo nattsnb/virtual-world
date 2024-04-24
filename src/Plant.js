@@ -40,5 +40,7 @@ export class Plant extends Organism {
     // console.log(this);
     // console.log(this.x, this.y);
     this.death();
+    this.board.tiles[this.x][this.y].setOrganism(organism)
+    this.board.tiles[this.x][this.y].refresh()
   }
 }

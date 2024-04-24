@@ -39,7 +39,6 @@ export class Animal extends Organism {
       newTile.currentOrganism.death();
       newTile.setOrganism(this);
       // console.log(newTile.currentOrganism);
-      return false;
     }
     if (this.strength < newTile.currentOrganism.strength) {
       // console.log(`second wins`);
@@ -49,46 +48,40 @@ export class Animal extends Organism {
       // console.log(newTile.currentOrganism.x, newTile.currentOrganism.y);
       this.death();
       // console.log(newTile.currentOrganism);
-      return true;
     }
     // console.log(`draw`);
-    return true;
   }
 
   async action() {
-    const tiles = this.board.tiles;
-    const organism = this;
-    const width = this.board.width;
-    const height = this.board.height;
-    const numberOfSteps = this.numberOfSteps;
-    const nearestTiles = this.board.findNearestTiles(organism);
-    // console.log(organism)
+    const nearestTiles = this.board.findNearestTiles(this);
+    // console.log(this)
     const newTile = findRandomTileInArray(nearestTiles);
     if (newTile.currentOrganism) {
-      if (this.shouldMate(newTile, organism)) {
-        this.mate(newTile, organism);
+      if (this.shouldMate(newTile)) {
+        this.mate(newTile);
       }
-      if (this.shouldFight(newTile, organism)) {
-        this.fight(newTile, organism);
+      if (this.shouldFight(newTile)) {
+        this.fight(newTile);
       }
-      if (this.shouldEat(newTile, organism)) {
-        newTile.currentOrganism.animalEatsPlant(organism);
-      } else {
+      if (this.shouldEat(newTile)) {
+        newTile.currentOrganism.animalEatsPlant(this, newTile);
+      }
+    } else {
         // console.log(`from: ${organism.x}, ${organism.y}`);
-        newTile.setOrganism(organism);
+
+        newTile.setOrganism(this);
         // console.log(`to ${organism.x}, ${organism.y}`);
-      }
     }
   }
-  shouldMate(newTile, organism) {
-    return organism.constructor === newTile.currentOrganism.constructor;
+  shouldMate(newTile) {
+    return this.constructor === newTile.currentOrganism.constructor;
   }
 
-  shouldFight(newTile, organism) {
+  shouldFight(newTile) {
     return newTile.currentOrganism instanceof Animal;
   }
 
-  shouldEat(newTile, organism) {
+  shouldEat(newTile) {
     return newTile.currentOrganism instanceof Plant;
   }
 }
