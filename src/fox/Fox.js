@@ -59,11 +59,6 @@ export class Fox extends Animal {
   }
 
   shouldFight(newTile, organism) {
-    if (
-      newTile.currentOrganism.constructor === Animal &&
-      newTile.currentOrganism.strength <= organism.strength
-    ) {
-      this.fight(newTile, organism);
-    }
+    return newTile.currentOrganism.constructor === Animal && newTile.currentOrganism.strength <= organism.strength
   }
 }

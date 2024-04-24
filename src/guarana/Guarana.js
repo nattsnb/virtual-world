@@ -14,8 +14,8 @@ export class Guarana extends Plant {
   }
 
   animalEatsPlant(organism) {
-    super.animalEatsPlant(organism);
     organism.strength = organism.strength + 3;
+    this.death()
     // console.log('I ate guarana:');
     // console.log(organism);
   }

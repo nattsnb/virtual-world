@@ -39,8 +39,8 @@ export class Animal extends Organism {
         organism.constructor.startParameters,
       );
       tileForChild.setOrganism(child);
-      console.log(`it's  a match!`);
-      console.log(child);
+      // console.log(`it's  a match!`);
+      // console.log(child);
       return true;
     }
   }
@@ -86,34 +86,29 @@ export class Animal extends Organism {
     // console.log(organism)
     const newTile = findRandomTileInArray(nearestTiles);
     if (newTile.currentOrganism) {
-      this.shouldMate(newTile, organism);
-      this.shouldFight(newTile, organism);
-      this.shouldEat(newTile, organism);
-    } else {
-      // console.log(`from: ${organism.x}, ${organism.y}`);
-      newTile.setOrganism(organism);
-      // console.log(`to ${organism.x}, ${organism.y}`);
+      if (this.shouldMate(newTile, organism)) {
+        this.mate(newTile, organism)
+      }
+      if (this.shouldFight(newTile, organism)) {
+        this.fight(newTile, organism);
+      } if (this.shouldEat(newTile, organism)) {
+        newTile.currentOrganism.animalEatsPlant(organism);
+      } else {
+        // console.log(`from: ${organism.x}, ${organism.y}`);
+        newTile.setOrganism(organism);
+        // console.log(`to ${organism.x}, ${organism.y}`);
+      }
     }
   }
-
   shouldMate(newTile, organism) {
-    if (organism.constructor === newTile.currentOrganism.constructor) {
-      console.log(`should mate`)
-      this.mate(newTile, organism);
-    }
+    return organism.constructor === newTile.currentOrganism.constructor
   }
 
   shouldFight(newTile, organism) {
-    if (newTile.currentOrganism instanceof Animal) {
-      // console.log(`should fight`)
-      this.fight(newTile, organism);
-    }
+    return newTile.currentOrganism instanceof Animal
   }
 
   shouldEat(newTile, organism) {
-    if (newTile.currentOrganism instanceof Plant) {
-      // console.log(`should eat`)
-      newTile.currentOrganism.animalEatsPlant(organism);
-    }
+    return newTile.currentOrganism instanceof Plant
   }
 }

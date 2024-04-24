@@ -14,7 +14,6 @@ export class Berry extends Plant {
   }
 
   animalEatsPlant(organism) {
-    super.animalEatsPlant(organism);
     // console.log(organism);
     // console.log(organism.x, organism.y);
     // console.log(`I ate berry`)
