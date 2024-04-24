@@ -39,14 +39,15 @@ export class Tile {
     this.tileContainer.addEventListener("click", this.checkClick);
   };
 
-  checkClick(){
-    let RandomOrganismClass =
+  checkClick = () => {
+    if(!this.currentOrganism){
+      let RandomOrganismClass =
         classesList[Math.floor(Math.random() * classesList.length)];
-    const organism = new RandomOrganismClass(
-        this.board,
-        RandomOrganismClass.startParameters,
-    );
-    console.log(organism)
-    this.setOrganism(organism);
+      const organism = new RandomOrganismClass(
+          this.board,
+          RandomOrganismClass.startParameters,
+      );
+      console.log(organism)
+      this.setOrganism(organism);}
   }
 }
