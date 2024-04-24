@@ -36,8 +36,10 @@ export class Animal extends Organism {
     // console.log("it's a fight!");
     if (this.strength > newTile.currentOrganism.strength) {
       // console.log(`first wins`);
+      this.board.tiles[this.x][this.y].currentOrganism = null;
       newTile.currentOrganism.death();
       newTile.setOrganism(this);
+
       // console.log(newTile.currentOrganism);
     }
     if (this.strength < newTile.currentOrganism.strength) {
@@ -68,6 +70,7 @@ export class Animal extends Organism {
       }
     } else {
       // console.log(`from: ${organism.x}, ${organism.y}`);
+      this.board.tiles[this.x][this.y].currentOrganism = null;
       newTile.setOrganism(this);
       // console.log(`to ${organism.x}, ${organism.y}`);
     }

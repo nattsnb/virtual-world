@@ -15,8 +15,8 @@ export class Guarana extends Plant {
 
   animalEatsPlant(organism) {
     this.death();
-    this.board.tiles[this.x][this.y].setOrganism(organism)
-    this.board.tiles[this.x][this.y].refresh()
+    this.board.tiles[this.x][this.y].setOrganism(organism);
+    this.board.tiles[this.x][this.y].refresh();
     organism.strength = organism.strength + 3;
     // console.log('I ate guarana:');
     // console.log(organism);

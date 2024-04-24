@@ -54,9 +54,9 @@ export class Board {
     }
     const organismsAfterRound = this.getOrganisms();
     console.log(`is alive?`);
-    if (organismsAfterRound.find(this.findPlayer)){
-      console.log(`yes`)
-      return true
+    if (organismsAfterRound.find(this.findPlayer)) {
+      console.log(`yes`);
+      return true;
     }
   }
   getOrganisms() {
@@ -89,8 +89,8 @@ export class Board {
     return organismsOnBoard;
   }
   findPlayer(organism) {
-    if(organism instanceof Player){
-      return true
+    if (organism instanceof Player) {
+      return true;
     }
   }
 

@@ -18,7 +18,7 @@
   height: 55px;
 }
 
-@media(max-width:1200px){
+@media (max-width: 1200px) {
   #board-container {
     border: 2mm ridge black;
   }
