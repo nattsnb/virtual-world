@@ -67,10 +67,9 @@ export class Animal extends Organism {
         newTile.currentOrganism.animalEatsPlant(this, newTile);
       }
     } else {
-        // console.log(`from: ${organism.x}, ${organism.y}`);
-
-        newTile.setOrganism(this);
-        // console.log(`to ${organism.x}, ${organism.y}`);
+      // console.log(`from: ${organism.x}, ${organism.y}`);
+      newTile.setOrganism(this);
+      // console.log(`to ${organism.x}, ${organism.y}`);
     }
   }
   shouldMate(newTile) {

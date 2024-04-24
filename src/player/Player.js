@@ -57,7 +57,6 @@ export class Player extends Animal {
   };
 
   checkKeyPressed(evt) {
-    const nearestTiles = this.board.findNearestTiles(this);
     if (evt.code === 'KeyW') {
       console.log('keyW');
       const newY = this.activeTile.y - 1;
@@ -86,18 +85,18 @@ export class Player extends Animal {
       console.log('Enter');
       this.tilesForAction = [];
       if (this.activeTile.currentOrganism) {
-        if (this.shouldFight(this.activeTile, this)) {
-          this.fight(this.activeTile, this);
+        if (this.shouldFight(this.activeTile)) {
+          this.fight(this.activeTile);
         }
-        if (this.shouldEat(this.activeTile, this)) {
+        if (this.shouldEat(this.activeTile)) {
           this.activeTile.currentOrganism.animalEatsPlant(this);
-        } else {
-          // console.log(`from: ${organism.x}, ${organism.y}`);
-          this.activeTile.setOrganism(this);
-          // console.log(`to ${organism.x}, ${organism.y}`);
         }
+      } else {
+        // console.log(`from: ${organism.x}, ${organism.y}`);
+        this.activeTile.setOrganism(this);
+        // console.log(`to ${organism.x}, ${organism.y}`);
+      }
         this.resolveMovement();
       }
     }
-  }
 }
