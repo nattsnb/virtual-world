@@ -62,57 +62,25 @@ export class Player extends Animal {
       console.log('keyW');
       const newY = this.activeTile.y - 1;
       const coordinates = { x: this.activeTile.x, y: newY };
-      for (let i = 0; i > nearestTiles.length; i++) {
-        const iElementCoordinates = {
-          x: nearestTiles[i].x,
-          y: nearestTiles[i].y,
-        };
-        if (iElementCoordinates === coordinates) {
-          this.moveIfPossible(coordinates);
-        }
-      }
+      this.moveIfPossible(coordinates);
     }
     if (evt.code === 'KeyA') {
       console.log('KeyA');
       const newX = this.activeTile.x - 1;
       const coordinates = { x: newX, y: this.activeTile.y };
-      for (let i = 0; i > nearestTiles.length; i++) {
-        const iElementCoordinates = {
-          x: nearestTiles[i].x,
-          y: nearestTiles[i].y,
-        };
-        if (iElementCoordinates === coordinates) {
-          this.moveIfPossible(coordinates);
-        }
-      }
+      this.moveIfPossible(coordinates);
     }
     if (evt.code === 'KeyS') {
       console.log('KeyS');
       const newY = this.activeTile.y + 1;
       const coordinates = { x: this.activeTile.x, y: newY };
-      for (let i = 0; i > nearestTiles.length; i++) {
-        const iElementCoordinates = {
-          x: nearestTiles[i].x,
-          y: nearestTiles[i].y,
-        };
-        if (iElementCoordinates === coordinates) {
-          this.moveIfPossible(coordinates);
-        }
-      }
+      this.moveIfPossible(coordinates);
     }
     if (evt.code === 'KeyD') {
       console.log('KeyD');
       const newX = this.activeTile.x + 1;
       const coordinates = { x: newX, y: this.activeTile.y };
-      for (let i = 0; i > nearestTiles.length; i++) {
-        const iElementCoordinates = {
-          x: nearestTiles[i].x,
-          y: nearestTiles[i].y,
-        };
-        if (iElementCoordinates === coordinates) {
-          this.moveIfPossible(coordinates);
-        }
-      }
+      this.moveIfPossible(coordinates);
     }
     if (evt.code === 'Enter') {
       console.log('Enter');
