@@ -12,7 +12,11 @@ export class Animal extends Organism {
   }
 
   mate(newTile) {
-    const surroundingEmptyTiles = findEmptyTilesSurroundingParents(this.board, this, newTile.currentOrganism);
+    const surroundingEmptyTiles = findEmptyTilesSurroundingParents(
+      this.board,
+      this,
+      newTile.currentOrganism,
+    );
     if (surroundingEmptyTiles.length > 0) {
       const tileForChild = findRandomTileInArray(surroundingEmptyTiles);
       const child = new this.constructor(
@@ -62,11 +66,12 @@ export class Animal extends Organism {
     const newTile = findRandomTileInArray(nearestTiles);
     if (newTile.currentOrganism) {
       if (this.shouldMate(newTile, organism)) {
-        this.mate(newTile, organism)
+        this.mate(newTile, organism);
       }
       if (this.shouldFight(newTile, organism)) {
         this.fight(newTile, organism);
-      } if (this.shouldEat(newTile, organism)) {
+      }
+      if (this.shouldEat(newTile, organism)) {
         newTile.currentOrganism.animalEatsPlant(organism);
       } else {
         // console.log(`from: ${organism.x}, ${organism.y}`);
@@ -76,14 +81,14 @@ export class Animal extends Organism {
     }
   }
   shouldMate(newTile, organism) {
-    return organism.constructor === newTile.currentOrganism.constructor
+    return organism.constructor === newTile.currentOrganism.constructor;
   }
 
   shouldFight(newTile, organism) {
-    return newTile.currentOrganism instanceof Animal
+    return newTile.currentOrganism instanceof Animal;
   }
 
   shouldEat(newTile, organism) {
-    return newTile.currentOrganism instanceof Plant
+    return newTile.currentOrganism instanceof Plant;
   }
 }

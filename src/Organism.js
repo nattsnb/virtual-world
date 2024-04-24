@@ -1,5 +1,3 @@
-import playerImage from './player/player.jpg';
-
 export class Organism {
   constructor(board, startParameters) {
     this.age = startParameters.age;

@@ -98,7 +98,9 @@ export class Board {
     let arrayOfNearestTiles = [];
     // move left.up
     if (x > minimalStep && y > minimalStep) {
-      arrayOfNearestTiles.push(this.tiles[x - organism.numberOfSteps][y - organism.numberOfSteps]);
+      arrayOfNearestTiles.push(
+        this.tiles[x - organism.numberOfSteps][y - organism.numberOfSteps],
+      );
     }
     //move straight.up
     if (y > minimalStep) {
@@ -106,7 +108,9 @@ export class Board {
     }
     // move right.up
     if (x < xMax && y > minimalStep) {
-      arrayOfNearestTiles.push(this.tiles[x + organism.numberOfSteps][y - organism.numberOfSteps]);
+      arrayOfNearestTiles.push(
+        this.tiles[x + organism.numberOfSteps][y - organism.numberOfSteps],
+      );
     }
     // move right.straight
     if (x < xMax) {
@@ -114,7 +118,9 @@ export class Board {
     }
     // move right.down
     if (x < xMax && y < yMax) {
-      arrayOfNearestTiles.push(this.tiles[x + organism.numberOfSteps][y + organism.numberOfSteps]);
+      arrayOfNearestTiles.push(
+        this.tiles[x + organism.numberOfSteps][y + organism.numberOfSteps],
+      );
     }
     //move straight.down
     if (y < yMax) {
@@ -122,7 +128,9 @@ export class Board {
     }
     // move left.down
     if (x > minimalStep && y < yMax) {
-      arrayOfNearestTiles.push(this.tiles[x - organism.numberOfSteps][y + organism.numberOfSteps]);
+      arrayOfNearestTiles.push(
+        this.tiles[x - organism.numberOfSteps][y + organism.numberOfSteps],
+      );
     }
     // move left.straight
     if (x > minimalStep) {
@@ -130,7 +138,4 @@ export class Board {
     }
     return arrayOfNearestTiles;
   }
-
 }
-
-
