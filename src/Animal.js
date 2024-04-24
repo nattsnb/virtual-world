@@ -13,25 +13,7 @@ export class Animal extends Organism {
   }
 
   mate(newTile) {
-    const parent1SurroundingTiles = findNearestTiles(
-      this.board.tiles,
-      this,
-      this.board.width,
-      this.board.height,
-      this.numberOfSteps,
-    );
-    const parent2SurroundingTiles = findNearestTiles(
-      this.board.tiles,
-      newTile.currentOrganism,
-      this.board.width,
-      this.board.height,
-      this.numberOfSteps,
-    );
-    const surroundingEmptyTiles = findEmptyTilesSurroundingParents(
-      parent1SurroundingTiles,
-      parent2SurroundingTiles,
-    );
-
+    const surroundingEmptyTiles = findEmptyTilesSurroundingParents(this.board, this, newTile.currentOrganism);
     if (surroundingEmptyTiles.length > 0) {
       const tileForChild = findRandomTileInArray(surroundingEmptyTiles);
       const child = new this.constructor(
