@@ -1,6 +1,5 @@
 import { Animal } from '../Animal';
 import playerImage from './player.jpg';
-import { findNearestTiles } from '../findNearestTiles';
 
 export class Player extends Animal {
   static startParameters = {
@@ -23,13 +22,7 @@ export class Player extends Animal {
 
   action() {
     this.activeTile = this.board.tiles[this.x][this.y];
-    this.tilesForAction = findNearestTiles(
-        this.board.tiles,
-        this,
-        this.board.width,
-        this.board.height,
-        this.numberOfSteps,
-    );
+    this.tilesForAction = this.board.findNearestTiles(this);
     this.tilesForAction.push(this.board.tiles[this.x][this.y]);
     console.log(this.activeTile);
     const currentTileDiv = this.board.tiles[this.x][this.y].tileContainer;
@@ -64,7 +57,7 @@ export class Player extends Animal {
   };
 
   checkKeyPressed(evt) {
-    const nearestTiles = findNearestTiles(this.board.tiles, this, this.board.width, this.board.height, this.numberOfSteps)
+    const nearestTiles = this.board.findNearestTiles(this)
     if (evt.code === 'KeyW') {
       console.log('keyW');
       const newY = this.activeTile.y - 1;

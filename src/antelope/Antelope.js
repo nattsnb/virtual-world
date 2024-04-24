@@ -1,6 +1,5 @@
 import { Animal } from '../Animal';
 import antelopeImage from './antelope.jpg';
-import { findNearestTiles } from '../findNearestTiles';
 
 export class Antelope extends Animal {
   static startParameters = {

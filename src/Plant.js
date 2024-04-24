@@ -1,5 +1,4 @@
 import { Organism } from './Organism';
-import { findNearestTiles } from './findNearestTiles';
 import { findRandomTileInArray } from './findRandomTileInArray';
 
 export class Plant extends Organism {
@@ -17,13 +16,7 @@ export class Plant extends Organism {
     // console.log(odds)
     // console.log(this.chancesToSpread)
     if (odds < this.chancesToSpread) {
-      const parentSurroundingTiles = findNearestTiles(
-        this.board.tiles,
-        this,
-        this.board.width,
-        this.board.height,
-        this.numberOfSteps,
-      );
+      const parentSurroundingTiles = this.board.findNearestTiles(this);
       // console.log(parentSurroundingTiles)
       let surroundingEmptyTiles = [];
       for (let i = 0; i < parentSurroundingTiles.length; i++) {

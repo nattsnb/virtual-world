@@ -1,5 +1,4 @@
 import { Organism } from './Organism';
-import { findNearestTiles } from './findNearestTiles';
 import { findRandomTileInArray } from './findRandomTileInArray';
 import { findEmptyTilesSurroundingParents } from './findEmptyTilesSurroundingParents';
 import { Plant } from './Plant';
@@ -58,13 +57,7 @@ export class Animal extends Organism {
     const width = this.board.width;
     const height = this.board.height;
     const numberOfSteps = this.numberOfSteps;
-    const nearestTiles = findNearestTiles(
-      tiles,
-      organism,
-      width,
-      height,
-      numberOfSteps,
-    );
+    const nearestTiles = this.board.findNearestTiles(organism);
     // console.log(organism)
     const newTile = findRandomTileInArray(nearestTiles);
     if (newTile.currentOrganism) {
