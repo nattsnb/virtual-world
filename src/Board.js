@@ -53,7 +53,7 @@ export class Board {
       await sortedOrganismsOnBoard[i].action();
     }
     const organismsAfterRound = this.getOrganisms();
-    return organismsAfterRound.find(this.isPlayerAlive);
+    return organismsAfterRound.find(this.findPlayer);
   }
   getOrganisms() {
     const organismsOnBoard = [];
@@ -84,8 +84,8 @@ export class Board {
     });
     return organismsOnBoard;
   }
-  isPlayerAlive(organism) {
+  findPlayer(organism) {
     console.log(`is alive?`);
-    return organism.constructor === Player;
+    return organism instanceof Player;
   }
 }
