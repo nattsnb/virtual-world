@@ -38,9 +38,9 @@ export class Player extends Animal {
 
   moveIfPossible = (coordinates) => {
     if (
-      this.tilesForAction.includes(
-        this.board.tiles[coordinates.x][coordinates.y],
-      )
+        this.tilesForAction.includes(
+            this.board.tiles[coordinates.x][coordinates.y],
+        )
     ) {
       this.activeTile.tileContainer.removeAttribute('id');
       this.activeTile = this.board.tiles[coordinates.x][coordinates.y];
@@ -60,25 +60,25 @@ export class Player extends Animal {
     if (evt.code === 'KeyW') {
       console.log('keyW');
       const newY = this.activeTile.y - 1;
-      const coordinates = { x: this.activeTile.x, y: newY };
+      const coordinates = {x: this.activeTile.x, y: newY};
       this.moveIfPossible(coordinates);
     }
     if (evt.code === 'KeyA') {
       console.log('KeyA');
       const newX = this.activeTile.x - 1;
-      const coordinates = { x: newX, y: this.activeTile.y };
+      const coordinates = {x: newX, y: this.activeTile.y};
       this.moveIfPossible(coordinates);
     }
     if (evt.code === 'KeyS') {
       console.log('KeyS');
       const newY = this.activeTile.y + 1;
-      const coordinates = { x: this.activeTile.x, y: newY };
+      const coordinates = {x: this.activeTile.x, y: newY};
       this.moveIfPossible(coordinates);
     }
     if (evt.code === 'KeyD') {
       console.log('KeyD');
       const newX = this.activeTile.x + 1;
-      const coordinates = { x: newX, y: this.activeTile.y };
+      const coordinates = {x: newX, y: this.activeTile.y};
       this.moveIfPossible(coordinates);
     }
     if (evt.code === 'Enter') {
@@ -96,7 +96,7 @@ export class Player extends Animal {
         this.activeTile.setOrganism(this);
         // console.log(`to ${organism.x}, ${organism.y}`);
       }
-        this.resolveMovement();
-      }
+      this.resolveMovement();
     }
+  }
 }

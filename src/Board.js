@@ -22,7 +22,7 @@ export class Board {
       row.classList.add(`row`);
       boardContainer.append(row);
       for (let j = 0; j < this.width; j++) {
-        this.tiles[j][i] = new Tile(j, i);
+        this.tiles[j][i] = new Tile(j, i, this);
         row.append(this.tiles[j][i].tileContainer);
       }
     }
