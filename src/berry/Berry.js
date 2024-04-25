@@ -13,7 +13,7 @@ export class Berry extends Plant {
     this.createElement();
   }
 
-  animalEatsPlant(organism) {
+  animalEatsPlant = (organism) => {
     // console.log(organism);
     // console.log(organism.x, organism.y);
     // console.log(`I ate berry`)
@@ -21,5 +21,5 @@ export class Berry extends Plant {
     this.death();
 
     return true;
-  }
+  };
 }

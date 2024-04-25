@@ -1,6 +1,5 @@
 import { Organism } from './Organism';
 import { findRandomTileInArray } from './findRandomTileInArray';
-import { findEmptyTilesSurroundingParents } from './findEmptyTilesSurroundingParents';
 import { Plant } from './Plant';
 
 export class Animal extends Organism {
@@ -11,16 +10,15 @@ export class Animal extends Organism {
     this.strength = startParameters.strength;
   }
 
-  mate(newTile) {
-    const surroundingEmptyTiles = findEmptyTilesSurroundingParents(
-      this.board,
+  mate = (newTile) => {
+    const surroundingEmptyTiles = this.board.findEmptyTilesSurroundingParents(
       this,
       newTile.currentOrganism,
     );
     if (surroundingEmptyTiles.length > 0) {
       const tileForChild = findRandomTileInArray(surroundingEmptyTiles);
       const child = new this.constructor(
-        this,
+        this.board,
         this.constructor.startParameters,
       );
       tileForChild.setOrganism(child);
@@ -28,9 +26,9 @@ export class Animal extends Organism {
       // console.log(child);
       return true;
     }
-  }
+  };
 
-  fight(newTile) {
+  fight = (newTile) => {
     // console.log(this.constructor.name);
     // console.log(newTile.currentOrganism.constructor.name);
     // console.log("it's a fight!");
@@ -52,9 +50,9 @@ export class Animal extends Organism {
       // console.log(newTile.currentOrganism);
     }
     // console.log(`draw`);
-  }
+  };
 
-  async action() {
+  action = async () => {
     const nearestTiles = this.board.findNearestTiles(this);
     // console.log(this)
     const newTile = findRandomTileInArray(nearestTiles);
@@ -74,16 +72,16 @@ export class Animal extends Organism {
       newTile.setOrganism(this);
       // console.log(`to ${organism.x}, ${organism.y}`);
     }
-  }
-  shouldMate(newTile) {
+  };
+  shouldMate = (newTile) => {
     return this.constructor === newTile.currentOrganism.constructor;
-  }
+  };
 
-  shouldFight(newTile) {
+  shouldFight = (newTile) => {
     return newTile.currentOrganism instanceof Animal;
-  }
+  };
 
-  shouldEat(newTile) {
+  shouldEat = (newTile) => {
     return newTile.currentOrganism instanceof Plant;
-  }
+  };
 }

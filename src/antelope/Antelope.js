@@ -13,7 +13,7 @@ export class Antelope extends Animal {
     super(board, startParameters);
     this.createElement();
   }
-  fight(newTile) {
+  fight = (newTile) => {
     // console.log(this.constructor.name);
     // console.log(newTile.currentOrganism.constructor.name);
     // console.log("it's a fight!");
@@ -36,5 +36,5 @@ export class Antelope extends Animal {
       // console.log(`draw`);
       return true;
     }
-  }
+  };
 }

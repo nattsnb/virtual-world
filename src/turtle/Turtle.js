@@ -14,7 +14,7 @@ export class Turtle extends Animal {
     super(board, startParameters);
     this.createElement();
   }
-  async action() {
+  action = async () => {
     const nearestTiles = this.board.findNearestTiles(this);
     // console.log(organism)
     const newTile = findRandomTileInArray(nearestTiles);
@@ -30,8 +30,8 @@ export class Turtle extends Animal {
       }
       // console.log(`to ${organism.x}, ${organism.y}`);
     }
-  }
-  fight(newTile) {
+  };
+  fight = (newTile) => {
     // console.log(this.constructor.name);
     // console.log(newTile.currentOrganism.constructor.name);
     // console.log("it's a fight!");
@@ -57,5 +57,5 @@ export class Turtle extends Animal {
     }
     // console.log(`draw`);
     return true;
-  }
+  };
 }

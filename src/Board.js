@@ -12,7 +12,7 @@ export class Board {
     this.createInitialCharacters();
   }
 
-  render() {
+  render = () => {
     const boardContainer = document.querySelector('#board-container');
     for (let i = 0; i < this.height; i++) {
       this.tiles[i] = [];
@@ -26,8 +26,8 @@ export class Board {
         row.append(this.tiles[j][i].tileContainer);
       }
     }
-  }
-  createInitialCharacters() {
+  };
+  createInitialCharacters = () => {
     const numberOfCharacters = Math.round(this.width * this.height * 0.3);
     for (let i = 0; i < numberOfCharacters; i++) {
       let RandomOrganismClass =
@@ -44,8 +44,8 @@ export class Board {
     // console.log(player);
     const tileForPlayer = this.findRandomTileOnBoard();
     tileForPlayer.setOrganism(player);
-  }
-  async round() {
+  };
+  round = async () => {
     const organismsOnBoard = this.getOrganisms();
     const sortedOrganismsOnBoard = this.sortOrganisms(organismsOnBoard);
     // console.log(sortedOrganismsOnBoard);
@@ -54,12 +54,10 @@ export class Board {
     }
     const organismsAfterRound = this.getOrganisms();
     console.log(`is alive?`);
-    if (organismsAfterRound.find(this.findPlayer)) {
-      console.log(`yes`);
-      return true;
-    }
-  }
-  getOrganisms() {
+    return organismsAfterRound.find(Board.isOrganismAPlayer);
+  };
+
+  getOrganisms = () => {
     const organismsOnBoard = [];
     for (let y = 0; y < this.tiles.length; y++) {
       for (let x = 0; x < this.tiles.length; x++) {
@@ -69,8 +67,8 @@ export class Board {
       }
     }
     return organismsOnBoard;
-  }
-  findRandomTileOnBoard() {
+  };
+  findRandomTileOnBoard = () => {
     const randomX = Math.floor(Math.random() * this.width);
     const randomY = Math.floor(Math.random() * this.height);
     const foundTile = this.tiles[randomX][randomY];
@@ -78,7 +76,7 @@ export class Board {
       return this.findRandomTileOnBoard();
     }
     return foundTile;
-  }
+  };
   sortOrganisms(organismsOnBoard) {
     organismsOnBoard.sort(function (leftOrganism, rightOrganism) {
       if (leftOrganism.initiative === rightOrganism.initiative) {
@@ -88,13 +86,11 @@ export class Board {
     });
     return organismsOnBoard;
   }
-  findPlayer(organism) {
-    if (organism instanceof Player) {
-      return true;
-    }
+  static isOrganismAPlayer(organism) {
+    return organism instanceof Player;
   }
 
-  findNearestTiles(organism) {
+  findNearestTiles = (organism) => {
     const minimalStep = organism.numberOfSteps - 1;
     const x = organism.x;
     const y = organism.y;
@@ -142,5 +138,24 @@ export class Board {
       arrayOfNearestTiles.push(this.tiles[x - organism.numberOfSteps][y]);
     }
     return arrayOfNearestTiles;
-  }
+  };
+  findEmptyTilesSurroundingParents = (parent1, parent2) => {
+    const parent1SurroundingTiles = this.findNearestTiles(parent1);
+    const parent2SurroundingTiles = this.findNearestTiles(parent2);
+    let surroundingEmptyTiles = [];
+    for (let i = 0; i < parent1SurroundingTiles.length; i++) {
+      if (!parent1SurroundingTiles[i].currentOrganism) {
+        surroundingEmptyTiles.push(parent1SurroundingTiles[i]);
+      }
+    }
+    for (let i = 0; i < parent2SurroundingTiles.length; i++) {
+      if (
+        !parent2SurroundingTiles[i].currentOrganism &&
+        !surroundingEmptyTiles.includes(parent2SurroundingTiles[i])
+      ) {
+        surroundingEmptyTiles.push(parent2SurroundingTiles[i]);
+      }
+    }
+    return surroundingEmptyTiles;
+  };
 }

@@ -20,7 +20,7 @@ export class Player extends Animal {
     this.activeTile = [];
   }
 
-  action() {
+  action = async () => {
     this.activeTile = this.board.tiles[this.x][this.y];
     this.tilesForAction = this.board.findNearestTiles(this);
     this.tilesForAction.push(this.board.tiles[this.x][this.y]);
@@ -28,7 +28,7 @@ export class Player extends Animal {
     const currentTileDiv = this.board.tiles[this.x][this.y].tileContainer;
     currentTileDiv.setAttribute('id', 'activeTile');
     return this.move();
-  }
+  };
 
   initializeEventListener = () => {
     window.addEventListener('keyup', (event) => {

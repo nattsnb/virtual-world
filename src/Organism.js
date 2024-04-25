@@ -10,16 +10,16 @@ export class Organism {
     this.y = null;
   }
 
-  createElement() {
+  createElement = () => {
     this.element = document.createElement('img');
     this.element.classList.add('organism-image');
     this.element.src = this.image;
-  }
-  async action() {}
+  };
+  action = async () => {};
 
-  death() {
+  death = () => {
     // console.log(this.board.tiles[this.x][this.y].currentOrganism);
     this.board.tiles[this.x][this.y].deleteOrganism();
     // console.log(this.board.tiles[this.x][this.y].currentOrganism);
-  }
+  };
 }

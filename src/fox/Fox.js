@@ -15,10 +15,10 @@ export class Fox extends Animal {
     this.createElement();
   }
 
-  shouldFight(newTile, organism) {
+  shouldFight = (newTile, organism) => {
     return (
       newTile.currentOrganism.constructor === Animal &&
       newTile.currentOrganism.strength <= organism.strength
     );
-  }
+  };
 }
