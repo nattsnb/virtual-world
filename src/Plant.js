@@ -7,11 +7,11 @@ export class Plant extends Organism {
     this.chancesToSpread = startParameters.chancesToSpread;
   }
 
-  async action() {
+  action = async () => {
     this.spread();
   }
 
-  spread() {
+  spread = () => {
     let odds = Math.random();
     // console.log(odds)
     // console.log(this.chancesToSpread)
@@ -28,7 +28,7 @@ export class Plant extends Organism {
         const tileForChild = findRandomTileInArray(surroundingEmptyTiles);
         const child = Object.create(this);
         tileForChild.setOrganism(child);
-        // console.log(`I spread!`)
+        console.warn(`I spread!`)
         // console.log(child)
         return true;
       }

@@ -48,9 +48,9 @@ export class Board {
   round = async () => {
     const organismsOnBoard = this.getOrganisms();
     const sortedOrganismsOnBoard = this.sortOrganisms(organismsOnBoard);
-    console.log(sortedOrganismsOnBoard);
+    // console.log(sortedOrganismsOnBoard);
     for (let i = 0; i < sortedOrganismsOnBoard.length; i++) {
-      console.log(sortedOrganismsOnBoard[i])
+      // console.log(sortedOrganismsOnBoard[i])
       await sortedOrganismsOnBoard[i].action();
     }
     const organismsAfterRound = this.getOrganisms();
