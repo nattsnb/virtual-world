@@ -56,7 +56,7 @@ export class Player extends Animal {
     });
   };
 
-  checkKeyPressed(evt) {
+  checkKeyPressed = (evt) => {
     if (evt.code === 'KeyW') {
       console.log('keyW');
       const newY = this.activeTile.y - 1;
