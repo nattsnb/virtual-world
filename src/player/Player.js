@@ -97,4 +97,10 @@ export class Player extends Animal {
       this.resolveMovement();
     }
   }
+  death = () => {
+    this.board.tiles[this.x][this.y].deleteOrganism();
+    window.removeEventListener('keyup', (event) => {
+      this.checkKeyPressed(event);
+    })
+  };
 }
