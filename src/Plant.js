@@ -28,7 +28,7 @@ export class Plant extends Organism {
         const tileForChild = findRandomTileInArray(surroundingEmptyTiles);
         const child = Object.create(this);
         tileForChild.setOrganism(child);
-        console.warn(`I spread!`)
+        // console.warn(`I spread!`)
         // console.log(child)
         return true;
       }

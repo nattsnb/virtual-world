@@ -19,6 +19,8 @@ export class Berry extends Plant {
     // console.log(`I ate berry`)
     organism.death();
     this.death();
+    // console.log(this.board.tiles[organism.x][organism.y].currentOrganism)
+    // console.log(organism)
 
     return true;
   };

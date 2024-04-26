@@ -55,6 +55,7 @@ export class Board {
     }
     const organismsAfterRound = this.getOrganisms();
     console.log(`is alive?`);
+    console.log(organismsAfterRound.find(Board.isOrganismAPlayer))
     return organismsAfterRound.find(Board.isOrganismAPlayer);
   };
 
