@@ -92,9 +92,7 @@ export class Player extends Animal {
           this.activeTile.currentOrganism.animalEatsPlant(this);
         }
       } else {
-        // console.log(`from: ${organism.x}, ${organism.y}`);
-        this.activeTile.setOrganism(this);
-        // console.log(`to ${organism.x}, ${organism.y}`);
+        this.moveOrganism(this.activeTile)
       }
       this.resolveMovement();
     }

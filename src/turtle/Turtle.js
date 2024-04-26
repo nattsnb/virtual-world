@@ -16,21 +16,25 @@ export class Turtle extends Animal {
   }
   action = async () => {
     const nearestTiles = this.board.findNearestTiles(this);
-    // console.log(organism)
+    // console.log(this)
     const newTile = findRandomTileInArray(nearestTiles);
     if (newTile.currentOrganism) {
-      this.shouldMate(newTile, this);
-      this.shouldFight(newTile, this);
-      this.shouldEat(newTile, this);
+      if (this.shouldMate(newTile)) {
+        this.mate(newTile);
+      }
+      if (this.shouldFight(newTile)) {
+        this.fight(newTile);
+      }
+      if (this.shouldEat(newTile)) {
+        newTile.currentOrganism.animalEatsPlant(this, newTile);
+      }
     } else {
-      // console.log(`from: ${organism.x}, ${organism.y}`);
       let odds = Math.random();
       if (odds < 0.25) {
-        newTile.setOrganism(this);
+        this.moveOrganism(newTile);
       }
-      // console.log(`to ${organism.x}, ${organism.y}`);
     }
-  };
+  }
   fight = (newTile) => {
     // console.log(this.constructor.name);
     // console.log(newTile.currentOrganism.constructor.name);
