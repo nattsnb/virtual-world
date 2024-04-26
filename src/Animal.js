@@ -67,10 +67,7 @@ export class Animal extends Organism {
         newTile.currentOrganism.animalEatsPlant(this, newTile);
       }
     } else {
-      // console.log(`from: ${organism.x}, ${organism.y}`);
-      this.board.tiles[this.x][this.y].currentOrganism = null;
-      newTile.setOrganism(this);
-      // console.log(`to ${organism.x}, ${organism.y}`);
+      this.moveOrganism(newTile)
     }
   };
   shouldMate = (newTile) => {
@@ -84,4 +81,10 @@ export class Animal extends Organism {
   shouldEat = (newTile) => {
     return newTile.currentOrganism instanceof Plant;
   };
+  moveOrganism = (newTile) => {
+    // console.log(`from: ${organism.x}, ${organism.y}`);
+    this.board.tiles[this.x][this.y].currentOrganism = null;
+    newTile.setOrganism(this);
+    // console.log(`to ${organism.x}, ${organism.y}`);
+  }
 }

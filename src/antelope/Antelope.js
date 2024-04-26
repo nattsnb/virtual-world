@@ -27,7 +27,7 @@ export class Antelope extends Animal {
       let odds = Math.random();
       if (odds < 0.5) {
         // console.log(`antelope flies`)
-        this.action();
+        this.moveOrganism(newTile);
       } else {
         this.death();
         // console.log(newTile.currentOrganism);
