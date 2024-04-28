@@ -9,7 +9,7 @@ export class Plant extends Organism {
 
   action = async () => {
     this.spread();
-  }
+  };
 
   spread = () => {
     let odds = Math.random();
@@ -34,7 +34,7 @@ export class Plant extends Organism {
       }
     }
     // console.log(`I didn't spread!`)
-  }
+  };
 
   animalEatsPlant(organism) {
     // console.log(this);
@@ -51,9 +51,7 @@ export class Plant extends Organism {
     let arrayOfNearestTiles = [];
     // move left.up
     if (x > 0 && y > 0) {
-      arrayOfNearestTiles.push(
-          this.board.tiles[x - 1][y - 1],
-      );
+      arrayOfNearestTiles.push(this.board.tiles[x - 1][y - 1]);
     }
     //move straight.up
     if (y > 0) {
@@ -61,9 +59,7 @@ export class Plant extends Organism {
     }
     // move right.up
     if (x < xMax && y > 0) {
-      arrayOfNearestTiles.push(
-          this.board.tiles[x + 1][y - 1],
-      );
+      arrayOfNearestTiles.push(this.board.tiles[x + 1][y - 1]);
     }
     // move right.straight
     if (x < xMax) {
@@ -71,9 +67,7 @@ export class Plant extends Organism {
     }
     // move right.down
     if (x < xMax && y < yMax) {
-      arrayOfNearestTiles.push(
-          this.board.tiles[x + 1][y + 1],
-      );
+      arrayOfNearestTiles.push(this.board.tiles[x + 1][y + 1]);
     }
     //move straight.down
     if (y < yMax) {
@@ -81,9 +75,7 @@ export class Plant extends Organism {
     }
     // move left.down
     if (x > 0 && y < yMax) {
-      arrayOfNearestTiles.push(
-          this.board.tiles[x - 1][y + 1],
-      );
+      arrayOfNearestTiles.push(this.board.tiles[x - 1][y + 1]);
     }
     // move left.straight
     if (x > 0) {

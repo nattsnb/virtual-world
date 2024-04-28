@@ -68,8 +68,8 @@ export class Animal extends Organism {
       if (this.shouldMove(newTile)) {
         this.moveOrganism(newTile);
       } else {
-        console.log("mamy problem")
-        console.log(this, this.x, this.y)
+        console.log('mamy problem');
+        console.log(this, this.x, this.y);
       }
     }
   };
@@ -85,12 +85,12 @@ export class Animal extends Organism {
     return newTile.currentOrganism instanceof Plant;
   };
   shouldMove = (newTile) => {
-    return !newTile.currentOrganism
+    return !newTile.currentOrganism;
   };
   moveOrganism = (newTile) => {
     // console.log(`from: ${organism.x}, ${organism.y}`);
     newTile.setOrganism(this);
     this.board.tiles[this.x][this.y].currentOrganism = null;
     // console.log(`to ${organism.x}, ${organism.y}`);
-  }
+  };
 }

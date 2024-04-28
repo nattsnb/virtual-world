@@ -9,31 +9,31 @@ export class Tile {
     this.initializeEventListener();
     this.board = board;
   }
-  createTileElement=() =>{
+  createTileElement = () => {
     this.tileContainer = document.createElement('div');
     this.tileContainer.classList.add('tileContainer');
-  }
+  };
 
-  setOrganism=(organism)=> {
+  setOrganism = (organism) => {
     this.currentOrganism = organism;
     this.setCoordinates(this.x, this.y);
     this.refresh();
-  }
+  };
 
-  refresh=() => {
+  refresh = () => {
     this.tileContainer.innerHTML = '';
     this.tileContainer.append(this.currentOrganism.element);
-  }
+  };
 
   deleteOrganism = () => {
     this.tileContainer.innerHTML = '';
     this.currentOrganism = null;
-  }
+  };
 
   setCoordinates = (x, y) => {
     this.currentOrganism.x = x;
     this.currentOrganism.y = y;
-  }
+  };
 
   initializeEventListener = () => {
     this.tileContainer.addEventListener('click', this.checkClick);

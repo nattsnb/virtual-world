@@ -27,14 +27,15 @@ export class Turtle extends Animal {
       }
       if (this.shouldEat(newTile)) {
         newTile.currentOrganism.animalEatsPlant(this, newTile);
-      }if (this.shouldMove(newTile)) {
+      }
+      if (this.shouldMove(newTile)) {
         let odds = Math.random();
         if (odds < 0.25) {
           this.moveOrganism(newTile);
         }
       } else {
-        console.log("mamy problem")
-        console.log(this, this.x, this.y)
+        console.log('mamy problem');
+        console.log(this, this.x, this.y);
       }
     }
   };
@@ -49,8 +50,10 @@ export class Turtle extends Animal {
       this.board.tiles[this.x][this.y].currentOrganism = null;
       // console.log(newTile.currentOrganism);
     }
-    if (this.strength < newTile.currentOrganism.strength &&
-        newTile.currentOrganism.strength > 5) {
+    if (
+      this.strength < newTile.currentOrganism.strength &&
+      newTile.currentOrganism.strength > 5
+    ) {
       // console.log(`second wins`);
       // console.log(this);
       // console.log(this.x, this.y);
