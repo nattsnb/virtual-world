@@ -27,14 +27,17 @@ export class Turtle extends Animal {
       }
       if (this.shouldEat(newTile)) {
         newTile.currentOrganism.animalEatsPlant(this, newTile);
-      }
-    } else {
-      let odds = Math.random();
-      if (odds < 0.25) {
-        this.moveOrganism(newTile);
+      }if (this.shouldMove(newTile)) {
+        let odds = Math.random();
+        if (odds < 0.25) {
+          this.moveOrganism(newTile);
+        }
+      } else {
+        console.log("mamy problem")
+        console.log(this, this.x, this.y)
       }
     }
-  }
+  };
   fight = (newTile) => {
     // console.log(this.constructor.name);
     // console.log(newTile.currentOrganism.constructor.name);

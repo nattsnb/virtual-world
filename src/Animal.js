@@ -65,8 +65,12 @@ export class Animal extends Organism {
       if (this.shouldEat(newTile)) {
         newTile.currentOrganism.animalEatsPlant(this, newTile);
       }
-    } else {
-      this.moveOrganism(newTile)
+      if (this.shouldMove(newTile)) {
+        this.moveOrganism(newTile);
+      } else {
+        console.log("mamy problem")
+        console.log(this, this.x, this.y)
+      }
     }
   };
   shouldMate = (newTile) => {
@@ -79,6 +83,9 @@ export class Animal extends Organism {
 
   shouldEat = (newTile) => {
     return newTile.currentOrganism instanceof Plant;
+  };
+  shouldMove = (newTile) => {
+    return !newTile.currentOrganism
   };
   moveOrganism = (newTile) => {
     // console.log(`from: ${organism.x}, ${organism.y}`);

@@ -91,12 +91,15 @@ export class Player extends Animal {
         if (this.shouldEat(this.activeTile)) {
           this.activeTile.currentOrganism.animalEatsPlant(this);
         }
-      } else {
-        this.moveOrganism(this.activeTile)
+        if (this.shouldMove(this.activeTile)) {
+          this.moveOrganism(this.activeTile);
+        } else {
+          console.log("mamy problem")
+          console.log(this, this.x, this.y)
+        }
       }
-      this.resolveMovement();
     }
-  }
+  };
   death = () => {
     this.board.tiles[this.x][this.y].deleteOrganism();
     window.removeEventListener('keyup', (event) => {
