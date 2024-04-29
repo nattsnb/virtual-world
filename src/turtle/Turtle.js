@@ -28,15 +28,14 @@ export class Turtle extends Animal {
       if (this.shouldEat(newTile)) {
         newTile.currentOrganism.animalEatsPlant(this, newTile);
       }
-      if (this.shouldMove(newTile)) {
-        let odds = Math.random();
-        if (odds < 0.25) {
-          this.moveOrganism(newTile);
-        }
-      } else {
-        console.log('mamy problem');
-        console.log(this, this.x, this.y);
+    } else if (this.shouldMove(newTile)) {
+      let odds = Math.random();
+      if (odds < 0.25) {
+        this.moveOrganism(newTile);
       }
+    } else {
+      console.log('organism didnt move:');
+      console.log(this, this.x, this.y);
     }
   };
   fight = (newTile) => {

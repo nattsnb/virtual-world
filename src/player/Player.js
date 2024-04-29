@@ -91,12 +91,10 @@ export class Player extends Animal {
         if (this.shouldEat(this.activeTile)) {
           this.activeTile.currentOrganism.animalEatsPlant(this);
         }
-        if (this.shouldMove(this.activeTile)) {
-          this.moveOrganism(this.activeTile);
-        } else {
-          console.log('mamy problem');
-          console.log(this, this.x, this.y);
-        }
+      } else if (this.shouldMove(this.activeTile)) {
+        this.moveOrganism(this.activeTile);
+      } else {
+        `Player didnt move`
       }
       this.resolveMovement();
     }

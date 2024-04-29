@@ -65,12 +65,11 @@ export class Animal extends Organism {
       if (this.shouldEat(newTile)) {
         newTile.currentOrganism.animalEatsPlant(this, newTile);
       }
-      if (this.shouldMove(newTile)) {
-        this.moveOrganism(newTile);
-      } else {
-        console.log('mamy problem');
-        console.log(this, this.x, this.y);
-      }
+    } else if (this.shouldMove(newTile)) {
+      this.moveOrganism(newTile);
+    } else {
+      console.log('organism didnt move:');
+      console.log(this, this.x, this.y);
     }
   };
   shouldMate = (newTile) => {
