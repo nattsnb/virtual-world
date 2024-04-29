@@ -31,23 +31,17 @@ export class Player extends Animal {
   };
 
   initializeEventListener = () => {
-    window.addEventListener('keyup', (event) => {
-      this.checkKeyPressed(event);
-    });
+    window.addEventListener('keyup', this.eventToTrigger);
   };
 
+  eventToTrigger = (event) => {this.checkKeyPressed(event);}
+
   moveIfPossible = (coordinates) => {
-    if (
-      this.tilesForAction.includes(
-        this.board.tiles[coordinates.x][coordinates.y],
-      )
-    ) {
-      this.activeTile.tileContainer.removeAttribute('id');
-      this.activeTile = this.board.tiles[coordinates.x][coordinates.y];
-      console.log(this.activeTile);
-      const activeTileDiv = this.activeTile.tileContainer;
-      activeTileDiv.setAttribute('id', 'activeTile');
-    }
+    this.activeTile.tileContainer.removeAttribute('id');
+    this.activeTile = this.board.tiles[coordinates.x][coordinates.y];
+    console.log(this.activeTile);
+    const activeTileDiv = this.activeTile.tileContainer;
+    activeTileDiv.setAttribute('id', 'activeTile');
   };
 
   move = () => {
@@ -55,31 +49,46 @@ export class Player extends Animal {
       this.resolveMovement = resolve;
     });
   };
-
   checkKeyPressed = (evt) => {
     if (evt.code === 'KeyW') {
       console.log('keyW');
       const newY = this.activeTile.y - 1;
-      const coordinates = { x: this.activeTile.x, y: newY };
-      this.moveIfPossible(coordinates);
+      if (
+          this.tilesForAction.includes(this.board.tiles[this.activeTile.x][newY])
+      ) {
+        const coordinates = {x: this.activeTile.x, y: newY};
+        this.moveIfPossible(coordinates);
+      }
     }
     if (evt.code === 'KeyA') {
       console.log('KeyA');
       const newX = this.activeTile.x - 1;
-      const coordinates = { x: newX, y: this.activeTile.y };
-      this.moveIfPossible(coordinates);
+      if (
+          this.tilesForAction.includes(this.board.tiles[newX][this.activeTile.y])
+      ) {
+        const coordinates = {x: newX, y: this.activeTile.y};
+        this.moveIfPossible(coordinates);
+      }
     }
     if (evt.code === 'KeyS') {
       console.log('KeyS');
       const newY = this.activeTile.y + 1;
-      const coordinates = { x: this.activeTile.x, y: newY };
-      this.moveIfPossible(coordinates);
+      if (
+          this.tilesForAction.includes(this.board.tiles[this.activeTile.x][newY])
+      ) {
+        const coordinates = {x: this.activeTile.x, y: newY};
+        this.moveIfPossible(coordinates);
+      }
     }
     if (evt.code === 'KeyD') {
       console.log('KeyD');
       const newX = this.activeTile.x + 1;
-      const coordinates = { x: newX, y: this.activeTile.y };
-      this.moveIfPossible(coordinates);
+      if (
+          this.tilesForAction.includes(this.board.tiles[newX][this.activeTile.y])
+      ) {
+        const coordinates = {x: newX, y: this.activeTile.y};
+        this.moveIfPossible(coordinates);
+      }
     }
     if (evt.code === 'Enter') {
       console.log('Enter');
@@ -94,15 +103,13 @@ export class Player extends Animal {
       } else if (this.shouldMove(this.activeTile)) {
         this.moveOrganism(this.activeTile);
       } else {
-        `Player didnt move`
+        `Player didnt move`;
       }
       this.resolveMovement();
     }
   };
   death = () => {
     this.board.tiles[this.x][this.y].deleteOrganism();
-    window.removeEventListener('keyup', (event) => {
-      this.checkKeyPressed(event);
-    });
+    window.removeEventListener('keyup', this.eventToTrigger)
   };
 }
