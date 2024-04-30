@@ -37,6 +37,7 @@ export class Turtle extends Animal {
       console.log('organism didnt move:');
       console.log(this, this.x, this.y);
     }
+    this.age = this.age + 1;
   };
   fight = (newTile) => {
     // console.log(this.constructor.name);

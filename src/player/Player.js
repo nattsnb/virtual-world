@@ -27,6 +27,7 @@ export class Player extends Animal {
     console.log(this.activeTile);
     const currentTileDiv = this.board.tiles[this.x][this.y].tileContainer;
     currentTileDiv.setAttribute('id', 'activeTile');
+    this.age = this.age + 1;
     return this.move();
   };
 

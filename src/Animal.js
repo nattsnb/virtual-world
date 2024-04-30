@@ -71,6 +71,7 @@ export class Animal extends Organism {
       console.log('organism didnt move:');
       console.log(this, this.x, this.y);
     }
+    this.age = this.age + 1;
   };
   shouldMate = (newTile) => {
     return this.constructor === newTile.currentOrganism.constructor;
