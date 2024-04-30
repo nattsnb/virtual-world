@@ -1,16 +1,24 @@
-import { Animal } from '../animal.js';
-import foxImage from './fox.jpg'
+import { Animal } from '../Animal';
+import foxImage from './fox.jpg';
 
 export class Fox extends Animal {
-    constructor() {
-        super();
-        this.initiative = 7;
-        this.strength = 4;
-        this.createElement()
-    }
+  static startParameters = {
+    strength: 4,
+    age: 0,
+    numberOfSteps: 1,
+    initiative: 7,
+    image: foxImage,
+  };
 
-    createElement() {
-        super.createElement()
-        this.element.src = foxImage;
-    }
+  constructor(board, startParameters) {
+    super(board, startParameters);
+    this.createElement();
+  }
+
+  shouldFight = (newTile, organism) => {
+    return (
+      newTile.currentOrganism.constructor === Animal &&
+      newTile.currentOrganism.strength <= organism.strength
+    );
+  };
 }

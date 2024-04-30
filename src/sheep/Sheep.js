@@ -1,16 +1,16 @@
-import { Animal } from '../animal.js';
+import { Animal } from '../Animal';
 import sheepImage from './sheep.jpg';
 
 export class Sheep extends Animal {
-    constructor() {
-        super();
-        this.initiative = 4;
-        this.strenght = 3;
-        this.createElement()
-    }
-
-    createElement() {
-        super.createElement()
-        this.element.src = sheepImage;
-    }
+  static startParameters = {
+    strength: 3,
+    age: 0,
+    numberOfSteps: 1,
+    initiative: 4,
+    image: sheepImage,
+  };
+  constructor(board, startParameters) {
+    super(board, startParameters);
+    this.createElement();
+  }
 }
