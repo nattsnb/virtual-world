@@ -110,6 +110,12 @@ export class Player extends Animal {
   };
   death = () => {
     this.board.tiles[this.x][this.y].deleteOrganism();
+    // this.board.sortedOrganismsOnBoard
+    const index = this.board.sortedOrganismsOnBoard.indexOf(this);
+    // console.log(index)
+    const x = this.board.sortedOrganismsOnBoard.splice(index, 1);
+    console.log(this.board.sortedOrganismsOnBoard)
     window.removeEventListener('keyup', this.eventToTrigger)
+    console.log(`player is DEAD. You lost!`)
   };
 }

@@ -37,7 +37,7 @@ export class Animal extends Organism {
       this.board.tiles[this.x][this.y].currentOrganism = null;
       newTile.currentOrganism.death();
       newTile.setOrganism(this);
-      // console.log(newTile.currentOrganism);
+      console.log(newTile.currentOrganism);
     }
     if (this.strength < newTile.currentOrganism.strength) {
       // console.log(`second wins`);

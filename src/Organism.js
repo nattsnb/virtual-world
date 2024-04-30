@@ -21,5 +21,9 @@ export class Organism {
     // console.log(this.board.tiles[this.x][this.y].currentOrganism);
     this.board.tiles[this.x][this.y].deleteOrganism();
     // console.log(this.board.tiles[this.x][this.y].currentOrganism);
+    const index = this.board.sortedOrganismsOnBoard.indexOf(this);
+    // console.log(index)
+    const x = this.board.sortedOrganismsOnBoard.splice(index, 1);
+    console.log(this.board.sortedOrganismsOnBoard)
   };
 }

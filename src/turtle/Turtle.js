@@ -50,16 +50,16 @@ export class Turtle extends Animal {
       // console.log(newTile.currentOrganism);
     }
     if (
-      this.strength < newTile.currentOrganism.strength &&
-      newTile.currentOrganism.strength > 5
-    ) {
+      this.strength < newTile.currentOrganism.strength) {
       // console.log(`second wins`);
       // console.log(this);
       // console.log(this.x, this.y);
       // console.log(newTile.currentOrganism);
       // console.log(newTile.currentOrganism.x, newTile.currentOrganism.y);
-      this.death();
-      // console.log(newTile.currentOrganism);
+      if (newTile.currentOrganism.strength > 5) {
+        this.death();
+        // console.log(newTile.currentOrganism);
+      }
     }
     // console.log(`draw`);
   };

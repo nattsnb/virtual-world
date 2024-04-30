@@ -10,6 +10,7 @@ export class Board {
     this.tiles = [];
     this.render();
     this.createInitialCharacters();
+    this.sortedOrganismsOnBoard = [];
   }
 
   render = () => {
@@ -47,11 +48,11 @@ export class Board {
   };
   round = async () => {
     const organismsOnBoard = this.getOrganisms();
-    const sortedOrganismsOnBoard = this.sortOrganisms(organismsOnBoard);
-    // console.log(sortedOrganismsOnBoard);
-    for (let i = 0; i < sortedOrganismsOnBoard.length; i++) {
+    this.sortedOrganismsOnBoard = this.sortOrganisms(organismsOnBoard);
+    console.log(this.sortedOrganismsOnBoard);
+    for (let i = 0; i < this.sortedOrganismsOnBoard.length; i++) {
       // console.log(sortedOrganismsOnBoard[i])
-      await sortedOrganismsOnBoard[i].action();
+      await this.sortedOrganismsOnBoard[i].action();
     }
     const organismsAfterRound = this.getOrganisms();
     console.log(`is alive?`);
